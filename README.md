@@ -1,0 +1,1 @@
+Personal react starter kit with redux
