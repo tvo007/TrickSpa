@@ -1,5 +1,7 @@
 Project Trickspa
 
+version: preAlpha 1.0
+
 -front end for a tricking social media platform built with React/Redux
 
 How to install:
