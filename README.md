@@ -18,3 +18,5 @@ How to install:
 REACT_APP_API_URL='api url (no quotes)'
 
 -npm run start at root folder!
+
+Happy codings!
