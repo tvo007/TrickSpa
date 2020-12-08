@@ -1,55 +1,55 @@
 import {colors} from '@material-ui/core';
 
-const white = '#FFFFFF';
-const black = '#000000';
+const WHITE = '#FFFFFF';
+const BLACK = '#000000';
 
 export default {
-  black,
-  white,
+  BLACK,
+  WHITE,
   primary: {
-    contrastText: white,
+    contrastText: WHITE,
     dark: colors.red['A200'],
     main: colors.red['A200'],
     light: colors.red['A200'],
   },
   secondary: {
-    contrastText: white,
+    contrastText: WHITE,
     dark: colors.blue[900],
     main: colors.blue['A400'],
     light: colors.blue['A400'],
   },
   success: {
-    contrastText: white,
+    contrastText: WHITE,
     dark: colors.green[900],
     main: colors.green[600],
     light: colors.green[400],
   },
   info: {
-    contrastText: white,
+    contrastText: WHITE,
     dark: colors.blue[900],
     main: colors.blue[600],
     light: colors.blue[400],
   },
   warning: {
-    contrastText: white,
+    contrastText: WHITE,
     dark: colors.orange[900],
     main: colors.orange[600],
     light: colors.orange[400],
   },
   error: {
-    contrastText: white,
+    contrastText: WHITE,
     dark: colors.red[900],
     main: colors.red[600],
     light: colors.red[400],
   },
   text: {
-    primary: black,
-    secondary: white,
+    primary: BLACK,
+    secondary: WHITE,
     link: colors.blue[600],
   },
   background: {
     default: '#F4F6F8',
-    paper: white,
+    paper: WHITE,
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200],
