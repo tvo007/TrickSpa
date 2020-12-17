@@ -59,7 +59,7 @@ const useStyles = makeStyles (theme => ({
     margin: theme.spacing (4, 0),
   },
   nav: {
-    paddingTop: "30px"
+    paddingTop: '30px'
   },
   profile: {
     
@@ -67,10 +67,10 @@ const useStyles = makeStyles (theme => ({
   iconButton: {
     color: 'white',
     padding: theme.spacing (3),
-  
+    cursor: 'pointer'
   },
   sideTitle: {
-    color:"white",
+    color:'white',
     transition: theme.transitions.create ('width', {
       easing: theme.transitions.easing.slow,
       duration: theme.transitions.duration.enteringScreen,
@@ -114,47 +114,64 @@ const Sidebar = ({
   return (
     <Fragment>
       <Drawer
-        color="primary"
         anchor="left"
-        className={clsx (classes.drawer, {
-          [classes.drawerOpen]: openMini && isDesktop,
-          [classes.drawerClose]: !openMini && isDesktop,
-        })}
         classes={{
           paper: clsx ({
             [classes.drawerOpen]: openMini && isDesktop,
             [classes.drawerClose]: !openMini && isDesktop,
           }),
         }}
+        className={clsx (classes.drawer, {
+          [classes.drawerOpen]: openMini && isDesktop,
+          [classes.drawerClose]: !openMini && isDesktop,
+        })}
+        color="primary"
         onClose={onClose}
         open={open}
         variant={variant}
       >
         <div className={clsx (classes.root, className)}>
-          <IconButton className={classes.iconButton}>
-            <Grid container direction="row" justify="space-around" alignItems="center" wrap="nowrap">
-              <Grid item style={{paddingRight: iconStyling}}>
+          <Grid
+            alignItems="center"
+            className={classes.iconButton}
+            container
+            direction="row"
+            justify="space-around"
+            wrap="nowrap"
+          >
+            <Grid
+              item
+              style={{paddingRight: iconStyling}}
+            >
               <FlashOnIcon />
-              </Grid>
-            <Grid item zeroMinWidth>
-           {openMini ? <Typography className={classes.sideTitle} variant="h4" noWrap>
-              CONNECTRIX
-            </Typography> : null}
             </Grid>
-            
+            <Grid
+              item
+              zeroMinWidth
+            >
+              {openMini ? <Typography
+                className={classes.sideTitle}
+                noWrap
+                variant="h4"
+              >
+            CONNECTRIX
+              </Typography> : null}
             </Grid>
-            
-          </IconButton>
+          
+          </Grid>
           
           {/* <Typography color="textSecondary" className={classes.profile}>
             Profile Pic
           </Typography> */}
-          <SidebarProfile className={classes.profile} openMini={openMini}/>
+          <SidebarProfile
+            className={classes.profile}
+            openMini={openMini}
+          />
           
           <SidebarNav
             className={classes.nav}
-            pages={pages}
             openMini={openMini}
+            pages={pages}
           />
         </div>
 
