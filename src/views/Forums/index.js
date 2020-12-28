@@ -6,38 +6,38 @@ import {Grid, Typography} from '@material-ui/core'
 
 const Forums = (props) => {
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-    useEffect (
-        () => {
-          dispatch (getPosts ());
-        },
-        [dispatch]
-      );
+  useEffect (
+    () => {
+      dispatch (getPosts ());
+    },
+    [dispatch]
+  );
 
       
   const {posts, isPostLoading} = useSelector (state => state.post);
 
-    return (
-        <Grid>
-            <Grid>
-            <Typography>
+  return (
+    <Grid>
+      <Grid>
+        <Typography variant="h1">
                 This is the forums page.
-            </Typography>
-            </Grid>
-            <Grid>
-            <Typography>
+        </Typography>
+      </Grid>
+      <Grid>
+        <Typography>
                 # of posts: {posts.length}
-            </Typography>
-            <Typography>
+        </Typography>
+        <Typography>
                 Todo: expand into a fully functional message board
-            </Typography>
+        </Typography>
 
-            </Grid>
+      </Grid>
             
-        </Grid>
+    </Grid>
          
-    )
+  )
 }
 
 Forums.propTypes = {
