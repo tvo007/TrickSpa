@@ -30,54 +30,65 @@ const SidebarProfile = ({className, openMini}) => {
     <div className={clsx (classes.root, className)}>
       <Grid>
 
-        <Grid container direction="row" justify="space-around" spacing={3}>
+        <Grid
+          container
+          direction="row"
+          justify="space-around"
+          spacing={3}
+        >
           <Grid item>
             {openMini
               ? <Grid
-                  container
-                  wrap="nowrap"
-                  spacing={3}
-                  style={{paddingRight: '70px'}}
-                >
-                  <Grid item>
-                    <Avatar
-                      alt="Person"
-                      className={classes.avatar}
-                      component={RouterLink}
-                      src="https://res.cloudinary.com/ddj5orpun/image/upload/c_scale,w_200/v1569892155/samples/landscapes/beach-boat.jpg"
-                      to="/Dashboard"
-                    />
-                  </Grid>
-                  <Grid item zeroMinWidth>
-                    <Typography
-                      className={classes.profileInfo}
-                      variant="body2"
-                      noWrap={true}
-                    >
-                      YOUR NAME
-                    </Typography>
-
-                    <Typography
-                      className={classes.profileInfo}
-                      variant="body2"
-                      noWrap={true}
-                    >
-                      YOUR BIO
-                    </Typography>
-                  </Grid>
-
+                container
+                spacing={3}
+                style={{paddingRight: '70px'}}
+                wrap="nowrap"
+              >
+                <Grid item>
+                  <Avatar
+                    alt="Person"
+                    className={classes.avatar}
+                    component={RouterLink}
+                    src="https://res.cloudinary.com/ddj5orpun/image/upload/c_scale,w_200/v1569892155/samples/landscapes/beach-boat.jpg"
+                    to="/Dashboard"
+                  />
                 </Grid>
-              : <Grid container spacing={3}>
-                  <Grid item>
-                    <Avatar
-                      alt="Person"
-                      className={classes.avatar}
-                      component={RouterLink}
-                      src="https://res.cloudinary.com/ddj5orpun/image/upload/c_scale,w_200/v1569892155/samples/landscapes/beach-boat.jpg"
-                      to="/Dashboard"
-                    />
-                  </Grid>
-                </Grid>}
+                <Grid
+                  item
+                  zeroMinWidth
+                >
+                  <Typography
+                    className={classes.profileInfo}
+                    noWrap
+                    variant="body2"
+                  >
+                      YOUR NAME
+                  </Typography>
+
+                  <Typography
+                    className={classes.profileInfo}
+                    noWrap
+                    variant="body2"
+                  >
+                      YOUR BIO
+                  </Typography>
+                </Grid>
+
+              </Grid>
+              : <Grid
+                container
+                spacing={3}
+              >
+                <Grid item>
+                  <Avatar
+                    alt="Person"
+                    className={classes.avatar}
+                    component={RouterLink}
+                    src="https://res.cloudinary.com/ddj5orpun/image/upload/c_scale,w_200/v1569892155/samples/landscapes/beach-boat.jpg"
+                    to="/Dashboard"
+                  />
+                </Grid>
+              </Grid>}
 
           </Grid>
 

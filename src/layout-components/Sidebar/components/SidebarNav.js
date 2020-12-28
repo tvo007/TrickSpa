@@ -48,7 +48,10 @@ const useStyles = makeStyles (theme => ({
 }));
 
 const CustomRouterLink = forwardRef ((props, ref) => (
-  <div ref={ref} style={{flexGrow: 1}}>
+  <div
+    ref={ref}
+    style={{flexGrow: 1}}
+  >
     <NavLink {...props} />
   </div>
 ));
@@ -59,9 +62,16 @@ const SidebarNav = props => {
   const classes = useStyles (openMini);
 
   return (
-    <List {...rest} className={clsx (classes.root, className)}>
+    <List
+      {...rest}
+      className={clsx (classes.root, className)}
+    >
       {pages.map (page => (
-        <ListItem className={classes.item} disableGutters key={page.title}>
+        <ListItem
+          className={classes.item}
+          disableGutters
+          key={page.title}
+        >
           <Button
             activeClassName={classes.active}
             className={classes.button}
@@ -69,14 +79,24 @@ const SidebarNav = props => {
             to={page.href}
           >
             <Grid>
-              <Grid container wrap="nowrap" direction="row">
+              <Grid
+                container
+                direction="row"
+                wrap="nowrap"
+              >
                 <Grid item>
-                <div className={classes.icon}>{page.icon}</div>
+                  <div className={classes.icon}>{page.icon}</div>
                 </Grid>
-                <Grid item zeroMinWidth>
-                <Typography color="textSecondary" noWrap>
-                  {openMini ? page.title : null}
-                </Typography>
+                <Grid
+                  item
+                  zeroMinWidth
+                >
+                  <Typography
+                    color="textSecondary"
+                    noWrap
+                  >
+                    {openMini ? page.title : null}
+                  </Typography>
                 </Grid>
                 
               </Grid>
