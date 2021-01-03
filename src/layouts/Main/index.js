@@ -21,12 +21,16 @@ const useStyles = makeStyles (theme => ({
   content: {
     width: '100%',
     height: '100%',
-    transition: theme.transitions.create ('width', 'height', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    // transition: theme.transitions.create ('width', 'height', {
+    //   easing: theme.transitions.easing.sharp,
+    //   duration: theme.transitions.duration.leavingScreen,
+    // }),
   },
 }));
+
+//TODO: rework transition in content section
+//^^^ causing material ui errors
+//Material-UI: Unrecognized argument(s) [0,1,2,3,4,5]
 
 const Main = props => {
   const {children} = props;
