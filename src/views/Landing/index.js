@@ -15,9 +15,9 @@ function Landing (props) {
   return (
     <div className={classes.root}>
      
-          <Grid>
-            <Typography>THIS IS THE Landing</Typography>
-          </Grid>
+      <Grid>
+        <Typography variant="h1">THIS IS THE Landing</Typography>
+      </Grid>
 
     </div>
   );

@@ -8,16 +8,19 @@ import {Grid, Typography} from '@material-ui/core';
 const Forums = props => {
   const dispatch = useDispatch ();
 
+
+  const dispatch = useDispatch()
+
   useEffect (
     () => {
       dispatch (getPosts ());
-      dispatch (getComments (39));
     },
     [dispatch]
   );
 
 
   const {posts, isPostLoading} = useSelector (state => state.post);
+
   const {comments, isCommentLoading} = useSelector (state => state.comment);
 
   const showComments = comments.map( comment => {
@@ -26,33 +29,34 @@ const Forums = props => {
     </Grid>
   })
 
+
   return (
     <Grid>
-      <Grid>
-        <Typography>
-          This is the forums page.
+
+        <Typography variant="h1">
+                This is the forums page.
         </Typography>
       </Grid>
       <Grid>
         <Typography>
-          # of posts: {posts.length}
+
+                # of posts: {posts.length}
         </Typography>
         <Typography>
-            # of comments {comments.length}
-        </Typography>
-        <Typography>
-            Actual Comments: {showComments}
-        </Typography>
-        <Typography>
-          Todo: expand into a fully functional message board
+                Todo: expand into a fully functional message board
         </Typography>
 
       </Grid>
-
+            
     </Grid>
-  );
-};
+         
+  )
+}
 
-Forums.propTypes = {};
+Forums.propTypes = {
 
-export default Forums;
+}
+
+export default Forums
+
+

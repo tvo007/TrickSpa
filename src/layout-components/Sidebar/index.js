@@ -71,6 +71,7 @@ const useStyles = makeStyles (theme => ({
   },
   sideTitle: {
     color:'white',
+    fontFamily: 'Permanent Marker',
     transition: theme.transitions.create ('width', {
       easing: theme.transitions.easing.slow,
       duration: theme.transitions.duration.enteringScreen,

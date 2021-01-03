@@ -1,8 +1,10 @@
 import palette from './palette';
 
 export default {
+  fontFamily: ['Roboto', 'sans-serif'],
   h1: {
-    color: palette.text.primary,
+    fontFamily: 'Permanent Marker',
+    color: palette.primary.main,
     fontWeight: 500,
     fontSize: '35px',
     letterSpacing: '-0.24px',

@@ -15,9 +15,9 @@ function Dashboard (props) {
   return (
     <div className={classes.root}>
      
-          <Grid>
-            <Typography>THIS IS THE DASHBOARD</Typography>
-          </Grid>
+      <Grid>
+        <Typography variant="h1">THIS IS THE DASHBOARD</Typography>
+      </Grid>
 
     </div>
   );
