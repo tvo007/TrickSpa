@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
-import {getPosts} from '../../actions/post';
-import {getComments} from '../../actions/comment';
+import {getPosts} from '../../actions/postActions';
+// import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
 import {Grid, Typography} from '@material-ui/core';
 
@@ -22,17 +22,17 @@ const Forums = props => {
     [dispatch]
   );
 
-  const {posts, isPostLoading, error} = useSelector (state => state.post);
+  const {posts, loading, error} = useSelector (state => state.posts);
 
-  const {comments, isCommentLoading} = useSelector (state => state.comment);
+  // const {comments, isCommentLoading} = useSelector (state => state.comment);
 
-  const showComments = comments.map (comment => {
-    return (
-      <Grid>
-        <Typography>{comment.body}</Typography>
-      </Grid>
-    );
-  });
+  // const showComments = comments.map (comment => {
+  //   return (
+  //     <Grid>
+  //       <Typography>{comment.body}</Typography>
+  //     </Grid>
+  //   );
+  // });
 
   const classes = useStyles ();
 
@@ -47,9 +47,9 @@ const Forums = props => {
           </Typography>
         </Grid>
 
-        {isPostLoading
+        {loading
           ? <Grid><Typography>LOADING</Typography></Grid>
-          : error.length === 0
+          : error
               ? <Grid><Typography>ERROR</Typography> </Grid>
               : <Grid>
                   <Typography>
