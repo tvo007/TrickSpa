@@ -110,6 +110,11 @@ const Sidebar = ({
       href: '/Forums',
       icon: <MessageIcon />,
     },
+    {
+      title: 'Dummy',
+      href: '/Dummy',
+      icon: <MessageIcon />,
+    },
   ];
 
   return (

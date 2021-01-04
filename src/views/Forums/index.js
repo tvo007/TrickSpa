@@ -8,9 +8,6 @@ import {Grid, Typography} from '@material-ui/core';
 const Forums = props => {
   const dispatch = useDispatch ();
 
-
-  const dispatch = useDispatch()
-
   useEffect (
     () => {
       dispatch (getPosts ());
@@ -32,7 +29,7 @@ const Forums = props => {
 
   return (
     <Grid>
-
+      <Grid>
         <Typography variant="h1">
                 This is the forums page.
         </Typography>
@@ -46,10 +43,8 @@ const Forums = props => {
                 Todo: expand into a fully functional message board
         </Typography>
 
-      </Grid>
-            
-    </Grid>
-         
+      </Grid>            
+    </Grid>        
   )
 }
 
