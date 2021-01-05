@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import {Typography} from '@material-ui/core';
 
 function PageHeading({ title }) {
-  return (
-    <Typography variant="h1">{title}</Typography>
-  )
+  return <Typography variant="h1">{title}</Typography>
 }
 
 export default PageHeading;

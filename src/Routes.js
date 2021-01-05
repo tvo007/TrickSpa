@@ -34,12 +34,12 @@ const Routes = props => {
         layout={Main}
         path="/Forums"
       />
-      <RouteWithLayout
+      {/* <RouteWithLayout
         component={Dummy}
         exact
         layout={Main}
         path="/Dummy"
-      />
+      /> */}
 
     </Switch>
   );

@@ -22,8 +22,12 @@ function Dummy (props) {
       >
         <Grid
           item
-          sm={4}
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, pariatur libero fuga cupiditate optio ipsa quaerat inventore nesciunt nemo tempore ducimus mollitia perferendis illo hic voluptate suscipit voluptatem sed facere.Mollitia consequatur quam accusantium dignissimos, rem qui ipsam vitae ipsum dolores! Reiciendis magni itaque accusamus ad porro pariatur nemo, consequuntur voluptatem vero et. Dolores vero nemo recusandae, reiciendis fugit libero.</Grid>
+          sm={6}
+        >
+          <Typography variant="body1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, pariatur libero fuga cupiditate optio ipsa quaerat inventore nesciunt nemo tempore ducimus mollitia perferendis illo hic voluptate suscipit voluptatem sed facere.Mollitia consequatur quam accusantium dignissimos, rem qui ipsam vitae ipsum dolores! Reiciendis magni itaque accusamus ad porro pariatur nemo, consequuntur voluptatem vero et. Dolores vero nemo recusandae, reiciendis fugit libero.
+          </Typography>
+        </Grid>
       </Grid>
     </div>
   );

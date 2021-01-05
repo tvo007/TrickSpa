@@ -110,11 +110,11 @@ const Sidebar = ({
       href: '/Forums',
       icon: <MessageIcon />,
     },
-    {
-      title: 'Dummy',
-      href: '/Dummy',
-      icon: <MessageIcon />,
-    },
+    // {
+    //   title: 'Dummy',
+    //   href: '/Dummy',
+    //   icon: <MessageIcon />,
+    // },
   ];
 
   return (
@@ -159,7 +159,7 @@ const Sidebar = ({
                 className={classes.sideTitle}
                 noWrap
                 variant="h4"
-              >
+                          >
             CONNECTRIX
               </Typography> : null}
             </Grid>

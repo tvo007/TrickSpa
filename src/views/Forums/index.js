@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import PageHeading from '../../components/PageHeading';
 import {getPosts} from '../../actions/post';
 import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,20 +22,26 @@ const Forums = props => {
   const {comments, isCommentLoading} = useSelector (state => state.comment);
 
   const showComments = comments.map( comment => {
-    return <Grid>
-      <Typography>{comment.body}</Typography>
-    </Grid>
+    return (
+      <Grid>
+        <Typography>{comment.body}</Typography>
+      </Grid>
+    );
   })
 
 
   return (
-    <Grid>
-      <Grid>
-        <Typography variant="h1">
-                This is the forums page.
-        </Typography>
+    <Grid container>
+      <Grid
+        item
+        xs={12}
+      >
+        <PageHeading title="Forums" />
       </Grid>
-      <Grid>
+      <Grid
+        item
+        xs={12}
+      >
         <Typography>
 
                 # of posts: {posts.length}
