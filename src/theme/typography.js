@@ -9,7 +9,6 @@ export default {
     fontSize: '35px',
     letterSpacing: '-0.24px',
     lineHeight: '40px',
-    textAlign: 'center',
     margin: '3rem 0'
   },
   h2: {
