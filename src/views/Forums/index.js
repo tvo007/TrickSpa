@@ -23,74 +23,52 @@ const Forums = props => {
     [dispatch]
   );
 
-  const {posts, loading, error} = useSelector (state => state.posts);
+  const {posts, loading: isPostLoading, error} = useSelector (
+    state => state.posts
+  );
 
-//   const {comments, isCommentLoading} = useSelector (state => state.comment);
+  //   const {comments, isCommentLoading} = useSelector (state => state.comment);
 
-//   const showComments = comments.map (comment => {
+  //   const showComments = comments.map (comment => {
 
-//     return (
-//       <Grid>
-//         <Typography>{comment.body}</Typography>
-//       </Grid>
-//     );
-
+  //     return (
+  //       <Grid>
+  //         <Typography>{comment.body}</Typography>
+  //       </Grid>
+  //     );
 
   const classes = useStyles ();
 
   return (
-    // <div className={classes.root}>
+    <div className={classes.root}>
 
-    //   <Grid>
-    //     <Grid>
+      <Grid container>
+        <Grid item xs={12}>
+          <PageHeading title="Forums" />
+        </Grid>
 
-    //       <Typography variant="h1">
-    //         This is the forums page.
-    //       </Typography>
-    //     </Grid>
+        {isPostLoading
+          ? <Grid><Typography>LOADING</Typography></Grid>
+          : error
+              ? <Grid><Typography>ERROR</Typography> </Grid>
+              : <Grid item xs={12}>
+                  <Typography>
+                    # of posts: {posts.length}
+                  </Typography>
+                  <Typography>
+                    Todo: expand into a fully functional message board
+                  </Typography>
 
-    //     {loading
-    //       ? <Grid><Typography>LOADING</Typography></Grid>
-    //       : error
-    //           ? <Grid><Typography>ERROR</Typography> </Grid>
-    //           : <Grid>
-    //               <Typography>
-    //                 # of posts: {posts.length}
-    //               </Typography>
-    //               <Typography>
-    //                 Todo: expand into a fully functional message board
-    //               </Typography>
+                </Grid>}
 
-    //             </Grid>}
-
-    <Grid container>
-      <Grid
-        item
-        xs={12}
-      >
-        <PageHeading title="Forums" />
       </Grid>
-      <Grid
-        item
-        xs={12}
-      >
-        <Typography>
-                # of posts: {posts.length}
-        </Typography>
-        <Typography>
-                Todo: expand into a fully functional message board
-        </Typography>
+    </div>
+  );
+};
 
-      </Grid>            
-    </Grid>        
-  )
-}
+Forums.propTypes = {};
 
-Forums.propTypes = {
-
-}
-
-export default Forums
+export default Forums;
 
 //     <div className={classes.root}>
 
