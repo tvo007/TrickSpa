@@ -1,15 +1,27 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import {
+  postListReducer,
+  postDetailsReducer,
+} from './reducers/postReducers'
 //import setAuthToken from './utils/setAuthToken';
+
+const reducer = combineReducers({
+  posts: postListReducer,
+  postDetails: postDetailsReducer
+})
+
+
 
 const initialState = {};
 
 const middleware = [thunk];
 
 const store = createStore (
-    rootReducer,
+    // rootReducer,
+    reducer,
   initialState,
   composeWithDevTools (applyMiddleware (...middleware))
 );

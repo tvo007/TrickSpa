@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import {makeStyles} from '@material-ui/styles';
-import {getPosts} from '../../actions/post';
-import {getComments} from '../../actions/comment';
+import {getPosts} from '../../actions/postActions';
+// import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
 import {Grid, Typography} from '@material-ui/core';
 
@@ -23,51 +23,52 @@ const Forums = props => {
     [dispatch]
   );
 
-  const {posts, isPostLoading, error} = useSelector (state => state.post);
+  const {posts, loading: isPostLoading, error} = useSelector (
+    state => state.posts
+  );
 
-//   const {comments, isCommentLoading} = useSelector (state => state.comment);
+  //   const {comments, isCommentLoading} = useSelector (state => state.comment);
 
-//   const showComments = comments.map (comment => {
+  //   const showComments = comments.map (comment => {
 
-//     return (
-//       <Grid>
-//         <Typography>{comment.body}</Typography>
-//       </Grid>
-//     );
-
+  //     return (
+  //       <Grid>
+  //         <Typography>{comment.body}</Typography>
+  //       </Grid>
+  //     );
 
   const classes = useStyles ();
 
   return (
+    <div className={classes.root}>
 
-    <Grid container>
-      <Grid
-        item
-        xs={12}
-      >
-        <PageHeading title="Forums" />
+      <Grid container>
+        <Grid item xs={12}>
+          <PageHeading title="Forums" />
+        </Grid>
+
+        {isPostLoading
+          ? <Grid><Typography>LOADING</Typography></Grid>
+          : error
+              ? <Grid><Typography>ERROR</Typography> </Grid>
+              : <Grid item xs={12}>
+                  <Typography>
+                    # of posts: {posts.length}
+                  </Typography>
+                  <Typography>
+                    Todo: expand into a fully functional message board
+                  </Typography>
+
+                </Grid>}
+
       </Grid>
-      <Grid
-        item
-        xs={12}
-      >
-        <Typography>
-                # of posts: {posts.length}
-        </Typography>
-        <Typography>
-                Todo: expand into a fully functional message board
-        </Typography>
+    </div>
+  );
+};
 
-      </Grid>            
-    </Grid>        
-  )
-}
+Forums.propTypes = {};
 
-Forums.propTypes = {
-
-}
-
-export default Forums
+export default Forums;
 
 //     <div className={classes.root}>
 
