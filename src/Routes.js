@@ -3,14 +3,18 @@ import {Switch, Redirect} from 'react-router-dom';
 import {RouteWithLayout} from './components';
 // import {PrivateRouteWithLayout} from './components';
 import {Main} from './layouts';
-import {Dashboard, Landing, Forums} from './views';
+import {Dashboard, Landing, Forums, Dummy} from './views';
 
 import PropTypes from 'prop-types';
 
 const Routes = props => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/Dashboard" />
+      <Redirect
+        exact
+        from="/"
+        to="/Dashboard"
+      />
 
       <RouteWithLayout
         component={Dashboard}
@@ -24,7 +28,18 @@ const Routes = props => {
         layout={Main}
         path="/Landing"
       />
-      <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
+      <RouteWithLayout
+        component={Forums}
+        exact
+        layout={Main}
+        path="/Forums"
+      />
+      {/* <RouteWithLayout
+        component={Dummy}
+        exact
+        layout={Main}
+        path="/Dummy"
+      /> */}
 
     </Switch>
   );
