@@ -5,7 +5,14 @@ import {makeStyles} from '@material-ui/styles';
 import {getPosts} from '../../actions/postActions';
 // import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
-import {Grid, Typography} from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  Card,
+  CardHeader,
+  CardContent,
+  Divider,
+} from '@material-ui/core';
 
 const useStyles = makeStyles (theme => ({
   root: {
@@ -42,22 +49,81 @@ const Forums = props => {
   return (
     <div className={classes.root}>
 
-      <Grid container>
+      <Grid container spacing={4}>
         <Grid item xs={12}>
           <PageHeading title="Forums" />
         </Grid>
-
         {isPostLoading
           ? <Grid><Typography>LOADING</Typography></Grid>
           : error
               ? <Grid><Typography>ERROR</Typography> </Grid>
-              : <Grid item xs={12}>
-                  <Typography>
-                    # of posts: {posts.length}
-                  </Typography>
-                  <Typography>
-                    Todo: expand into a fully functional message board
-                  </Typography>
+              : <Grid item container spacing={4}>
+                  <Grid item lg={12} md={12} xl={12} xs={12}>
+                    <Card>
+                      <CardHeader
+                        title={<Typography variant="h1">What's New</Typography>}
+                      />
+                      <CardContent>
+                        <Grid>
+                          <Typography>
+                            Extra! Extra! Read all about it!
+                          </Typography>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+
+                  <Grid item lg={12} md={12} xl={12} xs={12}>
+                    <Card>
+                      <CardHeader
+                        title={
+                          <Typography variant="h1">Tricking General</Typography>
+                        }
+                      />
+                      <CardContent>
+                        <Grid>
+                          <Typography>
+                            Generic tricking talk goes here.
+                          </Typography>
+                        </Grid>
+
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                  <Grid item lg={12} md={12} xl={12} xs={12}>
+                    <Card>
+                      <CardHeader
+                        title={
+                          <Typography variant="h1">
+                            Tricking Technique
+                          </Typography>
+                        }
+                      />
+                      <CardContent>
+                        <Grid>
+                          <Typography>Teach me how to backflip.</Typography>
+                        </Grid>
+
+                      </CardContent>
+                    </Card>
+                  </Grid>
+
+                  <Grid item lg={12} md={12} xl={12} xs={12}>
+                    <Card>
+                      <CardHeader
+                        title={<Typography variant="h1">Publicus</Typography>}
+                      />
+                      <CardContent>
+                        <Grid>
+                          <Typography>
+                            A Place to kick back and talk about anything
+                          </Typography>
+                        </Grid>
+
+                      </CardContent>
+                    </Card>
+
+                  </Grid>
 
                 </Grid>}
 
@@ -69,36 +135,3 @@ const Forums = props => {
 Forums.propTypes = {};
 
 export default Forums;
-
-//     <div className={classes.root}>
-
-//       <Grid>
-//         <Grid>
-
-//           <Typography variant="h1">
-//             This is the forums page.
-//           </Typography>
-//         </Grid>
-
-//         {isPostLoading
-//           ? <Grid><Typography>LOADING</Typography></Grid>
-//           : error.length === 0
-//               ? <Grid><Typography>ERROR</Typography> </Grid>
-//               : <Grid>
-//                   <Typography>
-//                     # of posts: {posts.length}
-//                   </Typography>
-//                   <Typography>
-//                     Todo: expand into a fully functional message board
-//                   </Typography>
-
-//                 </Grid>}
-
-//       </Grid>
-//     </div>
-//   );
-// };
-
-// Forums.propTypes = {};
-
-// export default Forums;

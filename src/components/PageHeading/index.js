@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Typography} from '@material-ui/core';
+import {Typography, Divider} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
+const useStyles = makeStyles (theme => ({
+  divider: {
+    background: 'black',
+  },
+}));
 
-function PageHeading({ title }) {
-  return <Typography variant="h1">{title}</Typography>
-}
+//you can get ride of theme if you dont need to take advantage of theme.whatever
 
-export default PageHeading;
+const PageHeading = ({title}) => {
+  const classes = useStyles ();
+  return (
+    <Fragment>
+      <Typography variant="h1">{title}</Typography>
+      <Divider className={classes.divider} />
+    </Fragment>
+  );
+};
 
 PageHeading.propTypes = {
-  title: PropTypes.string.isRequired
-}
+  title: PropTypes.string.isRequired,
+};
+
+export default PageHeading;
