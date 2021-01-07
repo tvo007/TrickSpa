@@ -49,83 +49,117 @@ const Forums = props => {
   return (
     <div className={classes.root}>
 
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
+      <Grid
+        container
+        spacing={4}
+      >
+        <Grid
+          item
+          xs={12}
+        >
           <PageHeading title="Forums" />
         </Grid>
         {isPostLoading
           ? <Grid><Typography>LOADING</Typography></Grid>
           : error
-              ? <Grid><Typography>ERROR</Typography> </Grid>
-              : <Grid item container spacing={4}>
-                  <Grid item lg={12} md={12} xl={12} xs={12}>
-                    <Card>
-                      <CardHeader
-                        title={<Typography variant="h1">What's New</Typography>}
-                      />
-                      <CardContent>
-                        <Grid>
-                          <Typography>
+            ? <Grid><Typography>ERROR</Typography> </Grid>
+            : <Grid
+              container
+              item
+              spacing={4}
+              >
+              <Grid
+                item
+                lg={12}
+                md={12}
+                xl={12}
+                xs={12}
+              >
+                <Card>
+                  <CardHeader
+                    title={<Typography variant="h2">What's New</Typography>}
+                  />
+                  <CardContent>
+                    <Grid>
+                      <Typography>
                             Extra! Extra! Read all about it!
-                          </Typography>
-                        </Grid>
-                      </CardContent>
-                    </Card>
-                  </Grid>
+                      </Typography>
+                    </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
 
-                  <Grid item lg={12} md={12} xl={12} xs={12}>
-                    <Card>
-                      <CardHeader
-                        title={
-                          <Typography variant="h1">Tricking General</Typography>
-                        }
-                      />
-                      <CardContent>
-                        <Grid>
-                          <Typography>
+              <Grid
+                item
+                lg={12}
+                md={12}
+                xl={12}
+                xs={12}
+              >
+                <Card>
+                  <CardHeader
+                    title={
+                      <Typography variant="h2">Tricking General</Typography>
+                    }
+                  />
+                  <CardContent>
+                    <Grid>
+                      <Typography>
                             Generic tricking talk goes here.
-                          </Typography>
-                        </Grid>
+                      </Typography>
+                    </Grid>
 
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                  <Grid item lg={12} md={12} xl={12} xs={12}>
-                    <Card>
-                      <CardHeader
-                        title={
-                          <Typography variant="h1">
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid
+                item
+                lg={12}
+                md={12}
+                xl={12}
+                xs={12}
+              >
+                <Card>
+                  <CardHeader
+                    title={
+                      <Typography variant="h2">
                             Tricking Technique
-                          </Typography>
-                        }
-                      />
-                      <CardContent>
-                        <Grid>
-                          <Typography>Teach me how to backflip.</Typography>
-                        </Grid>
+                      </Typography>
+                    }
+                  />
+                  <CardContent>
+                    <Grid>
+                      <Typography>Teach me how to backflip.</Typography>
+                    </Grid>
 
-                      </CardContent>
-                    </Card>
-                  </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
 
-                  <Grid item lg={12} md={12} xl={12} xs={12}>
-                    <Card>
-                      <CardHeader
-                        title={<Typography variant="h1">Publicus</Typography>}
-                      />
-                      <CardContent>
-                        <Grid>
-                          <Typography>
+              <Grid
+                item
+                lg={12}
+                md={12}
+                xl={12}
+                xs={12}
+              >
+                <Card>
+                  <CardHeader
+                    title={<Typography variant="h2">Publicus</Typography>}
+                  />
+                  <CardContent>
+                    <Grid>
+                      <Typography>
                             A Place to kick back and talk about anything
-                          </Typography>
-                        </Grid>
+                      </Typography>
+                    </Grid>
 
-                      </CardContent>
-                    </Card>
+                  </CardContent>
+                </Card>
 
-                  </Grid>
+              </Grid>
 
-                </Grid>}
+            </Grid>}
 
       </Grid>
     </div>
