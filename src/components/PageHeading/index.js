@@ -15,7 +15,6 @@ const PageHeading = ({title}) => {
   return (
     <Fragment>
       <Typography variant="h1">{title}</Typography>
-      <Divider className={classes.divider} />
     </Fragment>
   );
 };
