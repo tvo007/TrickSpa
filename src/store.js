@@ -6,11 +6,16 @@ import {
   postListReducer,
   postDetailsReducer,
 } from './reducers/postReducers'
+import {
+  sectionListReducer
+} from './reducers/sectionReducer'
 //import setAuthToken from './utils/setAuthToken';
 
 const reducer = combineReducers({
   posts: postListReducer,
-  postDetails: postDetailsReducer
+  postDetails: postDetailsReducer,
+  sections: sectionListReducer
+
 })
 
 
