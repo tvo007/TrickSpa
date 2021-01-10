@@ -11,7 +11,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-const SectionItem = ({name, description, onClick}) => {
+const PostItem = ({name, description, onClick}) => {
   return (
     <Grid item lg={12} md={12} xl={12} xs={12}>
       <Card>
@@ -34,6 +34,6 @@ const SectionItem = ({name, description, onClick}) => {
   );
 };
 
-SectionItem.propTypes = {};
+PostItem.propTypes = {};
 
-export default SectionItem;
+export default PostItem;

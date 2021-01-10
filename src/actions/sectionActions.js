@@ -31,3 +31,26 @@ export const getSections = () => async dispatch => {
     });
   }
 };
+
+export const getSection = slug => async dispatch => {
+  try {
+    dispatch ({
+      type: SECTION_GET_REQUEST,
+    });
+
+    const {data} = await axios.get (`${api}/sections/slug/${slug}`);
+
+    dispatch ({
+      type: SECTION_GET_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+    dispatch ({
+      type: SECTION_GET_FAIL,
+      payload: message,
+    });
+  }
+};

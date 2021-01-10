@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
+import {useHistory} from 'react-router-dom';
 import {makeStyles} from '@material-ui/styles';
 // import {getPosts} from '../../actions/postActions';
 import {getSections} from '../../actions/sectionActions';
@@ -25,6 +26,8 @@ const useStyles = makeStyles (theme => ({
 const Forums = props => {
   const dispatch = useDispatch ();
 
+  const history = useHistory ();
+
   useEffect (
     () => {
       dispatch (getSections ());
@@ -36,15 +39,8 @@ const Forums = props => {
     state => state.sections
   );
 
-  //   const {comments, isCommentLoading} = useSelector (state => state.comment);
-
-  //   const showComments = comments.map (comment => {
-
-  //     return (
-  //       <Grid>
-  //         <Typography>{comment.body}</Typography>
-  //       </Grid>
-  //     );
+  //section names have spaces and single quotes
+  //parsing function to cleanly format routing names
 
   const classes = useStyles ();
 
@@ -65,6 +61,7 @@ const Forums = props => {
                       key={section.id}
                       name={section.name}
                       description={section.description}
+                      onClick={e => history.push (`/forums/${section.slug}`)}
                     />
                   ))}
 

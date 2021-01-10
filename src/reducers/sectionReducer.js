@@ -19,3 +19,16 @@ export const sectionListReducer = (state = {sections: []}, action) => {
       return state;
   }
 };
+
+export const sectionReducer = (state = {section: {}}, action) => {
+  switch (action.type) {
+    case SECTION_GET_REQUEST:
+      return {...state, loading: true};
+    case SECTION_GET_SUCCESS:
+      return {loading: false, section: action.payload};
+    case SECTION_GET_FAIL:
+      return {loading: false, error: action.payload};
+    default:
+      return state;
+  }
+};
