@@ -21,6 +21,8 @@ const useStyles = makeStyles (theme => ({
   content: {
     width: '100%',
     height: '100%',
+    padding: theme.spacing (8),
+    paddingTop: theme.spacing(4),
     // transition: theme.transitions.create ('width', 'height', {
     //   easing: theme.transitions.easing.sharp,
     //   duration: theme.transitions.duration.leavingScreen,
