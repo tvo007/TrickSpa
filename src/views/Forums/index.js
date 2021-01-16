@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import ForumsView from './components/ForumsView';
+import ForumsView from './ForumsView';
 import {useHistory} from 'react-router-dom';
 // import {getPosts} from '../../actions/postActions';
 import {getSections} from '../../actions/sectionActions';

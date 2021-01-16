@@ -32,13 +32,13 @@ export const getSections = () => async dispatch => {
   }
 };
 
-export const getSection = slug => async dispatch => {
+export const getSection = forumSlug => async dispatch => {
   try {
     dispatch ({
       type: SECTION_GET_REQUEST,
     });
 
-    const {data} = await axios.get (`${api}/sections/slug/${slug}`);
+    const {data} = await axios.get (`${api}/sections/slug/${forumSlug}`);
 
     dispatch ({
       type: SECTION_GET_SUCCESS,
