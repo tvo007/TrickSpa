@@ -55,3 +55,26 @@ export const getPosts = () => async dispatch => {
     });
   }
 };
+
+export const getPost = (postSlug) => async dispatch => {
+  try {
+    dispatch ({
+      type: POST_GET_REQUEST,
+    });
+
+    const {data} = await axios.get (`${api}/posts/slug/${postSlug}`);
+
+    dispatch ({
+      type: POST_GET_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+    dispatch ({
+      type: POST_GET_FAIL,
+      payload: message,
+    });
+  }
+};

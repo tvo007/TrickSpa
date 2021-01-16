@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PageHeading from '../../../components/PageHeading';
-import SectionItem from './SectionItem';
+import PageHeading from '../../components/PageHeading';
+import SectionItem from './components/SectionItem';
 import {
   Grid,
   Typography,

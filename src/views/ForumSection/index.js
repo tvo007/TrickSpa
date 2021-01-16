@@ -1,21 +1,22 @@
 import React, {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {getSection} from '../../actions/sectionActions';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import ForumSectionView from './components/ForumSectionView';
+import ForumSectionView from './ForumSectionView';
 
 
 const ForumSection = props => {
-  const {slug} = useParams ();
+  const {forumSlug} = useParams ();
+  const history = useHistory();
   const dispatch = useDispatch ();
   //useEffect to get single section data here
 
   useEffect (
     () => {
-      dispatch (getSection (slug));
+      dispatch (getSection (forumSlug));
     },
-    [dispatch, slug]
+    [dispatch, forumSlug]
   );
 
   const {section, loading: isSectionLoading, error} = useSelector (
@@ -27,6 +28,7 @@ const ForumSection = props => {
       section={section}
       isSectionLoading={isSectionLoading}
       error={error}
+      history={history}
     />
   );
 };
