@@ -7,7 +7,7 @@ import {getPost} from '../../actions/postActions';
 import {Typography} from '@material-ui/core';
 
 const Post = props => {
-  const {postSlug} = useParams ();
+  const { postSlug} = useParams ();
   const dispatch = useDispatch ();
   //useEffect to get single section data here
 
@@ -22,7 +22,14 @@ const Post = props => {
     state => state.postDetails
   );
 
-  return <PostView post={post} isPostLoading={isPostLoading} error={error} />;
+
+  return (
+    <PostView
+      post={post}
+      isPostLoading={isPostLoading}
+      error={error}
+    />
+  );
 };
 
 Post.propTypes = {};
