@@ -12,19 +12,28 @@ import {
   Divider,
 } from '@material-ui/core';
 
-const PostView = ({post, isPostLoading, error}) => {
+const PostView = ({
+  post,
+  isPostLoading,
+  error,
+  commentsByPost,
+  commentsError,
+  isCommentsLoading,
+}) => {
   const author = post.user ? post.user.username : null;
 
-  const comments = post.comments
-    ? post.comments.map (comment => (
-        <Comment
-          key={comment.id}
-          body={comment.body}
-          title={post.title}
-          author={comment.user.username}
-        />
-      ))
-    : null;
+  const comments = isCommentsLoading
+    ? <Typography>Loading</Typography>
+    : commentsError
+        ? <Typography>Error!</Typography>
+        : commentsByPost.map (comment => (
+            <Comment
+              key={comment.id}
+              body={comment.body}
+              title="GENERIC TITLE TO BE CHANGED"
+              author="GENERIC USERNAME"
+            />
+          ));
 
   return (
     <Grid container spacing={4}>
@@ -47,17 +56,17 @@ const PostView = ({post, isPostLoading, error}) => {
                   />
 
                 </Grid>
-                <Grid item xs={12}>
-                  {/**to be mapped */}
+              </Fragment>}
+      <Grid item xs={12}>
+        {/**comments section goes here */}
 
-                  {/* {post.comments
+        {/* {post.comments
                     ? post.comments.map (comment => (
                         <Comment key={comment.id} body={comment.body} title={post.title}/>
                       ))
                     : null} */}
-                  {comments}
-                </Grid>
-              </Fragment>}
+        {comments}
+      </Grid>
 
     </Grid>
   );
