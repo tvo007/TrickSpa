@@ -22,7 +22,7 @@ const OriginalPost = ({title, body, author, post}) => {
   return (
     <Card>
       <Grid container>
-        <Grid item xs={10}>
+        <Grid item xs={9}>
           <CardHeader
             title={<Typography variant="h4">{title}</Typography>}
             subheader={

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
 import Comment from './components/Comment';
+import Reply from './components/Reply'
 import {
   Grid,
   Typography,
@@ -30,8 +31,7 @@ const PostView = ({
             <Comment
               key={comment.id}
               body={comment.body}
-              title="GENERIC TITLE TO BE CHANGED"
-              author="GENERIC USERNAME"
+              author={comment.user ? comment.user.username : null}
             />
           ));
 
@@ -66,6 +66,9 @@ const PostView = ({
                       ))
                     : null} */}
         {comments}
+      </Grid>
+      <Grid item xs={12}>
+            <Reply />
       </Grid>
 
     </Grid>
