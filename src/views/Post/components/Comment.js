@@ -17,27 +17,40 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Comment = ({body, title, author}) => {
+const Comment = ({body, author}) => {
+  const classes = useStyles ();
   return (
     <Card>
-      <CardHeader
-        title={<Typography variant="h4">Re: {title}</Typography>}
-        subheader={
-          <Grid container direction="row">
-            <Typography>
-              <InsertDriveFileIcon fontSize="small" />
-            </Typography>
+      <Grid container>
 
-            <Typography>
-              by TODO: get author data from comments // create comments reducers by post
-            </Typography>
-          </Grid>
-        }
-      />
+        <Grid item xs={9}>
 
-      <CardContent>
-        <Typography>{body}</Typography>
-      </CardContent>
+          <CardHeader
+            subheader={
+              <Grid container direction="row">
+                <Typography>
+                  <InsertDriveFileIcon fontSize="small" />
+                </Typography>
+
+                <Typography>
+                  by {author}
+                </Typography>
+              </Grid>
+            }
+          />
+
+          <CardContent>
+            <Typography>{body}</Typography>
+          </CardContent>
+        </Grid>
+        <Divider orientation="vertical" flexItem />
+        <Grid item xs={1}>
+          <CardContent className={classes.profile}>
+            <Typography noWrap={true}>PROFILE CONTENT</Typography>
+            <Typography noWrap={true}>SHOULD HIDE WHEN MINIMAL</Typography>
+          </CardContent>
+        </Grid>
+      </Grid>
     </Card>
   );
 };

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import PostView from './PostView';
 import {getPost} from '../../actions/postActions';
+import {getCommentsByPost} from '../../actions/commentActions'
 import {Typography} from '@material-ui/core';
 
 const Post = props => {
@@ -14,6 +15,7 @@ const Post = props => {
   useEffect (
     () => {
       dispatch (getPost (postSlug));
+      dispatch(getCommentsByPost(postSlug))
     },
     [dispatch, postSlug]
   );
@@ -22,12 +24,19 @@ const Post = props => {
     state => state.postDetails
   );
 
+  const {comments, loading: isCommentsLoading, error: commentsError} = useSelector (
+    state => state.commentsByPost
+  ); 
+
 
   return (
     <PostView
       post={post}
       isPostLoading={isPostLoading}
       error={error}
+      commentsByPost={comments}
+      isCommentsLoading={isCommentsLoading}
+      commentsError={commentsError}
     />
   );
 };

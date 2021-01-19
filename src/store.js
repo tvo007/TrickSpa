@@ -10,13 +10,15 @@ import {
   sectionListReducer,
   sectionReducer
 } from './reducers/sectionReducer'
+import {commentsByPostReducer} from './reducers/commentReducers'
 //import setAuthToken from './utils/setAuthToken';
 
 const reducer = combineReducers({
   posts: postListReducer,
   postDetails: postDetailsReducer,
   sections: sectionListReducer,
-  section: sectionReducer
+  section: sectionReducer,
+  commentsByPost: commentsByPostReducer
 
 })
 
