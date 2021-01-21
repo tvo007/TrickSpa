@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import PostView from './PostView';
 import {getPost} from '../../actions/postActions';
 import {getCommentsByPost} from '../../actions/commentActions'
-import {Typography} from '@material-ui/core';
 
 const Post = props => {
   const { postSlug} = useParams ();

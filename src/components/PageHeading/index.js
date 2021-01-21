@@ -14,13 +14,13 @@ const PageHeading = ({title}) => {
   const classes = useStyles ();
   return (
     <Fragment>
-      <Typography variant="h1">{title}</Typography>
+      <Typography variant="h1">{title ? title :  null}</Typography>
     </Fragment>
   );
 };
 
 PageHeading.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 export default PageHeading;
