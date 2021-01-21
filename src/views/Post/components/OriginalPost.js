@@ -11,20 +11,26 @@ import {
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import {makeStyles, useTheme} from '@material-ui/styles';
 
-const useStyles = makeStyles(theme => ({
-    profile: {
-        width: '15vw'
-    }
-}))
+const useStyles = makeStyles (theme => ({
+  profile: {
+    width: '15vw',
+  },
+}));
 
 const OriginalPost = ({title, body, author, post}) => {
-    const classes = useStyles()
+  const classes = useStyles ();
   return (
     <Card>
       <Grid container>
         <Grid item xs={9}>
           <CardHeader
-            title={<Typography variant="h4">{title}</Typography>}
+            title={
+              <Grid>
+                <Grid>
+                  <Typography variant="h4">{title}</Typography>
+                </Grid>
+              </Grid>
+            }
             subheader={
               <Grid container direction="row">
                 <Typography>
@@ -37,16 +43,16 @@ const OriginalPost = ({title, body, author, post}) => {
               </Grid>
             }
           />
-
+          <Divider />
           <CardContent>
             <Typography>{body}</Typography>
           </CardContent>
         </Grid>
         <Divider orientation="vertical" flexItem />
-        <Grid item xs={1} >
+        <Grid item xs={1}>
           <CardContent className={classes.profile}>
-            <Typography noWrap={true} >PROFILE CONTENT</Typography>
-            <Typography noWrap={true} >SHOULD HIDE WHEN MINIMAL</Typography>
+            <Typography noWrap={true}>PROFILE CONTENT</Typography>
+            <Typography noWrap={true}>SHOULD HIDE WHEN MINIMAL</Typography>
           </CardContent>
         </Grid>
 
