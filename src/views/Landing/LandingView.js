@@ -20,7 +20,7 @@ const LandingView = props => {
           sm={9}
           xs={12}
         >
-          <SigninForm />
+          <SignupForm />
         </Grid>
       </Grid>
     </div>
