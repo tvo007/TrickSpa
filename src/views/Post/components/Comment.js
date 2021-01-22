@@ -9,7 +9,7 @@ import {
   Divider,
 } from '@material-ui/core';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
-import {makeStyles, useTheme} from '@material-ui/styles';
+import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles (theme => ({
   profile: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Comment = ({body, author}) => {
+const Comment = ({body, author, postTitle}) => {
   const classes = useStyles ();
   return (
     <Card>
@@ -26,6 +26,13 @@ const Comment = ({body, author}) => {
         <Grid item xs={9}>
 
           <CardHeader
+            title={
+              <Grid>
+                <Grid>
+                  <Typography variant="h4">Re: {postTitle}</Typography>
+                </Grid>
+              </Grid>
+            }
             subheader={
               <Grid container direction="row">
                 <Typography>
@@ -38,7 +45,7 @@ const Comment = ({body, author}) => {
               </Grid>
             }
           />
-
+          <Divider />
           <CardContent>
             <Typography>{body}</Typography>
           </CardContent>
