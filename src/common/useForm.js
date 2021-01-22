@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import validateFormInfo from './validateFormInfo';
 
 function useForm(formValues) {

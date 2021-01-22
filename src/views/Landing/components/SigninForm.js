@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from '../useForm';
+import useForm from '../../../common/useForm';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
