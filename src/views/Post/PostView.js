@@ -4,6 +4,7 @@ import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
 import Comment from './components/Comment';
 import Reply from './components/Reply';
+import Nav from '../../components/Nav'
 import DescriptionIcon from '@material-ui/icons/Description';
 import CreateIcon from '@material-ui/icons/Create';
 import {
@@ -51,6 +52,7 @@ const PostView = ({
     <Grid container spacing={4}>
       <Grid item xs={12}>
         <PageHeading title={post.section ? post.section.name : null} />
+        <Nav />
       </Grid>
       <Grid item xs={12}>
         <Grid container direction="row">
