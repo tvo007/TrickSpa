@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Grid} from '@material-ui/core';
 import PageHeading from '../../components/PageHeading';
 import SignupForm from './components/SignupForm';
+import SigninForm from './components/SigninForm';
 
 const LandingView = props => {
   return (
@@ -19,7 +20,7 @@ const LandingView = props => {
           sm={9}
           xs={12}
         >
-          <SignupForm />
+          <SigninForm />
         </Grid>
       </Grid>
     </div>

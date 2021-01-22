@@ -45,7 +45,7 @@ const SignupForm = () => {
         align="center"
         variant="h2"
       >
-        Create an Account
+        Sign In
       </Typography>
       <form
         action="#"
@@ -87,7 +87,7 @@ const SignupForm = () => {
           <input
             className={classes.submit}
             type="submit"
-            value="Create Account"
+            value="Sign In"
           />
         </Button>
       </form>
