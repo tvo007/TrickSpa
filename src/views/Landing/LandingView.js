@@ -1,15 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Typography, Grid} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import PageHeading from '../../components/PageHeading';
+import SignupForm from './components/SignupForm';
 
 const LandingView = props => {
   return (
     <div>
 
       <PageHeading title="Landing" />
-      <Grid>
-        <Typography variant="body1">THIS IS THE Landing</Typography>
+      <Grid
+        container
+        justify="center"
+      >
+        <Grid
+          item
+          md={6}
+          sm={9}
+          xs={12}
+        >
+          <SignupForm />
+        </Grid>
       </Grid>
     </div>
   );
