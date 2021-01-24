@@ -1,8 +1,8 @@
 //to be deleted
 
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {
   Grid,
   Typography,
@@ -19,16 +19,40 @@ const useStyles = makeStyles (theme => ({
 }));
 
 //get url and parse through via react routers getLocation/gethistory/useParams
+//push history
 
 const Nav = props => {
   const {forumSlug, postSlug} = useParams ();
+
+  const history = useHistory ();
+
+  const navHandler = route => {
+    history.push (route);
+  };
+
   return (
     <Grid container>
-      <Button size="small"><Typography>forums</Typography></Button>
+      <Button onClick={() => navHandler ('/forums')}>
+        <Typography>forums</Typography>
+      </Button>
       <Typography variant="h2">/</Typography>
-      <Button><Typography>{forumSlug}</Typography></Button>
-      <Typography variant="h2">/</Typography>
-      <Button><Typography>{postSlug}</Typography></Button>
+
+      {forumSlug
+        ? <Button onClick={() => navHandler (`/forums/${forumSlug}`)}>
+            <Typography>{forumSlug}</Typography>
+          </Button>
+        : null}
+
+      {postSlug
+        ? <Fragment>
+            <Typography variant="h2">/</Typography>
+            <Button
+              onClick={() => navHandler (`/forums/${forumSlug}/${postSlug}`)}
+            >
+              <Typography>{postSlug}</Typography>
+            </Button>
+          </Fragment>
+        : null}
     </Grid>
   );
 };
