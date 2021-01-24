@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import {makeStyles, useTheme} from '@material-ui/styles';
 import {useMediaQuery} from '@material-ui/core';
 import {Sidebar, Header, Footer} from '../../layout-components';
+import {Grid} from '@material-ui/core';
 
 const useStyles = makeStyles (theme => ({
   root: {
@@ -19,10 +20,10 @@ const useStyles = makeStyles (theme => ({
     paddingLeft: 240,
   },
   content: {
-    width: '100%',
+    width: '90%',
     height: '100%',
-    padding: theme.spacing (8),
-    paddingTop: theme.spacing(4),
+    padding: theme.spacing (6),
+    paddingTop: theme.spacing (4),
     // transition: theme.transitions.create ('width', 'height', {
     //   easing: theme.transitions.easing.sharp,
     //   duration: theme.transitions.duration.leavingScreen,
@@ -83,7 +84,7 @@ const Main = props => {
         openMini={openMini}
         handleMiniOpen={handleMiniOpen}
         handleMiniClose={handleMiniClose}
-        isDesktop = {isDesktop}
+        isDesktop={isDesktop}
       />
       <Sidebar
         onClose={handleSidebarClose}
@@ -92,12 +93,19 @@ const Main = props => {
         drawerWidth={drawerWidth}
         openMini={openMini}
         handleMiniClose={handleMiniClose}
-        isDesktop = {isDesktop}
+        isDesktop={isDesktop}
       />
-      <main className={classes.content}>
-        {children}
-        <Footer />
-      </main>
+
+      <Grid container justify="center">
+
+        <Grid item xs={8}>
+          <main className={classes.content}>
+            {children}
+            <Footer />
+          </main>
+        </Grid>
+
+      </Grid>
     </div>
   );
 };
