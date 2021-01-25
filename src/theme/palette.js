@@ -10,7 +10,7 @@ export default {
     contrastText: WHITE,
     dark: colors.red['A200'],
     main: colors.red['A200'],
-    light: colors.red['A200'],
+    light: colors.red['A150'],
   },
   secondary: {
     contrastText: WHITE,
@@ -45,6 +45,7 @@ export default {
   text: {
     primary: BLACK,
     secondary: WHITE,
+    subtitle: colors.grey[500],
     link: colors.blue[600],
   },
   background: {
