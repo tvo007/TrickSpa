@@ -7,57 +7,64 @@ import {
   CardHeader,
   CardContent,
   Divider,
-  CardActions,
-  CardActionArea,
+  Avatar,
 } from '@material-ui/core';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
-import {makeStyles} from '@material-ui/styles';
+import {makeStyles, useTheme} from '@material-ui/styles';
 
 const useStyles = makeStyles (theme => ({
-  profile: {},
-  subheader: {
+  profile: {
+    width: '15vw',
+  },
+  avatar: {
     backgroundColor: theme.palette.primary.light,
-    height: theme.spacing (1),
+  },
+  subheader: {
+    color: theme.palette.text.subtitle,
   },
 }));
 
-const Comment = ({body, author, postTitle}) => {
+const OP2 = ({title, body, author, post}) => {
   const classes = useStyles ();
   return (
     <Card>
       <CardHeader
-        className={classes.subheader}
+        avatar={
+          <Avatar className={classes.avatar}>
+            R
+          </Avatar>
+        }
+        title={<Typography>{title}</Typography>}
         subheader={
           <Grid container direction="row" alignItems="center">
-
-            <InsertDriveFileIcon fontSize="small" />
-
-            <Typography variant="subtitle2">
-              by {author} @ time
+            <Typography variant="body2" className={classes.subheader}>
+              Posted by {author} @ time
             </Typography>
           </Grid>
         }
       />
+      <Divider />
       <Grid container>
-
         <Grid item xs={9}>
 
           <CardContent>
             <Typography>{body}</Typography>
           </CardContent>
         </Grid>
-        {/* <Divider orientation="vertical" flexItem /> */}
-        {/* <Grid item xs={1}>
+        {/* <Divider orientation="vertical" flexItem />
+        <Grid item xs={1}>
           <CardContent className={classes.profile}>
             <Typography noWrap={true}>PROFILE CONTENT</Typography>
             <Typography noWrap={true}>SHOULD HIDE WHEN MINIMAL</Typography>
           </CardContent>
         </Grid> */}
+
       </Grid>
+
     </Card>
   );
 };
 
-Comment.propTypes = {};
+OP2.propTypes = {};
 
-export default Comment;
+export default OP2;

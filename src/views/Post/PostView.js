@@ -4,7 +4,11 @@ import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
 import Comment from './components/Comment';
 import Reply from './components/Reply';
-import Nav from '../../components/Nav'
+import Nav from '../../components/Nav';
+//experimental componets
+import CommentV2 from './components/CommentV2';
+import OP2 from './components/OP2';
+//
 import DescriptionIcon from '@material-ui/icons/Description';
 import CreateIcon from '@material-ui/icons/Create';
 import {
@@ -46,6 +50,20 @@ const PostView = ({
             />
           ));
 
+  //tivos version
+  const comments2 = isCommentsLoading
+    ? <Typography>Loading</Typography>
+    : commentsError
+        ? <Typography>Error!</Typography>
+        : commentsByPost.map (comment => (
+            <CommentV2
+              key={comment.id}
+              body={comment.body}
+              author={comment.user ? comment.user.username : null}
+              postTitle={comment.post ? comment.post.title : null}
+            />
+          ));
+
   const classes = useStyles ();
 
   return (
@@ -62,31 +80,6 @@ const PostView = ({
           <Typography variant="h3">
             {post.title}
           </Typography>
-        </Grid>
-
-        <Grid container spacing={1}>
-          <Grid item>
-            <Button variant="contained" color="primary" size="small">
-              <Typography variant="button" className={classes.buttonText}>
-                Reply <CreateIcon fontSize="small" />
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" size="small">
-              <Typography variant="button" className={classes.buttonText}>
-                Reply <CreateIcon fontSize="small" />
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" size="small">
-              <Typography variant="button" className={classes.buttonText}>
-                Reply <CreateIcon fontSize="small" />
-              </Typography>
-            </Button>
-          </Grid>
-
         </Grid>
       </Grid>
 
@@ -117,6 +110,35 @@ const PostView = ({
                     : null} */}
         {comments}
       </Grid>
+      <Typography>
+        tivos version VVVVV
+      </Typography>
+
+      {isPostLoading
+        ? <Typography>Loading</Typography>
+        : error
+            ? <Typography>Error!</Typography>
+            : <Fragment>
+
+                <Grid item xs={12}>
+                  {/**this is where we can start creating a specific component to decorate the OP  */}
+                  <OP2
+                    title={post.title}
+                    body={post.body}
+                    author={author}
+                    post={post}
+                  />
+
+                </Grid>
+              </Fragment>}
+   
+        <Grid item xs={12}>
+
+          {comments2}
+        </Grid>
+
+        <Typography>tivos version ^^^^</Typography>
+
       <Grid item xs={12}>
         <Reply />
 
