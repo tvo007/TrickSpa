@@ -17,9 +17,15 @@ import {makeStyles} from '@material-ui/styles';
 const useStyles = makeStyles (theme => ({
   profile: {},
   subheader: {
-    backgroundColor: theme.palette.primary.light,
+    // backgroundColor: theme.palette.primary.light,
     height: theme.spacing (1),
   },
+  subheaderText: {
+    color: theme.palette.text.subtitle,
+  },
+  // avatarContainer: {
+  //   marginLeft: theme.spacing(2)
+  // },
   avatar: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.light,
@@ -43,14 +49,13 @@ const Comment = ({body, author, postTitle}) => {
             subheader={
               <Grid container direction="row" alignItems="center">
 
-                <InsertDriveFileIcon fontSize="small" />
-
-                <Typography variant="subtitle2">
-                  by {author} @ time
+                <Typography variant="body2" className={classes.subheaderText}>
+                  Posted by {author} @ time
                 </Typography>
               </Grid>
             }
           />
+          <Divider />
           <Grid container>
 
             <Grid item>

@@ -50,7 +50,7 @@ const PostView = ({
             />
           ));
 
-  //experimental
+  //tivos version
   const comments2 = isCommentsLoading
     ? <Typography>Loading</Typography>
     : commentsError
@@ -111,7 +111,7 @@ const PostView = ({
         {comments}
       </Grid>
       <Typography>
-        EXPERIMENTAL VVVV
+        tivos version VVVVV
       </Typography>
 
       {isPostLoading
@@ -137,7 +137,7 @@ const PostView = ({
           {comments2}
         </Grid>
 
-  
+        <Typography>tivos version ^^^^</Typography>
 
       <Grid item xs={12}>
         <Reply />
