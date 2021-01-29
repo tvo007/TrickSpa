@@ -18,7 +18,7 @@ const useStyles = makeStyles (theme => ({
   },
   card: {
     maxWidth: '50rem',
-    margin: 'auto'
+    margin: 'auto',
   },
   avatar: {
     backgroundColor: theme.palette.primary.light,
@@ -27,6 +27,8 @@ const useStyles = makeStyles (theme => ({
     color: theme.palette.text.subtitle,
   },
   title: {
+    fontSize: '1.5rem',
+    lineHeight: '1.5',
     fontWeight: '700'
   }
 }));
@@ -49,7 +51,10 @@ const OP3 = ({title, body, author, post}) => {
             Posted by {author} @ time
           </Typography>
         }
-        title={<Typography className={classes.title}>{title}</Typography>}
+        title={<Typography
+          className={classes.title}
+          component="h2"
+               >{title}</Typography>}
       />
       <CardContent>
         <Typography variant="body1">
