@@ -13,6 +13,9 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import {makeStyles, useTheme} from '@material-ui/styles';
 
 const useStyles = makeStyles (theme => ({
+  profile: {
+    width: '15vw',
+  },
   card: {
     maxWidth: '50rem',
     margin: 'auto'
