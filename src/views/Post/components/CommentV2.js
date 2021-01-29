@@ -35,21 +35,44 @@ const useStyles = makeStyles (theme => ({
 const Comment = ({body, author, postTitle}) => {
   const classes = useStyles ();
   return (
-    <Grid container direction="row" justify="space-between" spacing={1}>
+    <Grid
+      container
+      direction="row"
+      justify="space-between"
+      spacing={1}
+    >
 
-      <Grid item container justify="center" xs={1}>
-        <Avatar variant="circle" className={classes.avatar}>TV</Avatar>
+      <Grid
+        container
+        item
+        justify="center"
+        xs={1}
+      >
+        <Avatar
+          className={classes.avatar}
+          variant="circle"
+        >TV</Avatar>
       </Grid>
 
-      <Grid item xs={11}>
+      <Grid
+        item
+        xs={11}
+      >
 
         <Card>
           <CardHeader
             className={classes.subheader}
             subheader={
-              <Grid container direction="row" alignItems="center">
+              <Grid
+                alignItems="center"
+                container
+                direction="row"
+              >
 
-                <Typography variant="body2" className={classes.subheaderText}>
+                <Typography
+                  className={classes.subheaderText}
+                  variant="body2"
+                >
                   Posted by {author} @ time
                 </Typography>
               </Grid>
@@ -61,7 +84,7 @@ const Comment = ({body, author, postTitle}) => {
             <Grid item>
 
               <CardContent>
-                <Typography>{body}</Typography>
+                <Typography>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, sed. Perspiciatis unde adipisci, voluptates autem, architecto eaque quibusdam dolores nesciunt laboriosam ab blanditiis aliquid sed debitis, ullam totam. Optio, ab!Enim quas quos nesciunt laboriosam vero doloribus fugiat blanditiis tenetur at eligendi in a esse aperiam vel, similique dignissimos, repudiandae error minus asperiores placeat maxime illum, dolor provident? Id, nostrum?</Typography>
               </CardContent>
             </Grid>
             {/* <Divider orientation="vertical" flexItem /> */}

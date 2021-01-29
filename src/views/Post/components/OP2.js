@@ -34,21 +34,31 @@ const OP2 = ({title, body, author, post}) => {
             R
           </Avatar>
         }
-        title={<Typography>{title}</Typography>}
         subheader={
-          <Grid container direction="row" alignItems="center">
-            <Typography variant="body2" className={classes.subheader}>
+          <Grid
+            alignItems="center"
+            container
+            direction="row"
+          >
+            <Typography
+              className={classes.subheader}
+              variant="body2"
+            >
               Posted by {author} @ time
             </Typography>
           </Grid>
         }
+        title={<Typography>{title}</Typography>}
       />
       <Divider />
       <Grid container>
-        <Grid item xs={9}>
+        <Grid
+          item
+          xs={9}
+        >
 
           <CardContent>
-            <Typography>{body}</Typography>
+            <Typography>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam sed consequuntur perspiciatis, nihil voluptatibus quidem earum, commodi quis ipsum excepturi assumenda quos aspernatur omnis eligendi sint quam reprehenderit. Fugit, odit.Necessitatibus explicabo minima, dolorem veritatis culpa omnis deserunt cumque quia! Iusto praesentium accusantium obcaecati similique temporibus nihil itaque! Qui iste laudantium veritatis alias architecto exercitationem aut accusantium sequi pariatur fuga?</Typography>
           </CardContent>
         </Grid>
         {/* <Divider orientation="vertical" flexItem />

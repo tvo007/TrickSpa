@@ -16,6 +16,10 @@ import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles (theme => ({
   profile: {},
+  card: {
+    maxWidth: '50rem',
+    margin: 'auto'
+  },
   subheader: {
     // backgroundColor: theme.palette.primary.light,
     height: theme.spacing (1),
@@ -36,6 +40,7 @@ const Comment = ({body, author, postTitle}) => {
   const classes = useStyles ();
   return (
     <Grid
+      className={classes.card}
       container
       direction="row"
       justify="space-between"
@@ -78,13 +83,12 @@ const Comment = ({body, author, postTitle}) => {
               </Grid>
             }
           />
-          <Divider />
           <Grid container>
-
             <Grid item>
-
               <CardContent>
-                <Typography>{body}</Typography>
+                <Typography>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, fugit molestiae eaque quo, consectetur rem beatae aperiam inventore magni aut minima voluptas sed ex vel consequatur unde? Veniam, quisquam?Debitis pariatur at aspernatur porro quaerat sequi quisquam quasi aliquid, ullam distinctio saepe, amet tempore aperiam eius minima. Voluptas possimus mollitia amet recusandae suscipit asperiores quia labore vero officiis saepe.
+                </Typography>
               </CardContent>
             </Grid>
             {/* <Divider orientation="vertical" flexItem /> */}
