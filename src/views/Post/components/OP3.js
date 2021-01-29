@@ -31,7 +31,7 @@ const useStyles = makeStyles (theme => ({
   }
 }));
 
-const OP2 = ({title, body, author, post}) => {
+const OP3 = ({title, body, author, post}) => {
   const classes = useStyles ();
   return (
     <Card className={classes.card}>
@@ -60,6 +60,6 @@ const OP2 = ({title, body, author, post}) => {
   );
 };
 
-OP2.propTypes = {};
+OP3.propTypes = {};
 
-export default OP2;
+export default OP3;
