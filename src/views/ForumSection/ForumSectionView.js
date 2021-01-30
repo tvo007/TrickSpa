@@ -1,11 +1,52 @@
-import React, {Fragment} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import PostItem from './components/PostItem';
+import CreatePost from './components/CreatePost';
 import PageHeading from '../../components/PageHeading';
-import Nav from '../../components/Nav'
-import {Grid, Typography} from '@material-ui/core';
+import Nav from '../../components/Nav';
+import ShowCreatePostButton from './components/ShowCreatePostButton';
+import {Grid, Typography, Button, TextField} from '@material-ui/core';
+import {createPost} from '../../actions/postActions';
+import {useDispatch} from 'react-redux';
 
-const ForumSectionView = ({section, isSectionLoading, error, history}) => {
+const ForumSectionView = ({
+  section,
+  isSectionLoading,
+  error,
+  history,
+  posts,
+  isPostsLoading,
+  postsError,
+  newPosts,
+  successCreate,
+  errorCreate,
+  createLoading,
+}) => {
+  const [title, setTitle] = useState ('');
+  const [body, setBody] = useState ('');
+  // const [title, setTitle] = useState('')
+  const [isPosting, setIsPosting] = useState (false);
+
+  const dispatch = useDispatch ();
+
+  const handleShowCreatePost = () => {
+    setIsPosting (true);
+  };
+
+  const handleBack = () => {
+    setIsPosting (false);
+  };
+
+  const submitHandler = e => {
+    e.preventDefault ();
+    dispatch (
+      createPost ({title, body, section: {id: section.id}, user: {id: 1}})
+    );
+    setTitle ('');
+    setBody ('');
+    setIsPosting (false);
+  };
+
   return (
     <Grid container spacing={4}>
       {isSectionLoading
@@ -17,19 +58,38 @@ const ForumSectionView = ({section, isSectionLoading, error, history}) => {
                   <PageHeading title={section.name} />
                   <Nav />
                 </Grid>
-                <Grid container item spacing={4}>
-                  {section.posts
-                    ? section.posts.map (post => (
-                        <PostItem
-                          key={post.id}
-                          name={post.title}
-                          description={post.body}
-                          onClick={e => history.push(`/forums/${section.slug}/${post.slug}`)}
-                        />
-                      ))
-                    : <Typography>Loading</Typography>}
+                {/*  */}
+                {isPosting
+                  ? <Grid item xs={12}>
+                      <CreatePost
+                        title={title}
+                        setTitle={setTitle}
+                        body={body}
+                        setBody={setBody}
+                        submitHandler={submitHandler}
+                        handleBack={handleBack}
+                      />
+                    </Grid>
+                  : <Grid container item spacing={4}>
+                      <ShowCreatePostButton
+                        text="Create Post"
+                        onClick={handleShowCreatePost}
+                      />
+                      {section.posts
+                        ? section.posts.map (post => (
+                            <PostItem
+                              key={post.id}
+                              name={post.title}
+                              description={post.body}
+                              onClick={e =>
+                                history.push (
+                                  `/forums/${section.slug}/${post.slug}`
+                                )}
+                            />
+                          ))
+                        : null}
 
-                </Grid>
+                    </Grid>}
               </Fragment>}
 
     </Grid>
