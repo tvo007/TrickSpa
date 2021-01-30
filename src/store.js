@@ -5,6 +5,7 @@ import rootReducer from './reducers';
 import {
   postListReducer,
   postDetailsReducer,
+  postCreateReducer
 } from './reducers/postReducers'
 import {
   sectionListReducer,
@@ -16,10 +17,10 @@ import {commentsByPostReducer} from './reducers/commentReducers'
 const reducer = combineReducers({
   posts: postListReducer,
   postDetails: postDetailsReducer,
+  postCreate: postCreateReducer,
   sections: sectionListReducer,
   section: sectionReducer,
   commentsByPost: commentsByPostReducer
-
 })
 
 

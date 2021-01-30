@@ -44,3 +44,26 @@ export const postDetailsReducer = (state = {post: {}}, action) => {
       return state;
   }
 };
+
+export const postCreateReducer = (state = {post: {}}, action) => {
+  switch (action.type) {
+    case POST_CREATE_REQUEST:
+      return {
+        loading: true,
+      };
+    case POST_CREATE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        post: action.payload,
+      };
+    case POST_CREATE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
