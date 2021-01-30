@@ -8,12 +8,14 @@ import ShowCreatePostButton from './components/ShowCreatePostButton';
 import {Grid, Typography, Button, TextField} from '@material-ui/core';
 import {createPost} from '../../actions/postActions';
 import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 const ForumSectionView = ({
   section,
   isSectionLoading,
   error,
   history,
+  forumSlug,
   posts,
   isPostsLoading,
   postsError,
@@ -25,17 +27,15 @@ const ForumSectionView = ({
   const [title, setTitle] = useState ('');
   const [body, setBody] = useState ('');
   // const [title, setTitle] = useState('')
-  const [isPosting, setIsPosting] = useState (false);
 
   const dispatch = useDispatch ();
+  // const handleShowCreatePost = () => {
+  //   setIsPosting (true);
+  // };
 
-  const handleShowCreatePost = () => {
-    setIsPosting (true);
-  };
-
-  const handleBack = () => {
-    setIsPosting (false);
-  };
+  // const handleBack = () => {
+  //   setIsPosting (false);
+  // };
 
   const submitHandler = e => {
     e.preventDefault ();
@@ -44,7 +44,7 @@ const ForumSectionView = ({
     );
     setTitle ('');
     setBody ('');
-    setIsPosting (false);
+    // setIsPosting (false);
   };
 
   return (
@@ -59,37 +59,28 @@ const ForumSectionView = ({
                   <Nav />
                 </Grid>
                 {/*  */}
-                {isPosting
-                  ? <Grid item xs={12}>
-                      <CreatePost
-                        title={title}
-                        setTitle={setTitle}
-                        body={body}
-                        setBody={setBody}
-                        submitHandler={submitHandler}
-                        handleBack={handleBack}
-                      />
-                    </Grid>
-                  : <Grid container item spacing={4}>
-                      <ShowCreatePostButton
-                        text="Create Post"
-                        onClick={handleShowCreatePost}
-                      />
-                      {section.posts
-                        ? section.posts.map (post => (
-                            <PostItem
-                              key={post.id}
-                              name={post.title}
-                              description={post.body}
-                              onClick={e =>
-                                history.push (
-                                  `/forums/${section.slug}/${post.slug}`
-                                )}
-                            />
-                          ))
-                        : null}
 
-                    </Grid>}
+                <Grid container item spacing={4}>
+                  <ShowCreatePostButton
+                    text="Create Post"
+                    onClick={e =>
+                      history.push (`/forums/${forumSlug}/createPost`)}
+                  />
+                  {section.posts
+                    ? section.posts.map (post => (
+                        <PostItem
+                          key={post.id}
+                          name={post.title}
+                          description={post.body}
+                          onClick={e =>
+                            history.push (
+                              `/forums/${section.slug}/${post.slug}`
+                            )}
+                        />
+                      ))
+                    : null}
+
+                </Grid>
               </Fragment>}
 
     </Grid>
