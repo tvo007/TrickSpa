@@ -21,7 +21,7 @@ const useStyles = makeStyles (theme => ({
 //get url and parse through via react routers getLocation/gethistory/useParams
 //push history
 
-const Nav = props => {
+const Nav = ({text}) => {
   const {forumSlug, postSlug} = useParams ();
 
   const history = useHistory ();
@@ -41,6 +41,15 @@ const Nav = props => {
         ? <Button onClick={() => navHandler (`/forums/${forumSlug}`)}>
             <Typography>{forumSlug}</Typography>
           </Button>
+        : null}
+
+      {text
+        ? <Fragment>
+            <Typography variant="h2">/</Typography>
+            <Button>
+              <Typography>{text}</Typography>
+            </Button>
+          </Fragment>
         : null}
 
       {postSlug

@@ -3,7 +3,15 @@ import {Switch, Redirect} from 'react-router-dom';
 import {RouteWithLayout} from './components';
 // import {PrivateRouteWithLayout} from './components';
 import {Main} from './layouts';
-import {Dashboard, Landing, Forums, ForumSection, Post, Dummy} from './views';
+import {
+  Dashboard,
+  Landing,
+  Forums,
+  ForumSection,
+  Post,
+  Dummy,
+  CreatePost,
+} from './views';
 
 import PropTypes from 'prop-types';
 
@@ -25,18 +33,30 @@ const Routes = props => {
         path="/landing"
       />
       <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
+
       <RouteWithLayout
         component={ForumSection}
         exact
         layout={Main}
         path="/forums/:forumSlug"
       />
+
+      <RouteWithLayout
+        component={CreatePost}
+        exact
+        layout={Main}
+        path="/forums/:forumSlug/createpost"
+      />
+
+      {/**create post page */}
+
       <RouteWithLayout
         component={Post}
         exact
         layout={Main}
         path="/forums/:forumSlug/:postSlug"
       />
+
       {/* <RouteWithLayout
         component={Dummy}
         exact

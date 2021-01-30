@@ -4,21 +4,18 @@ import {getSection} from '../../actions/sectionActions';
 import {getPostsBySection} from '../../actions/postActions';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import ForumSectionView from './ForumSectionView';
+import CreatePostView from './CreatePostView';
 
-const ForumSection = props => {
+const CreatePost = props => {
   const {forumSlug} = useParams ();
   const history = useHistory ();
   const dispatch = useDispatch ();
 
-  //useEffect to get single section data here
-  const {section, loading: isSectionLoading, error} = useSelector (
-    state => state.section
-  );
-
-  // const {posts, loading: isPostsLoading, error: postsError} = useSelector (
-  //   state => state.posts
-  // );
+  const {
+    section,
+    loading: isSectionLoading,
+    error: errorSection,
+  } = useSelector (state => state.section);
 
   const postCreateReducer = useSelector (state => state.postCreate);
   const {
@@ -39,30 +36,25 @@ const ForumSection = props => {
     () => {
       if (successCreate) {
         dispatch (getSection (forumSlug));
+        history.push (`/forums/${forumSlug}`);
       }
     },
     [successCreate]
   );
-  //trigger rerender when post is successfully created
-
-  //add post here
-  //get section id pass off to createPost dispatch
-  //add a form/seperate route to create a post
-
   return (
-    <ForumSectionView
+    <CreatePostView
       section={section}
       isSectionLoading={isSectionLoading}
-      error={error}
-      history={history}
+      errorSection={errorSection}
       createLoading={createLoading}
       errorCreate={errorCreate}
-      successCreate={successCreate}
+      success={successCreate}
+      history={history}
       forumSlug={forumSlug}
     />
   );
 };
 
-ForumSection.propTypes = {};
+CreatePost.propTypes = {};
 
-export default ForumSection;
+export default CreatePost;
