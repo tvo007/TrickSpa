@@ -37,7 +37,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Comment = ({body, author, postTitle, loading}) => {
+const Comment = ({body, author, loading}) => {
   const classes = useStyles ();
   return (
     <Grid
@@ -92,7 +92,7 @@ const Comment = ({body, author, postTitle, loading}) => {
             {
               loading
                 ? 
-                <Skeleton count={3} />
+                <Skeleton count={2} />
                 :
                 <Typography variant="body1">{body}</Typography>
             }

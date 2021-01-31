@@ -34,7 +34,7 @@ const useStyles = makeStyles (theme => ({
   }
 }));
 
-const OP3 = ({title, body, author, post, loading}) => {
+const OP3 = ({title, body, author, loading}) => {
   const classes = useStyles ();
   return (
     <Card className={classes.card}>
@@ -76,7 +76,7 @@ const OP3 = ({title, body, author, post, loading}) => {
       <CardContent>
         {
           loading
-            ? <Skeleton count={3} />
+            ? <Skeleton count={2} />
             :
             <Typography variant="body1">{body}</Typography>
         }
