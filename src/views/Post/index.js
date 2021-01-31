@@ -4,29 +4,46 @@ import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import PostView from './PostView';
 import {getPost} from '../../actions/postActions';
-import {getCommentsByPost} from '../../actions/commentActions'
+import {getCommentsByPost, createComment} from '../../actions/commentActions';
 
 const Post = props => {
-  const { postSlug} = useParams ();
+  const {postSlug} = useParams ();
   const dispatch = useDispatch ();
   //useEffect to get single section data here
-
-  useEffect (
-    () => {
-      dispatch (getPost (postSlug));
-      dispatch(getCommentsByPost(postSlug))
-    },
-    [dispatch, postSlug]
-  );
 
   const {post, loading: isPostLoading, error} = useSelector (
     state => state.postDetails
   );
 
-  const {comments, loading: isCommentsLoading, error: commentsError} = useSelector (
-    state => state.commentsByPost
-  ); 
+  const {
+    comments,
+    loading: isCommentsLoading,
+    error: commentsError,
+  } = useSelector (state => state.commentsByPost);
 
+  const {
+    loading: commentCreateLoading,
+    error: commentCreateError,
+    success: commentCreateSuccess,
+  } = useSelector (state => state.commentCreate);
+
+  useEffect (
+    () => {
+      dispatch (getPost (postSlug));
+      dispatch (getCommentsByPost (postSlug));
+    },
+    [dispatch, postSlug]
+  );
+
+  useEffect (
+    () => {
+      if (commentCreateSuccess) {
+        dispatch (getCommentsByPost (postSlug));
+        //trigger rerender on success
+      }
+    },
+    [commentCreateSuccess]
+  );
 
   return (
     <PostView
@@ -36,6 +53,11 @@ const Post = props => {
       commentsByPost={comments}
       isCommentsLoading={isCommentsLoading}
       commentsError={commentsError}
+      commentCreateLoading={commentCreateLoading}
+      commentCreateError={commentCreateError}
+      commentCreateSuccess={commentCreateSuccess}
+      createComment={createComment}
+      dispatch={dispatch}
     />
   );
 };

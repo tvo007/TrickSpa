@@ -5,33 +5,32 @@ import rootReducer from './reducers';
 import {
   postListReducer,
   postDetailsReducer,
-  postCreateReducer
-} from './reducers/postReducers'
+  postCreateReducer,
+} from './reducers/postReducers';
+import {sectionListReducer, sectionReducer} from './reducers/sectionReducer';
 import {
-  sectionListReducer,
-  sectionReducer
-} from './reducers/sectionReducer'
-import {commentsByPostReducer} from './reducers/commentReducers'
+  commentsByPostReducer,
+  commentCreateReducer,
+} from './reducers/commentReducers';
 //import setAuthToken from './utils/setAuthToken';
 
-const reducer = combineReducers({
+const reducer = combineReducers ({
   posts: postListReducer,
   postDetails: postDetailsReducer,
   postCreate: postCreateReducer,
   sections: sectionListReducer,
   section: sectionReducer,
-  commentsByPost: commentsByPostReducer
-})
-
-
+  commentsByPost: commentsByPostReducer,
+  commentCreate: commentCreateReducer
+});
 
 const initialState = {};
 
 const middleware = [thunk];
 
 const store = createStore (
-    // rootReducer,
-    reducer,
+  // rootReducer,
+  reducer,
   initialState,
   composeWithDevTools (applyMiddleware (...middleware))
 );

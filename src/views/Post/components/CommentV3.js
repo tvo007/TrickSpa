@@ -36,7 +36,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Comment = ({body, author, postTitle}) => {
+const Comment = ({body, author}) => {
   const classes = useStyles ();
   return (
     <Grid
@@ -87,7 +87,7 @@ const Comment = ({body, author, postTitle}) => {
             <Grid item>
               <CardContent>
                 <Typography>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, fugit molestiae eaque quo, consectetur rem beatae aperiam inventore magni aut minima voluptas sed ex vel consequatur unde? Veniam, quisquam?Debitis pariatur at aspernatur porro quaerat sequi quisquam quasi aliquid, ullam distinctio saepe, amet tempore aperiam eius minima. Voluptas possimus mollitia amet recusandae suscipit asperiores quia labore vero officiis saepe.
+                  {body}
                 </Typography>
               </CardContent>
             </Grid>
