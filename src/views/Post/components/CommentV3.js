@@ -78,7 +78,7 @@ const Comment = ({body, author, postTitle, loading}) => {
             className={classes.subheader}
             subheader={
               loading
-                ? <Skeleton />
+                ? <Skeleton width={150} />
                 :
                 <Typography
                   className={classes.subheaderText}

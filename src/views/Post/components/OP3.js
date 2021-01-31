@@ -54,7 +54,7 @@ const OP3 = ({title, body, author, post, loading}) => {
         }
         subheader={
           loading 
-            ? <Skeleton />
+            ? <Skeleton width={100} />
             :
             <Typography
               className={classes.subheader}
@@ -65,7 +65,7 @@ const OP3 = ({title, body, author, post, loading}) => {
         }
         title={
           loading
-            ? <Skeleton />
+            ? <Skeleton width={400} />
             :
             <Typography
               className={classes.title}
