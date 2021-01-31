@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
   Typography,
@@ -36,7 +37,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Comment = ({body, author, postTitle}) => {
+const Comment = ({body, author, postTitle, loading}) => {
   const classes = useStyles ();
   return (
     <Grid
@@ -53,10 +54,18 @@ const Comment = ({body, author, postTitle}) => {
         justify="center"
         xs={1}
       >
-        <Avatar
-          className={classes.avatar}
-          variant="circle"
-        >TV</Avatar>
+        {
+          loading ?
+            <Skeleton
+              circle
+              height={40}
+              width={40}
+            /> :
+            <Avatar
+              className={classes.avatar}
+              variant="circle"
+            >TV</Avatar>
+        }
       </Grid>
 
       <Grid
@@ -68,37 +77,34 @@ const Comment = ({body, author, postTitle}) => {
           <CardHeader
             className={classes.subheader}
             subheader={
-              <Grid
-                alignItems="center"
-                container
-                direction="row"
-              >
-
+              loading
+                ? <Skeleton />
+                :
                 <Typography
                   className={classes.subheaderText}
                   variant="body2"
                 >
                   Posted by {author} @ time
                 </Typography>
-              </Grid>
             }
           />
-          <Grid container>
-            <Grid item>
-              <CardContent>
-                <Typography>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, fugit molestiae eaque quo, consectetur rem beatae aperiam inventore magni aut minima voluptas sed ex vel consequatur unde? Veniam, quisquam?Debitis pariatur at aspernatur porro quaerat sequi quisquam quasi aliquid, ullam distinctio saepe, amet tempore aperiam eius minima. Voluptas possimus mollitia amet recusandae suscipit asperiores quia labore vero officiis saepe.
-                </Typography>
-              </CardContent>
-            </Grid>
-            {/* <Divider orientation="vertical" flexItem /> */}
-            {/* <Grid item xs={1}>
+          <CardContent>
+            {
+              loading
+                ? 
+                <Skeleton count={3} />
+                :
+                <Typography variant="body1">{body}</Typography>
+            }
+          </CardContent>
+
+          {/* <Divider orientation="vertical" flexItem /> */}
+          {/* <Grid item xs={1}>
           <CardContent className={classes.profile}>
             <Typography noWrap={true}>PROFILE CONTENT</Typography>
             <Typography noWrap={true}>SHOULD HIDE WHEN MINIMAL</Typography>
           </CardContent>
         </Grid> */}
-          </Grid>
         </Card>
       </Grid>
     </Grid>
