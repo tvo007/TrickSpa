@@ -1,4 +1,6 @@
+
 import React, {useState, useEffect, Fragment} from 'react';
+
 import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
@@ -36,6 +38,11 @@ const PostView = ({
   commentsByPost,
   commentsError,
   isCommentsLoading,
+  commentCreateLoading,
+  commentCreateError,
+  commentCreateSuccess,
+  dispatch,
+  createComment,
 }) => {
 
   // For testing skeleton-loader
@@ -47,34 +54,16 @@ const PostView = ({
 
   const author = post.user ? post.user.username : null;
 
-  const comments = isCommentsLoading
-    ? <Typography>Loading</Typography>
-    : commentsError
-      ? <Typography>Error!</Typography>
-      : commentsByPost.map (comment => (
-        <Comment
-          author={comment.user ? comment.user.username : null}
-          body={comment.body}
-          key={comment.id}
-          postTitle={comment.post ? comment.post.title : null}
-        />
-      ));
+  const [body, setBody] = useState ('');
 
-  //tivos version
-  const comments2 = isCommentsLoading
-    ? <Typography>Loading</Typography>
-    : commentsError
-      ? <Typography>Error!</Typography>
-      : commentsByPost.map (comment => (
-        <CommentV2
-          author={comment.user ? comment.user.username : null}
-          body={comment.body}
-          key={comment.id}
-          postTitle={comment.post ? comment.post.title : null}
-        />
-      ));
+  const submitHandler = e => {
+    e.preventDefault ();
+    dispatch (createComment ({body, post: {id: post.id}, user: {id: 1}}));
+    setBody ('');
+  };
 
   //83aus version
+
   const comments3 = commentsError
     ? <Typography>Error!</Typography>
     : commentsByPost.map (comment => (
@@ -87,111 +76,37 @@ const PostView = ({
       />
     ));
 
+
+
   const classes = useStyles ();
 
   return (
-    <Grid
-      container
-      spacing={4}
-    >
-      <Grid
-        item
-        xs={12}
-      >
+    <Grid container spacing={4}>
+      <Grid item xs={12}>
         <PageHeading title={post.section ? post.section.name : null} />
         <Nav />
       </Grid>
-      <Grid
-        item
-        xs={12}
-      >
-        <Grid
-          container
-          direction="row"
-        >
-          <Typography>
-            <DescriptionIcon fontSize="large" />
-          </Typography>
-          <Typography variant="h3">
-            {post.title}
-          </Typography>
-        </Grid>
-      </Grid>
+
+      <Grid item xs={12} />
 
       {isPostLoading
         ? <Typography>Loading</Typography>
         : error
-          ? <Typography>Error!</Typography>
-          : <Fragment>
+            ? <Typography>Error!</Typography>
+            : <Fragment>
 
-            <Grid
-              item
-              xs={12}
-            >
-              {/**this is where we can start creating a specific component to decorate the OP  */}
-              <OriginalPost
-                author={author}
-                body={post.body}
-                post={post}
-                title={post.title}
-              />
+                <Grid item xs={12}>
+                  {/**this is where we can start creating a specific component to decorate the OP  */}
+                  <OP3
+                    author={author}
+                    body={post.body}
+                    post={post}
+                    title={post.title}
+                  />
 
-            </Grid>
-          </Fragment>}
-      <Grid
-        item
-        xs={12}
-      >
-        {/**comments section goes here */}
+                </Grid>
+              </Fragment>}
 
-        {/* {post.comments
-                    ? post.comments.map (comment => (
-                        <Comment key={comment.id} body={comment.body} title={post.title}/>
-                      ))
-                    : null} */}
-        {comments}
-      </Grid>
-      <Typography>
-        tivos version VVVVV
-      </Typography>
-
-      {isPostLoading
-        ? <Typography>Loading</Typography>
-        : error
-          ? <Typography>Error!</Typography>
-          : <Fragment>
-
-            <Grid
-              item
-              xs={12}
-            >
-              {/**this is where we can start creating a specific component to decorate the OP  */}
-              <OP2
-                author={author}
-                body={post.body}
-                post={post}
-                title={post.title}
-              />
-
-            </Grid>
-          </Fragment>}
-   
-      <Grid
-        item
-        xs={12}
-      >
-
-        {comments2}
-      </Grid>
-
-      <Typography>tivos version ^^^^</Typography>
-
-      <Grid
-        item
-        xs={12}
-      />
-
-      <Typography>83aus version VVVV</Typography>
 
       {error
         ? <Typography>Error!</Typography>
@@ -218,16 +133,12 @@ const PostView = ({
         xs={12}
       >
 
+
         {comments3}
       </Grid>
 
-      <Typography>83aus version ^^^^</Typography>
-
-      <Grid
-        item
-        xs={12}
-      >
-        <Reply />
+      <Grid item xs={12}>
+        <Reply body={body} setBody={setBody} submitHandler={submitHandler} />
 
       </Grid>
 

@@ -37,7 +37,10 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
+
 const Comment = ({body, author, loading}) => {
+
+
   const classes = useStyles ();
   return (
     <Grid
@@ -88,6 +91,7 @@ const Comment = ({body, author, loading}) => {
                 </Typography>
             }
           />
+
           <CardContent>
             {
               loading
@@ -100,6 +104,7 @@ const Comment = ({body, author, loading}) => {
 
           {/* <Divider orientation="vertical" flexItem /> */}
           {/* <Grid item xs={1}>
+
           <CardContent className={classes.profile}>
             <Typography noWrap={true}>PROFILE CONTENT</Typography>
             <Typography noWrap={true}>SHOULD HIDE WHEN MINIMAL</Typography>
