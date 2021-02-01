@@ -18,7 +18,7 @@ const ForumsView = ({sections, isSectionLoading, error, history}) => {
       <Grid item xs={12}>
         <PageHeading title="Forums" />
       </Grid>
-      {isSectionLoading
+      {/* {isSectionLoading
         ? <Grid><Typography>LOADING</Typography></Grid>
         : error
             ? <Grid><Typography>ERROR</Typography> </Grid>
@@ -32,7 +32,17 @@ const ForumsView = ({sections, isSectionLoading, error, history}) => {
                   />
                 ))}
 
-              </Grid>}
+              </Grid>} */}
+      <Grid container item spacing={4}>
+        {sections.map (section => (
+          <SectionItem
+            key={section.id}
+            name={section.name}
+            description={section.description}
+            onClick={e => history.push (`/forums/${section.slug}`)}
+          />
+        ))}
+      </Grid>
     </Grid>
   );
 };

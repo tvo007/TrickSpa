@@ -12,6 +12,12 @@ const Forums = props => {
 
   const history = useHistory ();
 
+  
+
+  const {sections, loading: isSectionLoading, error} = useSelector (
+    state => state.sections
+  );
+
   useEffect (
     () => {
       dispatch (getSections ());
@@ -19,9 +25,8 @@ const Forums = props => {
     [dispatch]
   );
 
-  const {sections, loading: isSectionLoading, error} = useSelector (
-    state => state.sections
-  );
+
+
 
   //section names have spaces and single quotes
   //parsing function to cleanly format routing names

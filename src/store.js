@@ -20,12 +20,21 @@ const reducer = combineReducers({
   postCreate: postCreateReducer,
   sections: sectionListReducer,
   section: sectionReducer,
-  commentsByPost: commentsByPostReducer
-})
+  commentsByPost: commentsByPostReducer,
+  commentCreate: commentCreateReducer,
+});
 
+// const sectionsFromLocalStorage = localStorage.getItem('sections')
 
+const sectionsFromLocalStorage = localStorage.getItem ('sections')
+  ? JSON.parse (localStorage.getItem ('sections'))
+  : [];
 
-const initialState = {};
+const initialState = {
+  sections: {
+    sections: sectionsFromLocalStorage,
+  },
+};
 
 const middleware = [thunk];
 

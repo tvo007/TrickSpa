@@ -148,26 +148,26 @@ const PostView = ({
         tivos version VVVVV
       </Typography>
 
-      {isPostLoading
-        ? <Typography>Loading</Typography>
-        : error
-          ? <Typography>Error!</Typography>
-          : <Fragment>
 
-            <Grid
-              item
-              xs={12}
-            >
-              {/**this is where we can start creating a specific component to decorate the OP  */}
-              <OP2
-                author={author}
-                body={post.body}
-                post={post}
-                title={post.title}
-              />
+      {error
+        ? <Typography>Error!</Typography>
+        : <Fragment>
 
-            </Grid>
-          </Fragment>}
+          <Grid
+            item
+            xs={12}
+          >
+            {/**this is where we can start creating a specific component to decorate the OP  */}
+            <OP3
+              author={author}
+              body={post.body}
+              loading={loading}
+              post={post}
+              title={post.title}
+            />
+
+          </Grid>
+        </Fragment>}
    
       <Grid
         item
