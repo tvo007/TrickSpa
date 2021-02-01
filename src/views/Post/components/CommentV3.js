@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
   Typography,
@@ -36,7 +37,10 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Comment = ({body, author}) => {
+
+const Comment = ({body, author, loading}) => {
+
+
   const classes = useStyles ();
   return (
     <Grid
@@ -53,10 +57,18 @@ const Comment = ({body, author}) => {
         justify="center"
         xs={1}
       >
-        <Avatar
-          className={classes.avatar}
-          variant="circle"
-        >TV</Avatar>
+        {
+          loading ?
+            <Skeleton
+              circle
+              height={40}
+              width={40}
+            /> :
+            <Avatar
+              className={classes.avatar}
+              variant="circle"
+            >TV</Avatar>
+        }
       </Grid>
 
       <Grid
@@ -68,37 +80,36 @@ const Comment = ({body, author}) => {
           <CardHeader
             className={classes.subheader}
             subheader={
-              <Grid
-                alignItems="center"
-                container
-                direction="row"
-              >
-
+              loading
+                ? <Skeleton width={150} />
+                :
                 <Typography
                   className={classes.subheaderText}
                   variant="body2"
                 >
                   Posted by {author} @ time
                 </Typography>
-              </Grid>
             }
           />
-          <Grid container>
-            <Grid item>
-              <CardContent>
-                <Typography>
-                  {body}
-                </Typography>
-              </CardContent>
-            </Grid>
-            {/* <Divider orientation="vertical" flexItem /> */}
-            {/* <Grid item xs={1}>
+
+          <CardContent>
+            {
+              loading
+                ? 
+                <Skeleton count={2} />
+                :
+                <Typography variant="body1">{body}</Typography>
+            }
+          </CardContent>
+
+          {/* <Divider orientation="vertical" flexItem /> */}
+          {/* <Grid item xs={1}>
+
           <CardContent className={classes.profile}>
             <Typography noWrap={true}>PROFILE CONTENT</Typography>
             <Typography noWrap={true}>SHOULD HIDE WHEN MINIMAL</Typography>
           </CardContent>
         </Grid> */}
-          </Grid>
         </Card>
       </Grid>
     </Grid>

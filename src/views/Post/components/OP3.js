@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
   Typography,
@@ -33,33 +34,52 @@ const useStyles = makeStyles (theme => ({
   }
 }));
 
-const OP3 = ({title, body, author, post}) => {
+const OP3 = ({title, body, author, loading}) => {
   const classes = useStyles ();
   return (
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar className={classes.avatar}>
-            R
-          </Avatar>
+          loading 
+            ? 
+            <Skeleton
+              circle
+              height={40}
+              width={40}
+            /> 
+            :
+            <Avatar className={classes.avatar}>
+              R
+            </Avatar>
         }
         subheader={
-          <Typography
-            className={classes.subheader}
-            variant="body2"
-          >
-            Posted by {author} @ time
-          </Typography>
+          loading 
+            ? <Skeleton width={100} />
+            :
+            <Typography
+              className={classes.subheader}
+              variant="body2"
+            >
+              Posted by {author} @ time
+            </Typography>
         }
-        title={<Typography
-          className={classes.title}
-          component="h2"
-               >{title}</Typography>}
+        title={
+          loading
+            ? <Skeleton width={400} />
+            :
+            <Typography
+              className={classes.title}
+              component="h2"
+            >{title}</Typography>
+        }
       />
       <CardContent>
-        <Typography variant="body1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rerum, fugit molestiae eaque quo, consectetur rem beatae aperiam inventore magni aut minima voluptas sed ex vel consequatur unde? Veniam, quisquam?Debitis pariatur at aspernatur porro quaerat sequi quisquam quasi aliquid, ullam distinctio saepe, amet tempore aperiam eius minima. Voluptas possimus mollitia amet recusandae suscipit asperiores quia labore vero officiis saepe.
-        </Typography>
+        {
+          loading
+            ? <Skeleton count={2} />
+            :
+            <Typography variant="body1">{body}</Typography>
+        }
       </CardContent>
     </Card>
   );
