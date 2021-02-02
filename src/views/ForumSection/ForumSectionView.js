@@ -48,40 +48,49 @@ const ForumSectionView = ({
   };
 
   return (
-    <Grid container spacing={4}>
-      {isSectionLoading
-        ? <Grid><Typography>LOADING</Typography></Grid>
-        : error
-            ? <Grid><Typography>ERROR</Typography> </Grid>
-            : <Fragment>
-                <Grid item xs={12}>
-                  <PageHeading title={section.name} />
-                  <Nav />
-                </Grid>
-                {/*  */}
+    <Grid
+      container
+      spacing={4}
+    >
+      {error
+        ? <Grid><Typography>ERROR</Typography> </Grid>
+        : <Fragment>
+          <Grid
+            item
+            xs={12}
+          >
+            <PageHeading title={section.name} />
+            <Nav />
+          </Grid>
+          {/*  */}
 
-                <Grid container item spacing={4}>
-                  <ShowCreatePostButton
-                    text="Create Post"
-                    onClick={e =>
-                      history.push (`/forums/${forumSlug}/createPost`)}
-                  />
-                  {section.posts
-                    ? section.posts.map (post => (
-                        <PostItem
-                          key={post.id}
-                          name={post.title}
-                          description={post.body}
-                          onClick={e =>
-                            history.push (
-                              `/forums/${section.slug}/${post.slug}`
-                            )}
-                        />
-                      ))
-                    : null}
+          <Grid
+            container
+            item
+            spacing={4}
+          >
+            <ShowCreatePostButton
+              onClick={e =>
+                history.push (`/forums/${forumSlug}/createPost`)}
+              text="Create Post"
+            />
+            {section.posts
+              ? section.posts.map (post => (
+                <PostItem
+                  description={post.body}
+                  isSectionLoading={isSectionLoading}
+                  key={post.id}
+                  name={post.title}
+                  onClick={e =>
+                    history.push (
+                      `/forums/${section.slug}/${post.slug}`
+                    )}
+                />
+              ))
+              : null}
 
-                </Grid>
-              </Fragment>}
+          </Grid>
+        </Fragment>}
 
     </Grid>
   );
