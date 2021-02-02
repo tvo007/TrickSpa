@@ -3,14 +3,12 @@ import React, {useState, useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
+import OriginalPostSkeleton from './components/OriginalPostSkeleton';
 import Comment from './components/Comment';
+import CommentSkeleton from './components/CommentSkeleton';
 import Reply from './components/Reply';
 import Nav from '../../components/Nav';
 //experimental componets
-import CommentV2 from './components/CommentV2';
-import CommentV3 from './components/CommentV3';
-import OP2 from './components/OP2';
-import OP3 from './components/OP3';
 //
 import DescriptionIcon from '@material-ui/icons/Description';
 import CreateIcon from '@material-ui/icons/Create';
@@ -61,17 +59,15 @@ const PostView = ({
 
   //83aus version
 
-  const comments3 = commentsError
-    ? <Typography>Error!</Typography>
-    : commentsByPost.map (comment => (
-        <CommentV3
-          author={comment.user ? comment.user.username : null}
-          body={comment.body}
-          key={comment.id}
-          loading={loading}
-          postTitle={comment.post ? comment.post.title : null}
-        />
-      ));
+  const comments = commentsByPost.map (comment => (
+    <Comment
+      author={comment.user ? comment.user.username : null}
+      body={comment.body}
+      key={comment.id}
+      loading={loading}
+      postTitle={comment.post ? comment.post.title : null}
+    />
+  ));
 
   const classes = useStyles ();
 
@@ -84,15 +80,19 @@ const PostView = ({
 
       <Grid item xs={12} />
 
-      {isPostLoading
-        ? <Typography>Loading</Typography>
-        : error
-            ? <Typography>Error!</Typography>
+      {error
+        ? <Typography>Error!</Typography>
+        : isPostLoading
+            ? <Fragment>
+                <Grid item xs={12}>
+                  <OriginalPostSkeleton />
+                </Grid>
+              </Fragment>
             : <Fragment>
 
                 <Grid item xs={12}>
                   {/**this is where we can start creating a specific component to decorate the OP  */}
-                  <OP3
+                  <OriginalPost
                     author={author}
                     body={post.body}
                     post={post}
@@ -102,30 +102,18 @@ const PostView = ({
                 </Grid>
               </Fragment>}
 
-      {error
-        ? <Typography>Error!</Typography>
-        : <Fragment>
-
-            <Grid item xs={12}>
-              {/**this is where we can start creating a specific component to decorate the OP  */}
-              <OP3
-                author={author}
-                body={post.body}
-                loading={loading}
-                post={post}
-                title={post.title}
-              />
-
-            </Grid>
-          </Fragment>}
-
       <Grid item xs={12}>
-
-        {comments3}
+        <Reply body={body} setBody={setBody} submitHandler={submitHandler} />
       </Grid>
 
       <Grid item xs={12}>
-        <Reply body={body} setBody={setBody} submitHandler={submitHandler} />
+        {isPostLoading
+          ? <Fragment>
+              <CommentSkeleton />
+              <CommentSkeleton />
+              <CommentSkeleton />
+            </Fragment>
+          : <Fragment>{comments}</Fragment>}
 
       </Grid>
 

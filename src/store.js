@@ -25,47 +25,47 @@ const reducer = combineReducers ({
   commentCreate: commentCreateReducer
 });
 
-function saveToLocalStorage(state) {
-  try {
-    const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
-  } catch(e) {
-    console.log(e)
-  }
-} 
+// function saveToLocalStorage(state) {
+//   try {
+//     const serializedState = JSON.stringify(state)
+//     localStorage.setItem('state', serializedState)
+//   } catch(e) {
+//     console.log(e)
+//   }
+// } 
 
-function loadFromLocalStorage() {
-  try {
-    const serializedState = localStorage.getItem('state')
-    if (serializedState === null) return undefined
-    return JSON.parse(serializedState)
-  } catch (e) {
-    console.log(e)
-    return undefined
-  }
-}
-
-// const initialState = {
-//   // sections: {
-//   //   sections: sectionsFromLocalStorage
-//   // },
-//   // userLogin: { userInfo: userInfoFromStorage },
+// function loadFromLocalStorage() {
+//   try {
+//     const serializedState = localStorage.getItem('state')
+//     if (serializedState === null) return undefined
+//     return JSON.parse(serializedState)
+//   } catch (e) {
+//     console.log(e)
+//     return undefined
+//   }
 // }
+
+const initialState = {
+  // sections: {
+  //   sections: sectionsFromLocalStorage
+  // },
+  // userLogin: { userInfo: userInfoFromStorage },
+}
 
 const middleware = [thunk];
 
-const persistedState = loadFromLocalStorage()
+// const persistedState = loadFromLocalStorage()
 
 const store = createStore (
   // rootReducer,
   
   reducer,
-  persistedState,
-  // initialState,
+  // persistedState,
+  initialState,
   composeWithDevTools (applyMiddleware (...middleware))
 );
 
-store.subscribe(() => saveToLocalStorage(store.getState()))
+// store.subscribe(() => saveToLocalStorage(store.getState()))
 
 // set up a store subscription listener
 // to store the users token in localStorage

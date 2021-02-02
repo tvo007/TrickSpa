@@ -8,7 +8,7 @@ import {getSections} from '../../actions/sectionActions';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
 const Forums = props => {
-  // const {sections: localSections} = JSON.parse (localStorage.getItem ('state')); //testing purposes
+  // const localState = JSON.parse (localStorage.getItem ('state')); //testing purposes
 
   // const [isEmpty, setIsEmpty] = useState (false);
   const dispatch = useDispatch ();
@@ -37,7 +37,7 @@ const Forums = props => {
       // if (isEmpty) {
         // setIsEmpty(false)
         dispatch (getSections ());
-        
+        // console.log(localState)
       // }
     },
     [dispatch]
