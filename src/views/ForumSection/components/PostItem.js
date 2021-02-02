@@ -14,10 +14,6 @@ import {
 
 const PostItem = ({name, description, onClick, isSectionLoading}) => {
   // For testing skeleton-loader
-  const [ loading, setLoading ] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
 
   return (
     <Grid
@@ -30,7 +26,7 @@ const PostItem = ({name, description, onClick, isSectionLoading}) => {
       <Card>
         <CardHeader
           title={
-            loading
+            isSectionLoading
               ? <Skeleton width={200} />
               : 
               <Link
@@ -44,7 +40,7 @@ const PostItem = ({name, description, onClick, isSectionLoading}) => {
         <CardContent>
           <Grid>
             {
-              loading
+              isSectionLoading
                 ? <Skeleton count={1} />
                 :
                 <Typography>

@@ -34,34 +34,22 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const OriginalPost = ({title, body, author, loading}) => {
+const OriginalPostSkeleton = props => {
   const classes = useStyles ();
   return (
     <Card className={classes.card}>
       <CardHeader
-        avatar={
-          <Avatar className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        subheader={
-          <Typography className={classes.subheader} variant="body2">
-            Posted by {author} @ time
-          </Typography>
-        }
-        title={
-          <Typography className={classes.title} component="h2">
-            {title}
-          </Typography>
-        }
+        avatar={<Skeleton circle height={40} width={40} />}
+        subheader={<Skeleton width={100} />}
+        title={<Skeleton width={400} />}
       />
       <CardContent>
-        {<Typography variant="body1">{body}</Typography>}
+        {<Skeleton />}
       </CardContent>
     </Card>
   );
 };
 
-OriginalPost.propTypes = {};
+OriginalPostSkeleton.propTypes = {};
 
-export default OriginalPost;
+export default OriginalPostSkeleton;

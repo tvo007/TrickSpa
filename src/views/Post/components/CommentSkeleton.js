@@ -19,7 +19,7 @@ const useStyles = makeStyles (theme => ({
   profile: {},
   card: {
     maxWidth: '50rem',
-    margin: 'auto'
+    margin: 'auto',
   },
   subheader: {
     // backgroundColor: theme.palette.primary.light,
@@ -37,10 +37,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-
-const Comment = ({body, author, loading}) => {
-
-
+const CommentSkeleton = () => {
   const classes = useStyles ();
   return (
     <Grid
@@ -51,55 +48,20 @@ const Comment = ({body, author, loading}) => {
       spacing={1}
     >
 
-      <Grid
-        container
-        item
-        justify="center"
-        xs={1}
-      >
-        {
-          loading ?
-            <Skeleton
-              circle
-              height={40}
-              width={40}
-            /> :
-            <Avatar
-              className={classes.avatar}
-              variant="circle"
-            >TV</Avatar>
-        }
+      <Grid container item justify="center" xs={1}>
+        {<Skeleton circle height={40} width={40} />}
       </Grid>
 
-      <Grid
-        item
-        xs={11}
-      >
+      <Grid item xs={11}>
 
         <Card>
           <CardHeader
             className={classes.subheader}
-            subheader={
-              loading
-                ? <Skeleton width={150} />
-                :
-                <Typography
-                  className={classes.subheaderText}
-                  variant="body2"
-                >
-                  Posted by {author} @ time
-                </Typography>
-            }
+            subheader={<Skeleton width={150} />}
           />
 
           <CardContent>
-            {
-              loading
-                ? 
-                <Skeleton count={2} />
-                :
-                <Typography variant="body1">{body}</Typography>
-            }
+            {<Skeleton count={2} />}
           </CardContent>
 
           {/* <Divider orientation="vertical" flexItem /> */}
@@ -116,6 +78,6 @@ const Comment = ({body, author, loading}) => {
   );
 };
 
-Comment.propTypes = {};
+CommentSkeleton.propTypes = {};
 
-export default Comment;
+export default CommentSkeleton;

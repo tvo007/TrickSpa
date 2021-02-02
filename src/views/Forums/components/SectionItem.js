@@ -13,43 +13,25 @@ import {
 } from '@material-ui/core';
 
 const SectionItem = ({name, description, onClick, isSectionLoading}) => {
-  // For testing skeleton-loader
-  const [ loading, setLoading ] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
   return (
-    <Grid
-      item
-      lg={12}
-      md={12}
-      xl={12}
-      xs={12}
-    >
+    <Grid item lg={12} md={12} xl={12} xs={12}>
       <Card>
         <CardHeader
           title={
-            loading
+            isSectionLoading
               ? <Skeleton width={150} />
-              :
-              <Link
-                component="button"
-                onClick={onClick}
-              >
-                <Typography variant="h2">{name}</Typography>
-              </Link>
+              : <Link component="button" onClick={onClick}>
+                  <Typography variant="h2">{name}</Typography>
+                </Link>
           }
         />
         <CardContent>
           <Grid>
-            {
-              loading
-                ? <Skeleton width={200} />
-                :
-                <Typography>
+            {isSectionLoading
+              ? <Skeleton width={200} />
+              : <Typography>
                   {description}
-                </Typography>
-            }
+                </Typography>}
           </Grid>
         </CardContent>
       </Card>
@@ -60,3 +42,63 @@ const SectionItem = ({name, description, onClick, isSectionLoading}) => {
 SectionItem.propTypes = {};
 
 export default SectionItem;
+
+/**
+ *  // For testing skeleton-loader
+  return (
+    <Grid item lg={12} md={12} xl={12} xs={12}>
+      <Card>
+        <CardHeader
+          title={
+            isSectionLoading
+              ? <Skeleton width={150} />
+              : <Link component="button" onClick={onClick}>
+                  <Typography variant="h2">{name}</Typography>
+                </Link>
+          }
+        />
+        <CardContent>
+          <Grid>
+            {isSectionLoading
+              ? <Skeleton width={200} />
+              : <Typography>
+                  {description}
+                </Typography>}
+          </Grid>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+};
+ */
+
+/**
+ * const SectionItem = ({name, description, onClick, isSectionLoading}) => {
+  // For testing skeleton-loader
+ 
+  return (
+    <Grid item lg={12} md={12} xl={12} xs={12}>
+      <Card>
+        <CardHeader
+          title={
+            isSectionLoading
+              ? <Skeleton width={150} />
+              : <Link component="button" onClick={onClick}>
+                  <Typography variant="h2">{name}</Typography>
+                </Link>
+          }
+        />
+        <CardContent>
+          <Grid>
+            {isSectionLoading
+              ? <Skeleton width={200} />
+              : <Typography>
+                  {description}
+                </Typography>}
+          </Grid>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+};
+ */
