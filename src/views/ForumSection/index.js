@@ -8,12 +8,14 @@ import ForumSectionView from './ForumSectionView';
 import {POST_CREATE_RESET} from '../../constants/postConstants';
 
 const ForumSection = props => {
+  // const {section: localSection} = JSON.parse (localStorage.getItem ('state')); //testing purposes
+
   const {forumSlug} = useParams ();
   const history = useHistory ();
   const dispatch = useDispatch ();
 
-  const [isEmpty, setIsEmpty] = useState (false);
-  const [isLoaded, setIsLoaded] = useState (false);
+  // const [isEmpty, setIsEmpty] = useState (false);
+  // const [isLoaded, setIsLoaded] = useState (false);
 
   //useEffect to get single section data here
   const {section, loading: isSectionLoading, error} = useSelector (
@@ -31,26 +33,28 @@ const ForumSection = props => {
     success: successCreate,
   } = postCreateReducer;
 
-  useEffect (
-    () => {
-      if (isEmpty) {
-        setIsEmpty (false);
-      }
-      // dispatch (getSection (forumSlug));
-      // dispatch (getPostsBySection (forumSlug));
-    },
-    [isEmpty]
-  );
+  // useEffect (
+  //   () => {
+  //     if (localSection.section.length !== 0) {
+  //       setIsEmpty (false);
+  //       console.log (localSection);
+  //     } else if (localSection.section.length === 0) {
+  //       setIsEmpty (true);
+  //       console.log (localSection);
+  //     }
+  //   },
+  //   [localSection]
+  // );
 
   useEffect (
     () => {
-      if (isEmpty) {
+      // if (isEmpty) {
+        // setIsEmpty (false);
         dispatch (getSection (forumSlug));
         dispatch (getPostsBySection (forumSlug));
-        setIsEmpty (false);
-      }
+      // }
     },
-    [dispatch, forumSlug, isEmpty]
+    [dispatch, forumSlug]
   );
 
   useEffect (
@@ -58,6 +62,7 @@ const ForumSection = props => {
       if (successCreate) {
         dispatch ({type: POST_CREATE_RESET});
         dispatch (getSection (forumSlug));
+        // setIsEmpty (false);
       }
     },
     [successCreate, dispatch, forumSlug]

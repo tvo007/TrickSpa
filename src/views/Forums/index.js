@@ -8,9 +8,9 @@ import {getSections} from '../../actions/sectionActions';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
 const Forums = props => {
-  const localState = JSON.parse (localStorage.getItem ('state')); //testing purposes
+  // const {sections: localSections} = JSON.parse (localStorage.getItem ('state')); //testing purposes
 
-  const [isEmpty, setIsEmpty] = useState(false)
+  // const [isEmpty, setIsEmpty] = useState (false);
   const dispatch = useDispatch ();
 
   const history = useHistory ();
@@ -19,20 +19,26 @@ const Forums = props => {
     state => state.sections
   );
 
-  useEffect (
-    () => {
-    if (sections) {
-      setIsEmpty(false)
-      console.log(localState)
-    }
-    },
-    [sections]
-  );
+  // useEffect (
+  //   () => {
+  //     if (localSections.sections) {
+  //       setIsEmpty (false);
+        
+  //       console.log (localSections);
+  //     } else if (!localSections.sections) {
+  //       setIsEmpty (true);
+  //     }
+  //   },
+  //   [sections]
+  // );
 
   useEffect (
     () => {
-      if (isEmpty)
-      dispatch (getSections ());
+      // if (isEmpty) {
+        // setIsEmpty(false)
+        dispatch (getSections ());
+        
+      // }
     },
     [dispatch]
   );
@@ -43,8 +49,6 @@ const Forums = props => {
    * Notes 2.1.21 
    * inc localStorage
    */
-
-  
 
   return (
     <ForumsView

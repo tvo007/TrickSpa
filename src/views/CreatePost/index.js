@@ -39,7 +39,7 @@ const CreatePost = props => {
         history.push (`/forums/${forumSlug}`);
       }
     },
-    [successCreate]
+    [successCreate, forumSlug, dispatch, history]
   );
   return (
     <CreatePostView
