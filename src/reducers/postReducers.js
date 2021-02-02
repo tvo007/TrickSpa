@@ -8,6 +8,7 @@ import {
   POST_CREATE_SUCCESS,
   POST_CREATE_REQUEST,
   POST_CREATE_FAIL,
+  POST_CREATE_RESET,
   POST_EDIT_REQUEST,
   POST_EDIT_SUCCESS,
   POST_EDIT_FAIL,
@@ -63,6 +64,8 @@ export const postCreateReducer = (state = {post: {}}, action) => {
         loading: false,
         error: action.payload,
       };
+    case POST_CREATE_RESET:
+      return {};
     default:
       return state;
   }

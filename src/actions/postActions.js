@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import {
   POSTS_GET_REQUEST,
@@ -9,6 +10,7 @@ import {
   POST_CREATE_SUCCESS,
   POST_CREATE_REQUEST,
   POST_CREATE_FAIL,
+  POST_CREATE_RESET,
   POST_EDIT_REQUEST,
   POST_EDIT_SUCCESS,
   POST_EDIT_FAIL,
@@ -18,7 +20,7 @@ import {
 } from '../constants/postConstants';
 import api from '../utils/api';
 
-export const getPostsBySection = (forumSlug) => async dispatch => {
+export const getPostsBySection = forumSlug => async dispatch => {
   try {
     dispatch ({
       type: POSTS_GET_REQUEST,
@@ -56,7 +58,7 @@ export const getPostsBySection = (forumSlug) => async dispatch => {
   }
 };
 
-export const getPost = (postSlug) => async dispatch => {
+export const getPost = postSlug => async dispatch => {
   try {
     dispatch ({
       type: POST_GET_REQUEST,
@@ -79,14 +81,14 @@ export const getPost = (postSlug) => async dispatch => {
   }
 };
 
-//what does a post need: section slug/or id??, formdata: title, body, userRef 
+//what does a post need: section slug/or id??, formdata: title, body, userRef
 //
 
 /**
 export const createPost = (formData, sectionSlug) => async (dispatch, getState) => {
  * 
  */
-export const createPost = (formData) => async (dispatch) => {
+export const createPost = formData => async dispatch => {
   try {
     dispatch ({
       type: POST_CREATE_REQUEST,
