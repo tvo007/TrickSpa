@@ -14,25 +14,34 @@ import {
 
 const ForumsView = ({sections, isSectionLoading, error, history}) => {
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={12}>
+    <Grid
+      container
+      spacing={4}
+    >
+      <Grid
+        item
+        xs={12}
+      >
         <PageHeading title="Forums" />
       </Grid>
-      {isSectionLoading
-        ? <Grid><Typography>LOADING</Typography></Grid>
-        : error
-            ? <Grid><Typography>ERROR</Typography> </Grid>
-            : <Grid container item spacing={4}>
-                {sections.map (section => (
-                  <SectionItem
-                    key={section.id}
-                    name={section.name}
-                    description={section.description}
-                    onClick={e => history.push (`/forums/${section.slug}`)}
-                  />
-                ))}
+      {error
+        ? <Grid><Typography>ERROR</Typography> </Grid>
+        : <Grid
+          container
+          item
+          spacing={4}
+        >
+          {sections.map (section => (
+            <SectionItem
+              description={section.description}
+              isSectionLoading={isSectionLoading}
+              key={section.id}
+              name={section.name}
+              onClick={e => history.push (`/forums/${section.slug}`)}
+            />
+          ))}
 
-              </Grid>}
+        </Grid>}
     </Grid>
   );
 };
