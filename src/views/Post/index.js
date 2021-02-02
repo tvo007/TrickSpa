@@ -42,7 +42,7 @@ const Post = props => {
         //trigger rerender on success
       }
     },
-    [commentCreateSuccess]
+    [commentCreateSuccess, dispatch, postSlug]
   );
 
   return (

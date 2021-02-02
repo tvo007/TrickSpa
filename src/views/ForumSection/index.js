@@ -5,11 +5,15 @@ import {getPostsBySection} from '../../actions/postActions';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import ForumSectionView from './ForumSectionView';
+import {POST_CREATE_RESET} from '../../constants/postConstants';
 
 const ForumSection = props => {
   const {forumSlug} = useParams ();
   const history = useHistory ();
   const dispatch = useDispatch ();
+
+  const [isEmpty, setIsEmpty] = useState (false);
+  const [isLoaded, setIsLoaded] = useState (false);
 
   //useEffect to get single section data here
   const {section, loading: isSectionLoading, error} = useSelector (
@@ -29,19 +33,34 @@ const ForumSection = props => {
 
   useEffect (
     () => {
-      dispatch (getSection (forumSlug));
-      dispatch (getPostsBySection (forumSlug));
+      if (isEmpty) {
+        setIsEmpty (false);
+      }
+      // dispatch (getSection (forumSlug));
+      // dispatch (getPostsBySection (forumSlug));
     },
-    [dispatch, forumSlug]
+    [isEmpty]
+  );
+
+  useEffect (
+    () => {
+      if (isEmpty) {
+        dispatch (getSection (forumSlug));
+        dispatch (getPostsBySection (forumSlug));
+        setIsEmpty (false);
+      }
+    },
+    [dispatch, forumSlug, isEmpty]
   );
 
   useEffect (
     () => {
       if (successCreate) {
+        dispatch ({type: POST_CREATE_RESET});
         dispatch (getSection (forumSlug));
       }
     },
-    [successCreate]
+    [successCreate, dispatch, forumSlug]
   );
   //trigger rerender when post is successfully created
 

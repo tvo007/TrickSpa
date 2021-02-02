@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable indent */
+/* eslint-disable no-unused-vars */
 //to be deleted
 
 import React, {Fragment} from 'react';

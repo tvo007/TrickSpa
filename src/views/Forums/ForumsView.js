@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import Nav from '../../components/Nav';
 import SectionItem from './components/SectionItem';
+//experiemental
+import {useSelector} from 'react-redux';
 import {
   Grid,
   Typography,

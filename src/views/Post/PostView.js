@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect, Fragment} from 'react';
 
 import PropTypes from 'prop-types';
@@ -44,13 +43,11 @@ const PostView = ({
   dispatch,
   createComment,
 }) => {
-
   // For testing skeleton-loader
-  const [ loading, setLoading ] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 3000);
+  const [loading, setLoading] = useState (true);
+  useEffect (() => {
+    setTimeout (() => setLoading (false), 3000);
   }, []);
-
 
   const author = post.user ? post.user.username : null;
 
@@ -67,16 +64,14 @@ const PostView = ({
   const comments3 = commentsError
     ? <Typography>Error!</Typography>
     : commentsByPost.map (comment => (
-      <CommentV3
-        author={comment.user ? comment.user.username : null}
-        body={comment.body}
-        key={comment.id}
-        loading={loading}
-        postTitle={comment.post ? comment.post.title : null}
-      />
-    ));
-
-
+        <CommentV3
+          author={comment.user ? comment.user.username : null}
+          body={comment.body}
+          key={comment.id}
+          loading={loading}
+          postTitle={comment.post ? comment.post.title : null}
+        />
+      ));
 
   const classes = useStyles ();
 
@@ -107,32 +102,24 @@ const PostView = ({
                 </Grid>
               </Fragment>}
 
-
       {error
         ? <Typography>Error!</Typography>
         : <Fragment>
 
-          <Grid
-            item
-            xs={12}
-          >
-            {/**this is where we can start creating a specific component to decorate the OP  */}
-            <OP3
-              author={author}
-              body={post.body}
-              loading={loading}
-              post={post}
-              title={post.title}
-            />
+            <Grid item xs={12}>
+              {/**this is where we can start creating a specific component to decorate the OP  */}
+              <OP3
+                author={author}
+                body={post.body}
+                loading={loading}
+                post={post}
+                title={post.title}
+              />
 
-          </Grid>
-        </Fragment>}
-   
-      <Grid
-        item
-        xs={12}
-      >
+            </Grid>
+          </Fragment>}
 
+      <Grid item xs={12}>
 
         {comments3}
       </Grid>

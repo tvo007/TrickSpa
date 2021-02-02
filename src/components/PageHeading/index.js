@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Typography, Divider} from '@material-ui/core';

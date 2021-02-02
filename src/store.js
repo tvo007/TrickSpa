@@ -1,7 +1,8 @@
+/* eslint-disable linebreak-style */
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+// import rootReducer from './reducers';
 import {
   postListReducer,
   postDetailsReducer,
@@ -24,16 +25,47 @@ const reducer = combineReducers ({
   commentCreate: commentCreateReducer
 });
 
-const initialState = {};
+function saveToLocalStorage(state) {
+  try {
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('state', serializedState)
+  } catch(e) {
+    console.log(e)
+  }
+} 
+
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem('state')
+    if (serializedState === null) return undefined
+    return JSON.parse(serializedState)
+  } catch (e) {
+    console.log(e)
+    return undefined
+  }
+}
+
+// const initialState = {
+//   // sections: {
+//   //   sections: sectionsFromLocalStorage
+//   // },
+//   // userLogin: { userInfo: userInfoFromStorage },
+// }
 
 const middleware = [thunk];
 
+const persistedState = loadFromLocalStorage()
+
 const store = createStore (
   // rootReducer,
+  
   reducer,
-  initialState,
+  persistedState,
+  // initialState,
   composeWithDevTools (applyMiddleware (...middleware))
 );
+
+store.subscribe(() => saveToLocalStorage(store.getState()))
 
 // set up a store subscription listener
 // to store the users token in localStorage

@@ -1,5 +1,5 @@
 //post and comment actions go here
-import axios from 'axios'
+import axios from 'axios';
 import api from '../utils/api';
 import {setAlert} from './alert';
 import {
@@ -11,8 +11,6 @@ import {
   GET_POST,
   EDIT_POST,
 } from './types';
-
-
 
 export const getPosts = () => async dispatch => {
   try {
