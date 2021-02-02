@@ -103,6 +103,10 @@ const PostView = ({
               </Fragment>}
 
       <Grid item xs={12}>
+        <Reply body={body} setBody={setBody} submitHandler={submitHandler} />
+      </Grid>
+
+      <Grid item xs={12}>
         {isPostLoading
           ? <Fragment>
               <CommentSkeleton />
@@ -111,10 +115,6 @@ const PostView = ({
             </Fragment>
           : <Fragment>{comments}</Fragment>}
 
-      </Grid>
-
-       <Grid item xs={12}>
-        <Reply body={body} setBody={setBody} submitHandler={submitHandler} />
       </Grid>
 
     </Grid>
