@@ -19,7 +19,7 @@ const ForumSection = props => {
 
   //useEffect to get single section data here
   const {section, loading: isSectionLoading, error} = useSelector (
-    state => state.section
+    state => state.sectionDetails
   );
 
   // const {posts, loading: isPostsLoading, error: postsError} = useSelector (
@@ -49,9 +49,9 @@ const ForumSection = props => {
   useEffect (
     () => {
       // if (isEmpty) {
-        // setIsEmpty (false);
-        dispatch (getSection (forumSlug));
-        dispatch (getPostsBySection (forumSlug));
+      // setIsEmpty (false);
+      dispatch (getSection (forumSlug));
+      dispatch (getPostsBySection (forumSlug));
       // }
     },
     [dispatch, forumSlug]

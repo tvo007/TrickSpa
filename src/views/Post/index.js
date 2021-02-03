@@ -7,11 +7,11 @@ import {getPost} from '../../actions/postActions';
 import {getCommentsByPost, createComment} from '../../actions/commentActions';
 
 const Post = props => {
-  const {postSlug} = useParams ();
+  const {forumSlug, postSlug} = useParams ();
   const dispatch = useDispatch ();
   //useEffect to get single section data here
 
-  const {post, loading: isPostLoading, error} = useSelector (
+  const {post, loading: isPostLoading, error: postError} = useSelector (
     state => state.postDetails
   );
 
@@ -47,9 +47,10 @@ const Post = props => {
 
   return (
     <PostView
+      forumSlug={forumSlug}
       post={post}
       isPostLoading={isPostLoading}
-      error={error}
+      postError={postError}
       commentsByPost={comments}
       isCommentsLoading={isCommentsLoading}
       commentsError={commentsError}

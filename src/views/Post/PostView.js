@@ -29,9 +29,10 @@ const useStyles = makeStyles (theme => ({
 }));
 
 const PostView = ({
+  forumSlug,
   post,
   isPostLoading,
-  error,
+  postError,
   commentsByPost,
   commentsError,
   isCommentsLoading,
@@ -42,10 +43,6 @@ const PostView = ({
   createComment,
 }) => {
   // For testing skeleton-loader
-  const [loading, setLoading] = useState (true);
-  useEffect (() => {
-    setTimeout (() => setLoading (false), 3000);
-  }, []);
 
   const author = post.user ? post.user.username : null;
 
@@ -64,7 +61,6 @@ const PostView = ({
       author={comment.user ? comment.user.username : null}
       body={comment.body}
       key={comment.id}
-      loading={loading}
       postTitle={comment.post ? comment.post.title : null}
     />
   ));
@@ -74,13 +70,23 @@ const PostView = ({
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
-        <PageHeading title={post.section ? post.section.name : null} />
+        <PageHeading
+          title={
+            forumSlug === 'whats-new'
+              ? "What's New"
+              : forumSlug
+                  .replace (/-/g, ' ')
+                  .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
+                    match.toUpperCase ()
+                  )
+          }
+        />
         <Nav />
       </Grid>
 
       <Grid item xs={12} />
 
-      {error
+      {postError
         ? <Typography>Error!</Typography>
         : isPostLoading
             ? <Fragment>

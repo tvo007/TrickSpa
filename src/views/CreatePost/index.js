@@ -15,7 +15,7 @@ const CreatePost = props => {
     section,
     loading: isSectionLoading,
     error: errorSection,
-  } = useSelector (state => state.section);
+  } = useSelector (state => state.sectionDetails);
 
   const postCreateReducer = useSelector (state => state.postCreate);
   const {
@@ -43,6 +43,7 @@ const CreatePost = props => {
   );
   return (
     <CreatePostView
+    forumSlug={forumSlug}
       section={section}
       isSectionLoading={isSectionLoading}
       errorSection={errorSection}

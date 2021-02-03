@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import PostItem from './components/PostItem';
-import PostItemSkeleton from './components/PostItemSkeleton'
+import PostItemSkeleton from './components/PostItemSkeleton';
 import CreatePost from './components/CreatePost';
 import PageHeading from '../../components/PageHeading';
 import Nav from '../../components/Nav';
@@ -49,58 +49,61 @@ const ForumSectionView = ({
   };
 
   return (
-    <Grid
-      container
-      spacing={4}
-    >
+    <Grid container spacing={4}>
+      <Grid item container xs={8}>
+        <PageHeading
+          title={
+            forumSlug === 'whats-new'
+              ? "What's New"
+              : forumSlug
+                  .replace (/-/g, ' ')
+                  .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
+                    match.toUpperCase ()
+                  )
+          }
+        />
+        <Nav />
+
+      </Grid>
+
+      <Grid item container alignItems="center" xs={4}>
+        <ShowCreatePostButton
+          onClick={e => history.push (`/forums/${forumSlug}/createPost`)}
+          text="Create Post"
+        />
+      </Grid>
       {error
         ? <Grid><Typography>ERROR</Typography> </Grid>
         : <Fragment>
-          <Grid
-            item
-            xs={12}
-          >
-            <PageHeading title={section.name} />
-            <Nav />
-          </Grid>
-          {/*  */}
 
-          <Grid
-            container
-            item
-            spacing={4}
-          >
-            <ShowCreatePostButton
-              onClick={e =>
-                history.push (`/forums/${forumSlug}/createPost`)}
-              text="Create Post"
-            />
-            {section.posts
-              ? section.posts.map (post => (
-                <PostItem
-                  description={post.body}
-                  isSectionLoading={isSectionLoading}
-                  key={post.id}
-                  name={post.title}
-                  onClick={e =>
-                    history.push (
-                      `/forums/${section.slug}/${post.slug}`
-                    )}
-                />
-              ))
-              : <Fragment>
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                </Fragment>}
+            {/*  */}
 
-          </Grid>
-        </Fragment>}
+            <Grid container item spacing={4}>
+
+              {section.posts
+                ? section.posts.map (post => (
+                    <PostItem
+                      description={post.body}
+                      isSectionLoading={isSectionLoading}
+                      key={post.id}
+                      name={post.title}
+                      onClick={e =>
+                        history.push (`/forums/${section.slug}/${post.slug}`)}
+                    />
+                  ))
+                : <Fragment>
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                  </Fragment>}
+
+            </Grid>
+          </Fragment>}
 
     </Grid>
   );

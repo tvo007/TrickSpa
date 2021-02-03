@@ -52,15 +52,26 @@ const CreatePostView = ({
   const classes = useStyles ();
   return (
     <Grid container spacing={4}>
+      <Grid item xs={12}>
+        <PageHeading
+          title={
+            forumSlug === 'whats-new'
+              ? "What's New"
+              : forumSlug
+                  .replace (/-/g, ' ')
+                  .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
+                    match.toUpperCase ()
+                  )
+          }
+        />
+        <Nav text="Create a Post" />
+      </Grid>
       {isSectionLoading
         ? <Grid><Typography>LOADING</Typography></Grid>
         : errorSection
             ? <Grid><Typography>ERROR</Typography> </Grid>
             : <Fragment>
-                <Grid item xs={12}>
-                  <PageHeading title={section.name} />
-                  <Nav text="Create a Post" />
-                </Grid>
+
                 {/*  */}
 
                 <Grid item xs={12}>
