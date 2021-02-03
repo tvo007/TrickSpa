@@ -15,7 +15,7 @@ const PageHeading = ({title}) => {
   const classes = useStyles ();
   return (
     <Fragment>
-      <Typography variant="h1">{title ? title :  null}</Typography>
+      <Typography variant="h1">{title}</Typography>
     </Fragment>
   );
 };

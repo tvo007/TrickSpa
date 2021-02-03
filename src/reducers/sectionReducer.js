@@ -5,6 +5,8 @@ import {
   SECTION_GET_REQUEST,
   SECTION_GET_SUCCESS,
   SECTION_GET_FAIL,
+  SECTION_GET_RESET,
+  SECTION_GET_LOCAL_STORAGE
 } from '../constants/sectionConstants';
 
 export const sectionListReducer = (state = {sections: []}, action) => {
@@ -20,7 +22,7 @@ export const sectionListReducer = (state = {sections: []}, action) => {
   }
 };
 
-export const sectionReducer = (state = {section: []}, action) => {
+export const sectionReducer = (state = {section: {}}, action) => {
   switch (action.type) {
     case SECTION_GET_REQUEST:
       return {...state, loading: true};
@@ -28,6 +30,8 @@ export const sectionReducer = (state = {section: []}, action) => {
       return {loading: false, section: action.payload};
     case SECTION_GET_FAIL:
       return {loading: false, error: action.payload};
+    case SECTION_GET_LOCAL_STORAGE:
+      return {loading: false, section: action.payload}
     default:
       return state;
   }

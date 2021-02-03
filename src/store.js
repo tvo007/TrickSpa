@@ -19,13 +19,91 @@ const reducer = combineReducers ({
   posts: postListReducer,
   postDetails: postDetailsReducer,
   postCreate: postCreateReducer,
-  sections: sectionListReducer,
-  section: sectionReducer,
+  sectionList: sectionListReducer,
+  sectionDetails: sectionReducer,
   commentsByPost: commentsByPostReducer,
-  commentCreate: commentCreateReducer
+  commentCreate: commentCreateReducer,
 });
 
-// function saveToLocalStorage(state) {
+const sectionsFromLocalStorage = localStorage.getItem ('sections')
+  ? JSON.parse (localStorage.getItem ('sections'))
+  : []; //gets sections from LS, thunks update LS on dispatch
+
+const sectionFromLocalStorage = localStorage.getItem ('section')
+  ? JSON.parse (localStorage.getItem ('section'))
+  : {}; //gets sections from LS, thunks update LS on dispatch
+
+const initialState = {
+  sectionList: {sections: sectionsFromLocalStorage},
+  // userLogin: { userInfo: userInfoFromStorage },
+  sectionDetails: {
+    section: {sectionFromLocalStorage},
+  },
+};
+
+const middleware = [thunk];
+
+const store = createStore (
+  // rootReducer,
+
+  reducer,
+  // persistedState,
+  initialState,
+  composeWithDevTools (applyMiddleware (...middleware))
+);
+
+// set up a store subscription listener
+// to store the users token in localStorage
+
+// initialize current state from redux store for subscription comparison
+// preventing undefined error
+
+// let currentState = store.getState ();
+
+// store.subscribe (() => {
+//   // keep track of the previous and current state to compare changes
+//   let previousState = currentState;
+//   currentState = store.getState ();
+//   // if the token changes set the value in localStorage and axios headers
+//   if (
+//     previousState.sectionList.sections !== currentState.sectionList.sections
+//   ) {
+//     localStorage.setItem (
+//       'sectionList',
+//       JSON.stringify (currentState.sectionList.sections) //LS model 3
+//     );
+//   }
+// });
+
+export default store;
+
+/**
+ * only apply to section
+ * 
+ * 
+ * subscribe v1 initial:
+ * const initialState = {
+  // sections: {
+  //   sections: sectionsFromLocalStorage
+  // },
+  // userLogin: { userInfo: userInfoFromStorage },
+}
+
+const middleware = [thunk];
+
+
+const store = createStore (
+  // rootReducer,
+  
+  reducer,
+  // persistedState,
+  initialState,
+  composeWithDevTools (applyMiddleware (...middleware))
+);
+
+ * 
+ * subscribe v2:
+ * // function saveToLocalStorage(state) {
 //   try {
 //     const serializedState = JSON.stringify(state)
 //     localStorage.setItem('state', serializedState)
@@ -45,45 +123,20 @@ const reducer = combineReducers ({
 //   }
 // }
 
-const initialState = {
-  // sections: {
-  //   sections: sectionsFromLocalStorage
-  // },
-  // userLogin: { userInfo: userInfoFromStorage },
-}
-
 const middleware = [thunk];
 
 // const persistedState = loadFromLocalStorage()
 
-const store = createStore (
-  // rootReducer,
-  
+const store = createStore ( 
   reducer,
-  // persistedState,
-  initialState,
+   persistedState,
   composeWithDevTools (applyMiddleware (...middleware))
 );
 
 // store.subscribe(() => saveToLocalStorage(store.getState()))
 
-// set up a store subscription listener
-// to store the users token in localStorage
+ */
 
-// initialize current state from redux store for subscription comparison
-// preventing undefined error
-
-// let currentState = store.getState ();
-
-// store.subscribe (() => {
-//   // keep track of the previous and current state to compare changes
-//   let previousState = currentState;
-//   currentState = store.getState ();
-//   // if the token changes set the value in localStorage and axios headers
-//   if (previousState.auth.token !== currentState.auth.token) {
-//     const token = currentState.auth.token;
-//     setAuthToken (token);
-//   }
-// }); ACTIVATE WHEN SETTING UP AUTH STUFF
-
-export default store;
+/*subscribe v3
+-adjust for changes in thunks
+*/

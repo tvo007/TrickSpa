@@ -16,7 +16,7 @@ const Forums = props => {
   const history = useHistory ();
 
   const {sections, loading: isSectionLoading, error} = useSelector (
-    state => state.sections
+    state => state.sectionList
   );
 
   // useEffect (
