@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import {ThemeProvider} from '@material-ui/styles';
-
+import Alert from './components/Alert';
 //redux
 import {Provider} from 'react-redux';
 import store from './store';
@@ -22,13 +22,13 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter history={browserHistory}>
+          <Alert />
           <Routes />
+
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
-      
   );
 };
-
 
 export default App;
