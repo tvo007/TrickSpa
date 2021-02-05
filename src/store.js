@@ -13,6 +13,9 @@ import {
   commentsByPostReducer,
   commentCreateReducer,
 } from './reducers/commentReducers';
+import {
+  alertReducer
+} from './reducers/alertReducers'
 //import setAuthToken from './utils/setAuthToken';
 
 const reducer = combineReducers ({
@@ -23,6 +26,7 @@ const reducer = combineReducers ({
   sectionDetails: sectionReducer,
   commentsByPost: commentsByPostReducer,
   commentCreate: commentCreateReducer,
+  alert: alertReducer
 });
 
 const sectionsFromLocalStorage = localStorage.getItem ('sections')

@@ -2,7 +2,6 @@ import React, {useState, useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import PostItem from './components/PostItem';
 import PostItemSkeleton from './components/PostItemSkeleton';
-import CreatePost from './components/CreatePost';
 import PageHeading from '../../components/PageHeading';
 import Nav from '../../components/Nav';
 import ShowCreatePostButton from './components/ShowCreatePostButton';

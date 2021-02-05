@@ -1,21 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
-import {getSection} from '../../actions/sectionActions';
-import {getPostsBySection} from '../../actions/postActions';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import CreatePostView from './CreatePostView';
+import {getSection} from '../../actions/sectionActions';
 
-const CreatePost = props => {
+const CreatePost = ({sectionId}) => {
   const {forumSlug} = useParams ();
   const history = useHistory ();
   const dispatch = useDispatch ();
-
-  const {
-    section,
-    loading: isSectionLoading,
-    error: errorSection,
-  } = useSelector (state => state.sectionDetails);
 
   const postCreateReducer = useSelector (state => state.postCreate);
   const {
@@ -24,10 +17,16 @@ const CreatePost = props => {
     success: successCreate,
   } = postCreateReducer;
 
+  const {section, loading: isSectionLoading, error} = useSelector (
+    state => state.sectionDetails
+  );
+
   useEffect (
     () => {
+      // if (isEmpty) {
+      // setIsEmpty (false);
       dispatch (getSection (forumSlug));
-      dispatch (getPostsBySection (forumSlug));
+      // }
     },
     [dispatch, forumSlug]
   );
@@ -35,18 +34,17 @@ const CreatePost = props => {
   useEffect (
     () => {
       if (successCreate) {
-        dispatch (getSection (forumSlug));
         history.push (`/forums/${forumSlug}`);
       }
     },
     [successCreate, forumSlug, dispatch, history]
   );
+
   return (
     <CreatePostView
-    forumSlug={forumSlug}
       section={section}
       isSectionLoading={isSectionLoading}
-      errorSection={errorSection}
+      forumSlug={forumSlug}
       createLoading={createLoading}
       errorCreate={errorCreate}
       success={successCreate}
