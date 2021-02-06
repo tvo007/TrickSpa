@@ -4,6 +4,7 @@ import { Button, ButtonGroup } from '@material-ui/core'
 
 function Pagination({totalNumberOfItems, numberPerPage = 10, paginate}) {
   const numberOfPages = Math.ceil(totalNumberOfItems / numberPerPage);
+  console.log(numberOfPages)
   const pageNumbers = [];
 
   for (let i = 1; i < numberOfPages; i++) {
@@ -12,8 +13,9 @@ function Pagination({totalNumberOfItems, numberPerPage = 10, paginate}) {
 
   return (
     <ButtonGroup
+      aria-label="outline primary button group"
       color="primary"
-      variant="contained"
+      variant="outlined"
     >
       {
         pageNumbers.map(number => <Button

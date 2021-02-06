@@ -6,7 +6,7 @@ function usePagination(items, numberPerPage) {
 
   const lastIndex = numberPerPage * currentPage;
   const firstIndex = lastIndex - numberPerPage;
-  const currentItems = items.slice(firstIndex, lastIndex);
+  const currentItems = items ? items.slice(firstIndex, lastIndex) : null;
 
   return [ currentItems, numberPerPage, paginate ];
 }
