@@ -1,5 +1,4 @@
 import React, {useState, useEffect, Fragment} from 'react';
-
 import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
@@ -9,17 +8,22 @@ import CommentSkeleton from './components/CommentSkeleton';
 import Reply from './components/Reply';
 import Nav from '../../components/Nav';
 //experimental componets
+import {showSnackbar} from '../../actions/alertActions';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import {commentSchema} from '../../common/validationSchema';
 //
 import DescriptionIcon from '@material-ui/icons/Description';
 import CreateIcon from '@material-ui/icons/Create';
 import {
   Grid,
   Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Divider,
-  Button,
+  // Card,
+  // CardHeader,
+  // CardContent,
+  // Divider,
+  // Button,
 } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles (theme => ({
@@ -46,12 +50,15 @@ const PostView = ({
 
   const author = post.user ? post.user.username : null;
 
-  const [body, setBody] = useState ('');
+  //react-hook-form
+  const {register, handleSubmit, errors, reset} = useForm ({
+    resolver: yupResolver (commentSchema),
+  });
 
-  const submitHandler = e => {
-    e.preventDefault ();
-    dispatch (createComment ({body, post: {id: post.id}, user: {id: 1}}));
-    setBody ('');
+  const submitHandler = data => {
+    dispatch (createComment ({...data, post: {id: post.id}, user: {id: 1}}));
+    reset ({body: ''});
+    dispatch (showSnackbar ('Success')); //to be refactored
   };
 
   //83aus version
@@ -109,7 +116,12 @@ const PostView = ({
               </Fragment>}
 
       <Grid item xs={12}>
-        <Reply body={body} setBody={setBody} submitHandler={submitHandler} />
+        <Reply
+          register={register}
+          handleSubmit={handleSubmit}
+          errors={errors}
+          submitHandler={submitHandler}
+        />
       </Grid>
 
       <Grid item xs={12}>

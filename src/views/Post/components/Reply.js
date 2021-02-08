@@ -20,11 +20,11 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const Reply = ({body, setBody, submitHandler}) => {
+const Reply = ({submitHandler, handleSubmit, register, errors, reset}) => {
   const classes = useStyles ();
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleSubmit (submitHandler)}>
 
       <Grid container direction="column" spacing={1}>
         <Grid item>
@@ -32,11 +32,11 @@ const Reply = ({body, setBody, submitHandler}) => {
             fullWidth
             name="body"
             id="body"
-            value={body || ''}
+            inputRef={register}
             variant="outlined"
             placeholder="Leave a comment"
-            onChange={e => setBody (e.target.value)}
-            required
+            helperText={errors.body ? errors.body.message : null}
+            error={errors.body ? true : false}
           />
         </Grid>
         <Grid item container justify="flex-end">
