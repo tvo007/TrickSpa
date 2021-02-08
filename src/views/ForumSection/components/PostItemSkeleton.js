@@ -22,7 +22,7 @@ const PostItemSkeleton = props => {
         <CardContent>
           <Grid>
 
-            <Skeleton count={1} />
+            <Skeleton count={1} height={35} />
 
           </Grid>
         </CardContent>

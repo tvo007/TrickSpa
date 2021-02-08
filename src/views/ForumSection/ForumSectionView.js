@@ -10,7 +10,7 @@ import usePagination from '../../common/usePagination';
 import {Grid, Typography, Button, TextField} from '@material-ui/core';
 import {createPost} from '../../actions/postActions';
 import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 
 const ForumSectionView = ({
   section,
@@ -31,7 +31,10 @@ const ForumSectionView = ({
   // const [title, setTitle] = useState('')
 
   // Pagination variables
-  const [ currentPosts, numberOfPostsPerPage, paginate ] = usePagination(section.posts, 10);
+  const [currentPosts, numberOfPostsPerPage, paginate] = usePagination (
+    section.posts,
+    10
+  );
 
   const dispatch = useDispatch ();
   // const handleShowCreatePost = () => {
@@ -53,36 +56,24 @@ const ForumSectionView = ({
   };
 
   return (
-    <Grid
-      container
-      spacing={4}
-    >
-      <Grid
-        container
-        item
-        xs={8}
-      >
+    <Grid container spacing={4}>
+      <Grid container item xs={8}>
         <PageHeading
           title={
             forumSlug === 'whats-new'
-              ? 'What\'s New'
+              ? "What's New"
               : forumSlug
-                .replace (/-/g, ' ')
-                .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
-                  match.toUpperCase ()
-                )
+                  .replace (/-/g, ' ')
+                  .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
+                    match.toUpperCase ()
+                  )
           }
         />
         <Nav />
 
       </Grid>
 
-      <Grid
-        alignItems="center"
-        container
-        item
-        xs={4}
-      >
+      <Grid alignItems="center" container item xs={4}>
         <ShowCreatePostButton
           onClick={e => history.push (`/forums/${forumSlug}/createPost`)}
           text="Create Post"
@@ -92,54 +83,52 @@ const ForumSectionView = ({
         ? <Grid><Typography>ERROR</Typography> </Grid>
         : <Fragment>
 
-          {/*  */}
+            {/*  */}
 
-          <Grid
-            container
-            item
-            spacing={4}
-          >
+            <Grid container item spacing={4}>
+              {currentPosts
+                ? <Grid container item justify="center" xs={12}>
+                    <Pagination
+                      numberPerPage={numberOfPostsPerPage}
+                      paginate={paginate}
+                      totalNumberOfItems={section.posts.length}
+                    />
+                  </Grid>
+                : <Grid container item justify="center" xs={12}>
+                    <Skeleton width={100} height={30} />
+                  </Grid>}
 
-            {currentPosts
-              ? currentPosts.map (post => (
-                <PostItem
-                  description={post.body}
-                  isSectionLoading={isSectionLoading}
-                  key={post.id}
-                  name={post.title}
-                  onClick={e =>
-                    history.push (`/forums/${section.slug}/${post.slug}`)}
-                />
-              ))
-              : <Fragment>
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-                <PostItemSkeleton />
-              </Fragment>}
-            {
-              currentPosts && 
-              (
-                <Grid
-                  container
-                  item
-                  justify="center"
-                  xs={12}
-                >
-                  <Pagination 
-                    numberPerPage={numberOfPostsPerPage} 
+              {currentPosts
+                ? currentPosts.map (post => (
+                    <PostItem
+                      description={post.body}
+                      isSectionLoading={isSectionLoading}
+                      key={post.id}
+                      name={post.title}
+                      onClick={e =>
+                        history.push (`/forums/${section.slug}/${post.slug}`)}
+                    />
+                  ))
+                : <Fragment>
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                    <PostItemSkeleton />
+                  </Fragment>}
+              {currentPosts &&
+                <Grid container item justify="center" xs={12}>
+                  <Pagination
+                    numberPerPage={numberOfPostsPerPage}
                     paginate={paginate}
                     totalNumberOfItems={section.posts.length}
                   />
-                </Grid>
-              )
-            }
-          </Grid>
-        </Fragment>}
+                </Grid>}
+            </Grid>
+          </Fragment>}
 
     </Grid>
   );

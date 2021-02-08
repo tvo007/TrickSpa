@@ -5,5 +5,7 @@ const checked = (value, options) => {
 };
 
 export default {
-  checked
+  checked,
+  commentSchema,
+  postSchema,
 };

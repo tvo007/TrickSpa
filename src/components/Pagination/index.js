@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup } from '@material-ui/core'
 
-function Pagination({totalNumberOfItems, numberPerPage = 10, paginate}) {
+function Pagination({totalNumberOfItems, numberPerPage = 10, paginate, isLoading}) {
   const numberOfPages = Math.ceil(totalNumberOfItems / numberPerPage);
-  console.log(numberOfPages)
+  // console.log(numberOfPages)
   const pageNumbers = [];
 
   for (let i = 1; i < numberOfPages; i++) {
@@ -12,6 +12,7 @@ function Pagination({totalNumberOfItems, numberPerPage = 10, paginate}) {
   }
 
   return (
+
     <ButtonGroup
       aria-label="outline primary button group"
       color="primary"
