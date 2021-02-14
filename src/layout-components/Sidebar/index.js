@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 // import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FlashOnIcon from '@material-ui/icons/FlashOn'; //temp icon
 import FlightLandIcon from '@material-ui/icons/FlightLand';
-
+import LockIcon from '@material-ui/icons/Lock';
 import SidebarNav from './components/SidebarNav';
 import SidebarProfile from './components/SidebarProfile'
 
@@ -115,6 +115,11 @@ const Sidebar = ({
     //   href: '/Dummy',
     //   icon: <MessageIcon />,
     // },
+    {
+      title: 'Private Testing',
+      href: '/private-forums-test',
+      icon: <LockIcon />,
+    },
   ];
 
   return (

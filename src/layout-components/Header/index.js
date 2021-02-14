@@ -1,18 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
-import {
-  AppBar,
-  Toolbar,
-  Hidden,
-  IconButton,
-  Grid,
-} from '@material-ui/core';
+import {AppBar, Toolbar, Hidden, IconButton, Grid} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 // import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import {logout} from '../../actions/userActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {showSnackbar} from '../../actions/alertActions';
 
 const useStyles = makeStyles (theme => ({
   root: {
@@ -68,9 +65,36 @@ const Header = props => {
     ...rest
   } = props;
 
+  const dispatch = useDispatch ();
+
+  // const {loading, success, message, error} = useSelector (
+  //   state => state.userLogin
+  // );
+
+ const {loading, success, message, error} = useSelector (
+    state => state.logout
+  );
+
   const classes = useStyles (drawerWidth, openMini, isDesktop);
 
   // const [notifications] = useState([]);
+
+  const logoutHandler = () => {
+    // e.preventDefault ();
+    dispatch (logout());
+  };
+
+  useEffect (
+    () => {
+      if (success) {
+        dispatch (showSnackbar ('Logout successful!'));
+        //trigger rerender on success
+      } else if (error) {
+        dispatch (showSnackbar ('Something went wrong during logout.'));
+      }
+    },
+    [success, dispatch, error]
+  );
 
   return (
     <div className={classes.root} {...rest}>
@@ -79,7 +103,6 @@ const Header = props => {
         className={clsx (classes.appBar, {
           [classes.appBarShift]: openMini && isDesktop,
           [classes.appBarMobile]: !isDesktop,
-
         })}
       >
 
@@ -98,12 +121,12 @@ const Header = props => {
                       <MenuIcon />
                     </IconButton>
                   : <IconButton
-                  aria-label="open drawer"
-                  onClick={handleMiniClose}
-                  color="default"
-                >
-                  <MenuOpenIcon />
-                </IconButton>}
+                      aria-label="open drawer"
+                      onClick={handleMiniClose}
+                      color="default"
+                    >
+                      <MenuOpenIcon />
+                    </IconButton>}
               </Hidden>
             </Grid>
 
@@ -121,13 +144,19 @@ const Header = props => {
                     <IconButton
                       className={classes.signOutButton}
                       color="default"
+                     
                     >
+                      
                       <InputIcon />
                     </IconButton>
                   </Grid>
                 </Grid>
               : <Grid item>
-                  <IconButton className={classes.signOutButton} color="default">
+                  <IconButton
+                    className={classes.signOutButton}
+                    color="default"
+                    onClick={logoutHandler}
+                  >
                     <InputIcon />
                   </IconButton>
                 </Grid>}

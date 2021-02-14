@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Redirect} from 'react-router-dom';
 import {RouteWithLayout} from './components';
-// import {PrivateRouteWithLayout} from './components';
+import {PrivateRouteWithLayout} from './components';
 import {Main} from './layouts';
 import {
   Dashboard,
@@ -32,6 +32,15 @@ const Routes = props => {
         layout={Main}
         path="/landing"
       />
+
+      <PrivateRouteWithLayout
+        component={Forums}
+        exact
+        layout={Main}
+        path="/private-forums-test"
+      />
+      /**PRIVATE ROUTE IN PROGRESS */
+
       <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
 
       <RouteWithLayout

@@ -17,6 +17,7 @@ const RouteWithLayout = props => {
   );
 };
 
+
 RouteWithLayout.propTypes = {
   component: PropTypes.any.isRequired,
   layout: PropTypes.any.isRequired,

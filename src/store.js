@@ -14,6 +14,10 @@ import {
   commentCreateReducer,
 } from './reducers/commentReducers';
 import {
+  userLoginReducer,
+  userLogoutReducer
+} from './reducers/userReducers'
+import {
   alertReducer
 } from './reducers/alertReducers'
 //import setAuthToken from './utils/setAuthToken';
@@ -26,6 +30,8 @@ const reducer = combineReducers ({
   sectionDetails: sectionReducer,
   commentsByPost: commentsByPostReducer,
   commentCreate: commentCreateReducer,
+  userLogin: userLoginReducer,
+  logout: userLogoutReducer,
   alert: alertReducer
 });
 

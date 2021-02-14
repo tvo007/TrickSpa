@@ -1,5 +1,6 @@
 {
   "name": "project-trickspa",
+  "proxy": "https://cryptic-taiga-69399.herokuapp.com",
   "author": "TiVo",
   "email": "timtvo714@gmail.com",
   "licence": "MIT",
