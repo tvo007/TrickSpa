@@ -34,8 +34,11 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-const OriginalPost = ({title, body, author, loading}) => {
+const OriginalPost = ({post, title, body, author, loading}) => {
   const classes = useStyles ();
+  const date = new Date(post.published_at);
+  const time = date.toString().split(' ').slice(0, 4).join(' ');
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -45,12 +48,18 @@ const OriginalPost = ({title, body, author, loading}) => {
           </Avatar>
         }
         subheader={
-          <Typography className={classes.subheader} variant="body2">
-            Posted by {author} @ time
+          <Typography
+            className={classes.subheader}
+            variant="body2"
+          >
+            Posted by {author} @ {time}
           </Typography>
         }
         title={
-          <Typography className={classes.title} component="h2">
+          <Typography
+            className={classes.title}
+            component="h2"
+          >
             {title}
           </Typography>
         }
