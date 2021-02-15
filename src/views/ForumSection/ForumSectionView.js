@@ -36,6 +36,19 @@ const ForumSectionView = ({
     10
   );
 
+  // ==== SORT POSTS ====
+  const sortPostsLastToFirst = posts => {
+    return posts.sort((a, b) => {
+      const timeA = new Date(a.published_at).getTime();
+      const timeB = new Date(b.published_at).getTime();
+      return timeB - timeA;
+    });
+  }
+  const [sortedPosts, setSortedPosts ] = useState(null);
+  useEffect(() => {
+    if (currentPosts) setSortedPosts(sortPostsLastToFirst(currentPosts));
+  }, [currentPosts]);
+
   const dispatch = useDispatch ();
   // const handleShowCreatePost = () => {
   //   setIsPosting (true);
@@ -56,24 +69,36 @@ const ForumSectionView = ({
   };
 
   return (
-    <Grid container spacing={4}>
-      <Grid container item xs={8}>
+    <Grid
+      container
+      spacing={4}
+    >
+      <Grid
+        container
+        item
+        xs={8}
+      >
         <PageHeading
           title={
             forumSlug === 'whats-new'
-              ? "What's New"
+              ? 'What\'s New'
               : forumSlug
-                  .replace (/-/g, ' ')
-                  .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
-                    match.toUpperCase ()
-                  )
+                .replace (/-/g, ' ')
+                .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
+                  match.toUpperCase ()
+                )
           }
         />
         <Nav />
 
       </Grid>
 
-      <Grid alignItems="center" container item xs={4}>
+      <Grid
+        alignItems="center"
+        container
+        item
+        xs={4}
+      >
         <ShowCreatePostButton
           onClick={e => history.push (`/forums/${forumSlug}/createPost`)}
           text="Create Post"
@@ -83,52 +108,74 @@ const ForumSectionView = ({
         ? <Grid><Typography>ERROR</Typography> </Grid>
         : <Fragment>
 
-            {/*  */}
+          {/*  */}
 
-            <Grid container item spacing={4}>
-              {currentPosts
-                ? <Grid container item justify="center" xs={12}>
-                    <Pagination
-                      numberPerPage={numberOfPostsPerPage}
-                      paginate={paginate}
-                      totalNumberOfItems={section.posts.length}
-                    />
-                  </Grid>
-                : <Grid container item justify="center" xs={12}>
-                    <Skeleton width={100} height={30} />
-                  </Grid>}
+          <Grid
+            container
+            item
+            spacing={4}
+          >
+            {sortedPosts
+              ? <Grid
+                container
+                item
+                justify="center"
+                xs={12}
+                >
+                <Pagination
+                  numberPerPage={numberOfPostsPerPage}
+                  paginate={paginate}
+                  totalNumberOfItems={section.posts.length}
+                />
+              </Grid>
+              : <Grid
+                container
+                item
+                justify="center"
+                xs={12}
+                >
+                <Skeleton
+                  height={30}
+                  width={100}
+                />
+              </Grid>}
 
-              {currentPosts
-                ? currentPosts.map (post => (
-                    <PostItem
-                      description={post.body}
-                      isSectionLoading={isSectionLoading}
-                      key={post.id}
-                      name={post.title}
-                      onClick={e =>
-                        history.push (`/forums/${section.slug}/${post.slug}`)}
-                    />
-                  ))
-                : <Fragment>
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                  </Fragment>}
-              {currentPosts &&
-                <Grid container item justify="center" xs={12}>
+            {sortedPosts
+              ? sortedPosts.map (post => (
+                <PostItem
+                  description={post.body}
+                  isSectionLoading={isSectionLoading}
+                  key={post.id}
+                  name={post.title}
+                  onClick={e =>
+                    history.push (`/forums/${section.slug}/${post.slug}`)}
+                />
+              ))
+              : <Fragment>
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+              </Fragment>}
+            {sortedPosts &&
+                <Grid
+                  container
+                  item
+                  justify="center"
+                  xs={12}
+                >
                   <Pagination
                     numberPerPage={numberOfPostsPerPage}
                     paginate={paginate}
                     totalNumberOfItems={section.posts.length}
                   />
                 </Grid>}
-            </Grid>
-          </Fragment>}
+          </Grid>
+        </Fragment>}
 
     </Grid>
   );
