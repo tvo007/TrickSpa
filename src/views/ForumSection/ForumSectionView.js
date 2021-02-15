@@ -7,7 +7,7 @@ import Nav from '../../components/Nav';
 import ShowCreatePostButton from './components/ShowCreatePostButton';
 import Pagination from '../../components/Pagination';
 import usePagination from '../../common/usePagination';
-import {Grid, Typography, Button, TextField} from '@material-ui/core';
+import {Grid, Typography, ButtonGroup, Button, TextField} from '@material-ui/core';
 import {createPost} from '../../actions/postActions';
 import {useDispatch} from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
@@ -37,17 +37,15 @@ const ForumSectionView = ({
   );
 
   // ==== SORT POSTS ====
-  const sortPostsLastToFirst = posts => {
-    return posts.sort((a, b) => {
+  const sortPosts = (postsToSort, latest) => {
+    const postsCopy = [...postsToSort];
+    return postsCopy.sort((a, b) => {
       const timeA = new Date(a.published_at).getTime();
       const timeB = new Date(b.published_at).getTime();
-      return timeB - timeA;
+      return latest ? timeB - timeA : timeA - timeB;
     });
   }
-  const [sortedPosts, setSortedPosts ] = useState(null);
-  useEffect(() => {
-    if (currentPosts) setSortedPosts(sortPostsLastToFirst(currentPosts));
-  }, [currentPosts]);
+  const [ sortLatest, setSortLatest ] = useState(true);
 
   const dispatch = useDispatch ();
   // const handleShowCreatePost = () => {
@@ -90,7 +88,6 @@ const ForumSectionView = ({
           }
         />
         <Nav />
-
       </Grid>
 
       <Grid
@@ -104,6 +101,29 @@ const ForumSectionView = ({
           text="Create Post"
         />
       </Grid>
+
+      <Grid
+        container
+        item
+        justify="center"
+        xs={12}
+      >
+        <ButtonGroup
+          aria-label="contained primary button group"
+          color="primary"
+          variant="contained"
+        >
+          <Button
+            onClick={() => setSortLatest(true)}
+            style={{marginRight: '.5px'}}
+          >Latest</Button>
+          <Button
+            onClick={() => setSortLatest(false)}
+            style={{marginLeft: '.5px'}}
+          >Earliest</Button>
+        </ButtonGroup>
+      </Grid>
+
       {error
         ? <Grid><Typography>ERROR</Typography> </Grid>
         : <Fragment>
@@ -115,13 +135,13 @@ const ForumSectionView = ({
             item
             spacing={4}
           >
-            {sortedPosts
+            {currentPosts
               ? <Grid
                 container
                 item
                 justify="center"
                 xs={12}
-                >
+              >
                 <Pagination
                   numberPerPage={numberOfPostsPerPage}
                   paginate={paginate}
@@ -133,15 +153,15 @@ const ForumSectionView = ({
                 item
                 justify="center"
                 xs={12}
-                >
+              >
                 <Skeleton
                   height={30}
                   width={100}
                 />
               </Grid>}
 
-            {sortedPosts
-              ? sortedPosts.map (post => (
+            {currentPosts
+              ? sortPosts(currentPosts, sortLatest).map (post => (
                 <PostItem
                   description={post.body}
                   isSectionLoading={isSectionLoading}
@@ -161,7 +181,7 @@ const ForumSectionView = ({
                 <PostItemSkeleton />
                 <PostItemSkeleton />
               </Fragment>}
-            {sortedPosts &&
+            {currentPosts &&
                 <Grid
                   container
                   item
