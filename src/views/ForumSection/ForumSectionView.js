@@ -7,7 +7,7 @@ import Nav from '../../components/Nav';
 import ShowCreatePostButton from './components/ShowCreatePostButton';
 import Pagination from '../../components/Pagination';
 import usePagination from '../../common/usePagination';
-import {Grid, Typography, Button, TextField} from '@material-ui/core';
+import {Grid, Typography, ButtonGroup, Button, TextField} from '@material-ui/core';
 import {createPost} from '../../actions/postActions';
 import {useDispatch} from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
@@ -36,6 +36,17 @@ const ForumSectionView = ({
     10
   );
 
+  // ==== SORT POSTS ====
+  const sortPosts = (postsToSort, latest) => {
+    const postsCopy = [...postsToSort];
+    return postsCopy.sort((a, b) => {
+      const timeA = new Date(a.published_at).getTime();
+      const timeB = new Date(b.published_at).getTime();
+      return latest ? timeB - timeA : timeA - timeB;
+    });
+  }
+  const [ sortLatest, setSortLatest ] = useState(true);
+
   const dispatch = useDispatch ();
   // const handleShowCreatePost = () => {
   //   setIsPosting (true);
@@ -56,79 +67,135 @@ const ForumSectionView = ({
   };
 
   return (
-    <Grid container spacing={4}>
-      <Grid container item xs={8}>
+    <Grid
+      container
+      spacing={4}
+    >
+      <Grid
+        container
+        item
+        xs={8}
+      >
         <PageHeading
           title={
             forumSlug === 'whats-new'
-              ? "What's New"
+              ? 'What\'s New'
               : forumSlug
-                  .replace (/-/g, ' ')
-                  .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
-                    match.toUpperCase ()
-                  )
+                .replace (/-/g, ' ')
+                .replace (/(^\w{1})|(\s{1}\w{1})/g, match =>
+                  match.toUpperCase ()
+                )
           }
         />
         <Nav />
-
       </Grid>
 
-      <Grid alignItems="center" container item xs={4}>
+      <Grid
+        alignItems="center"
+        container
+        item
+        xs={4}
+      >
         <ShowCreatePostButton
           onClick={e => history.push (`/forums/${forumSlug}/createPost`)}
           text="Create Post"
         />
       </Grid>
+
+      <Grid
+        container
+        item
+        justify="center"
+        xs={12}
+      >
+        <ButtonGroup
+          aria-label="contained primary button group"
+          color="primary"
+          variant="contained"
+        >
+          <Button
+            onClick={() => setSortLatest(true)}
+            style={{marginRight: '.5px'}}
+          >Latest</Button>
+          <Button
+            onClick={() => setSortLatest(false)}
+            style={{marginLeft: '.5px'}}
+          >Earliest</Button>
+        </ButtonGroup>
+      </Grid>
+
       {error
         ? <Grid><Typography>ERROR</Typography> </Grid>
         : <Fragment>
 
-            {/*  */}
+          {/*  */}
 
-            <Grid container item spacing={4}>
-              {currentPosts
-                ? <Grid container item justify="center" xs={12}>
-                    <Pagination
-                      numberPerPage={numberOfPostsPerPage}
-                      paginate={paginate}
-                      totalNumberOfItems={section.posts.length}
-                    />
-                  </Grid>
-                : <Grid container item justify="center" xs={12}>
-                    <Skeleton width={100} height={30} />
-                  </Grid>}
+          <Grid
+            container
+            item
+            spacing={4}
+          >
+            {currentPosts
+              ? <Grid
+                container
+                item
+                justify="center"
+                xs={12}
+              >
+                <Pagination
+                  numberPerPage={numberOfPostsPerPage}
+                  paginate={paginate}
+                  totalNumberOfItems={section.posts.length}
+                />
+              </Grid>
+              : <Grid
+                container
+                item
+                justify="center"
+                xs={12}
+              >
+                <Skeleton
+                  height={30}
+                  width={100}
+                />
+              </Grid>}
 
-              {currentPosts
-                ? currentPosts.map (post => (
-                    <PostItem
-                      description={post.body}
-                      isSectionLoading={isSectionLoading}
-                      key={post.id}
-                      name={post.title}
-                      onClick={e =>
-                        history.push (`/forums/${section.slug}/${post.slug}`)}
-                    />
-                  ))
-                : <Fragment>
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                    <PostItemSkeleton />
-                  </Fragment>}
-              {currentPosts &&
-                <Grid container item justify="center" xs={12}>
+            {currentPosts
+              ? sortPosts(currentPosts, sortLatest).map (post => (
+                <PostItem
+                  description={post.body}
+                  isSectionLoading={isSectionLoading}
+                  key={post.id}
+                  name={post.title}
+                  onClick={e =>
+                    history.push (`/forums/${section.slug}/${post.slug}`)}
+                />
+              ))
+              : <Fragment>
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+                <PostItemSkeleton />
+              </Fragment>}
+            {currentPosts &&
+                <Grid
+                  container
+                  item
+                  justify="center"
+                  xs={12}
+                >
                   <Pagination
                     numberPerPage={numberOfPostsPerPage}
                     paginate={paginate}
                     totalNumberOfItems={section.posts.length}
                   />
                 </Grid>}
-            </Grid>
-          </Fragment>}
+          </Grid>
+        </Fragment>}
 
     </Grid>
   );
