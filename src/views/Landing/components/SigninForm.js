@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Paper, Typography, TextField, Button} from '@material-ui/core';
+import {Paper, Typography, TextField, Button, Link} from '@material-ui/core';
 import useStyles from '../FormStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../../actions/userActions';
@@ -14,7 +14,7 @@ const schema = yup.object ().shape ({
   password: yup.string ().required ('Please enter your password.'),
 });
 
-const SigninForm = () => {
+const SigninForm = ({onClick}) => {
   // const {values, errors, handleChange, handleSubmit} = useForm ({
   //   username: '',
   //   password: '',
@@ -86,7 +86,10 @@ const SigninForm = () => {
         <Button color="primary" variant="contained">
           <input className={classes.submit} type="submit" value="Sign In" />
         </Button>
+        <Typography><Link href="#" onClick={onClick}>Sign Up</Link></Typography>
+        
       </form>
+      
     </Paper>
   );
 };

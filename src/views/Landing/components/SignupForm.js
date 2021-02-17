@@ -1,32 +1,25 @@
 import React from 'react';
 import useForm from '../../../common/useForm';
-import { Paper, Typography, TextField, Button } from '@material-ui/core';
+import {Paper, Typography, TextField, Button, Link} from '@material-ui/core';
 import useStyles from '../FormStyles';
 
-const SignupForm = () => {
-  const { values, errors, handleChange, handleSubmit } = useForm({
+const SignupForm = ({onClick}) => {
+  const {values, errors, handleChange, handleSubmit} = useForm ({
     email: '',
     username: '',
-    password: ''
+    password: '',
   });
 
-  const classes = useStyles();
+  const classes = useStyles ();
 
   return (
     <Paper className={classes.root}>
-      <Typography
-        align="center"
-        variant="h2"
-      >
+      <Typography align="center" variant="h2">
         Create an Account
       </Typography>
-      <form
-        action="#"
-        className={classes.form}
-        onSubmit={handleSubmit}
-      >
-        <TextField 
-          error={Boolean(errors.email)}
+      <form action="#" className={classes.form} onSubmit={handleSubmit}>
+        <TextField
+          error={Boolean (errors.email)}
           helperText={errors.email}
           label="Email"
           name="email"
@@ -34,8 +27,8 @@ const SignupForm = () => {
           placeholder="Email"
           value={values.email}
         />
-        <TextField 
-          error={Boolean(errors.username)}
+        <TextField
+          error={Boolean (errors.username)}
           helperText={errors.username}
           label="Username"
           name="username"
@@ -43,8 +36,8 @@ const SignupForm = () => {
           placeholder="Username"
           value={values.username}
         />
-        <TextField 
-          error={Boolean(errors.password)}
+        <TextField
+          error={Boolean (errors.password)}
           helperText={errors.password}
           label="Password"
           name="password"
@@ -53,19 +46,17 @@ const SignupForm = () => {
           type="password"
           value={values.password}
         />
-        <Button
-          color="primary"
-          variant="contained"
-        >
+        <Button color="primary" variant="contained">
           <input
             className={classes.submit}
             type="submit"
             value="Create Account"
           />
         </Button>
+        <Typography><Link href="#" onClick={onClick}>Sign In</Link></Typography>
       </form>
     </Paper>
   );
-}
+};
 
 export default SignupForm;
