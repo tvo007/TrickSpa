@@ -75,6 +75,10 @@ const Header = props => {
     state => state.logout
   );
 
+  const { userInfo} = useSelector (
+    state => state.userLogin
+  );
+
   const classes = useStyles (drawerWidth, openMini, isDesktop);
 
   // const [notifications] = useState([]);
@@ -151,7 +155,7 @@ const Header = props => {
                     </IconButton>
                   </Grid>
                 </Grid>
-              : <Grid item>
+              : userInfo ? <Grid item>
                   <IconButton
                     className={classes.signOutButton}
                     color="default"
@@ -159,7 +163,7 @@ const Header = props => {
                   >
                     <InputIcon />
                   </IconButton>
-                </Grid>}
+                </Grid>: null}
 
           </Grid>
         </Toolbar>
