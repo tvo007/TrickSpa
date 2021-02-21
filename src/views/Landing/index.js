@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LandingView from './LandingView';
+// import LandingView from './LandingView';
+import DummyLandingView from './DummyLandingView';
 
 const Landing = props => {
-  return <LandingView />;
+  return <DummyLandingView />;
 };
 
 Landing.propTypes = {};

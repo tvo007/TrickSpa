@@ -1,17 +1,17 @@
-import React, {useEffect} from 'react';
-import {Paper, Typography, TextField, Button} from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Paper, Typography, TextField, Button } from '@material-ui/core';
 import useStyles from '../FormStyles';
-import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../../actions/userActions';
-import {useHistory} from 'react-router-dom';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {showSnackbar} from '../../../actions/alertActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../../actions/userActions';
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { showSnackbar } from '../../../actions/alertActions';
 import * as yup from 'yup';
 
-const schema = yup.object ().shape ({
-  email: yup.string ().required ('Please enter your email.'),
-  password: yup.string ().required ('Please enter your password.'),
+const schema = yup.object().shape({
+  email: yup.string().required('Please enter your email.'),
+  password: yup.string().required('Please enter your password.')
 });
 
 const SigninForm = () => {
@@ -19,27 +19,24 @@ const SigninForm = () => {
   //   username: '',
   //   password: '',
   // });
-  const {register, handleSubmit, errors} = useForm ({
-    resolver: yupResolver (schema),
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema)
   });
 
-  const userLogin = useSelector (state => state.userLogin);
-  const {loading, error, userInfo} = userLogin;
+  const userLogin = useSelector(state => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
 
-  const history = useHistory ();
-  const dispatch = useDispatch ();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  useEffect (
-    () => {
-      if (userInfo) {
-        dispatch (showSnackbar ('Login successful'));
-        history.push('/forums')
-      } else if (error) {
-        dispatch (showSnackbar ('Something went wrong.'));
-      }
-    },
-    [history, userInfo, error]
-  );
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(showSnackbar('Login successful'));
+      history.push('/forums');
+    } else if (error) {
+      dispatch(showSnackbar('Something went wrong.'));
+    }
+  }, [history, userInfo, error]);
 
   const submitHandler = data => {
     // e.preventDefault ();
@@ -50,38 +47,35 @@ const SigninForm = () => {
     //     createPost ({...data, section: {id: section.id}, user: {id: 1}})
     //   );
     //   dispatch (showSnackbar ('Success'));
-    dispatch (login (data));
+    dispatch(login(data));
   };
 
   // console.log ({...data, section: {id: section.id}, user: {id: 1}});
 
-  const classes = useStyles ();
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
       <Typography align="center" variant="h2">
         Sign In
       </Typography>
-      <form
-        className={classes.form}
-        onSubmit={handleSubmit (submitHandler)}
-      >
+      <form className={classes.form} onSubmit={handleSubmit(submitHandler)}>
         <TextField
+          error={errors.email ? true : false}
           fullWidth
-          name="email"
+          helperText={errors.email ? errors.email.message : null}
           id="email"
           inputRef={register}
+          name="email"
           placeholder="Enter your email to login"
-          helperText={errors.email ? errors.email.message : null}
-          error={errors.email ? true : false}
         />
         <TextField
-          name="password"
+          error={errors.password ? true : false}
+          helperText={errors.password ? errors.password.message : null}
           id="password"
           inputRef={register}
+          name="password"
           placeholder="Enter your password"
-          helperText={errors.password ? errors.password.message : null}
-          error={errors.password ? true : false}
         />
         <Button color="primary" variant="contained">
           <input className={classes.submit} type="submit" value="Sign In" />

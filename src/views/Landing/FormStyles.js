@@ -8,11 +8,11 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     padding: '1rem',
-    width: '90%',
+    width: '100%',
     minHeight: '5rem',
     margin: '0 auto',
     '& > *': {
-      width: '80%',
+      width: '100%',
       margin: '1rem auto'
     }
   },

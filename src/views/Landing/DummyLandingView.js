@@ -2,19 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import PageHeading from '../../components/PageHeading';
-import SignupForm from './components/SignupForm';
-import SigninForm from './components/SigninForm';
+import DummySignupForm from './components/DummySignUpForm';
+// import SigninForm from './components/SigninForm';
 
 const DummyLandingView = props => {
   return (
-    <div>
+    <Grid container item justify="center" md={9}>
       <PageHeading title="Landing" />
-      <Grid container justify="center">
-        <Grid item md={6} sm={9} xs={12}>
-          <SigninForm />
-        </Grid>
+      <Grid item xs={12}>
+        <DummySignupForm />
       </Grid>
-    </div>
+    </Grid>
   );
 };
 
