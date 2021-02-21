@@ -1,7 +1,8 @@
 import React from 'react';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 import useStyles from '../FormStyles';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../../actions/userActions';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,7 +23,13 @@ const DummySignupForm = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = data => alert(JSON.stringify(data));
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const onSubmit = data => {
+    alert(JSON.stringify(data));
+    // dispatch(register(data));
+  };
 
   const classes = useStyles();
 
