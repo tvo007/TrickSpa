@@ -8,7 +8,7 @@ import DummySignupForm from './components/DummySignUpForm';
 const DummyLandingView = props => {
   return (
     <Grid container item justify="center" md={9}>
-      <PageHeading title="Landing" />
+      {/* <PageHeading title="Landing" /> */}
       <Grid item xs={12}>
         <DummySignupForm />
       </Grid>

@@ -1,7 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  root: {
+const useStyles = makeStyles(theme => ({
+  leftSide: {
+    backgroundColor: theme.palette.primary.main,
+    '& *': {
+      color: theme.palette.WHITE,
+      margin: '1rem'
+    },
+    '& h2': {
+      fontFamily: 'Permanent Marker'
+    }
+  },
+  rightSide: {
     padding: '2rem'
   },
   form: {
@@ -25,6 +35,6 @@ const useStyles = makeStyles({
     height: '100%',
     cursor: 'pointer'
   }
-});
+}));
 
 export default useStyles;
