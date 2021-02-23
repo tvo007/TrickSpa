@@ -24,8 +24,6 @@ const schema = yup.object ().shape ({
   password: yup.string ().required ('Please enter your password.'),
 });
 
-const array = [{text: 'Bruh'}, {text: 'Bruh 2'}, {text: 'Bruh 3'}];
-
 const SignupForm = ({onClick, setShowSignup}) => {
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
