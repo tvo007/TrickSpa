@@ -25,7 +25,7 @@ const LandingView = props => {
       <Grid container justify="center">
         <Grid item md={6} sm={9} xs={12}>
           {showSignUp
-            ? <SignupForm onClick ={showSignInHandler}/>
+            ? <SignupForm onClick ={showSignInHandler} setShowSignup={setShowSignup}/>
             : <SigninForm onClick={showSignUpHandler} />}
 
         </Grid>

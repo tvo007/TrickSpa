@@ -15,7 +15,8 @@ import {
 } from './reducers/commentReducers';
 import {
   userLoginReducer,
-  userLogoutReducer
+  userLogoutReducer,
+  userRegisterReducer
 } from './reducers/userReducers'
 import {
   alertReducer
@@ -32,6 +33,7 @@ const reducer = combineReducers ({
   commentCreate: commentCreateReducer,
   userLogin: userLoginReducer,
   logout: userLogoutReducer,
+  userRegister: userRegisterReducer,
   alert: alertReducer
 });
 

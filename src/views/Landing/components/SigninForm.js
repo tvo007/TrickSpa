@@ -8,6 +8,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {showSnackbar} from '../../../actions/alertActions';
 import * as yup from 'yup';
+import {CLEAR_USER} from 'constants/userConstants';
 
 const schema = yup.object ().shape ({
   email: yup.string ().required ('Please enter your email.'),
@@ -24,7 +25,7 @@ const SigninForm = ({onClick}) => {
   });
 
   const userLogin = useSelector (state => state.userLogin);
-  const {loading, error, userInfo} = userLogin;
+  const {error, userInfo} = userLogin;
 
   const history = useHistory ();
   const dispatch = useDispatch ();
@@ -33,12 +34,12 @@ const SigninForm = ({onClick}) => {
     () => {
       if (userInfo) {
         dispatch (showSnackbar ('Login successful'));
-        history.push('/forums')
+        history.push ('/forums');
       } else if (error) {
         dispatch (showSnackbar ('Something went wrong.'));
       }
     },
-    [history, userInfo, error]
+    [history, userInfo, error, dispatch]
   );
 
   const submitHandler = data => {
@@ -53,7 +54,7 @@ const SigninForm = ({onClick}) => {
     dispatch (login (data));
   };
 
-  // console.log ({...data, section: {id: section.id}, user: {id: 1}});
+  // console.log ({...data, section: {id: section.id}, user: {id: 1}})
 
   const classes = useStyles ();
 
@@ -62,10 +63,7 @@ const SigninForm = ({onClick}) => {
       <Typography align="center" variant="h2">
         Sign In
       </Typography>
-      <form
-        className={classes.form}
-        onSubmit={handleSubmit (submitHandler)}
-      >
+      <form className={classes.form} onSubmit={handleSubmit (submitHandler)}>
         <TextField
           fullWidth
           name="email"
@@ -82,14 +80,14 @@ const SigninForm = ({onClick}) => {
           placeholder="Enter your password"
           helperText={errors.password ? errors.password.message : null}
           error={errors.password ? true : false}
+          type="password"
         />
         <Button color="primary" variant="contained">
           <input className={classes.submit} type="submit" value="Sign In" />
         </Button>
         <Typography><Link href="#" onClick={onClick}>Sign Up</Link></Typography>
-        
       </form>
-      
+
     </Paper>
   );
 };

@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
-  Typography,
+  // Typography,
   Card,
   CardHeader,
   CardContent,
-  Divider,
-  CardActions,
-  CardActionArea,
-  Avatar,
+  // Divider,
+  // CardActions,
+  // CardActionArea,
+  // Avatar,
 } from '@material-ui/core';
-import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
+// import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles (theme => ({
@@ -78,6 +78,6 @@ const CommentSkeleton = () => {
   );
 };
 
-CommentSkeleton.propTypes = {};
+// CommentSkeleton.propTypes = {};
 
 export default CommentSkeleton;

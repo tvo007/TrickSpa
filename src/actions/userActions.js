@@ -6,7 +6,6 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
-  USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -17,7 +16,7 @@ import {
   USER_LIST_FAIL,
   USER_LIST_SUCCESS,
   USER_LIST_REQUEST,
-  USER_LIST_RESET,
+  // USER_LIST_RESET,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
@@ -113,7 +112,7 @@ export const logout = () => async dispatch => {
 
 //^^clear out state
 
-export const register = (name, email, password) => async dispatch => {
+export const signup = ({username, email, password}) => async dispatch => {
   try {
     dispatch ({
       type: USER_REGISTER_REQUEST,
@@ -122,12 +121,14 @@ export const register = (name, email, password) => async dispatch => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        withCredentials: true,
+        // 'Access-Control-Allow-Credentials': true,
       },
     };
 
     const {data} = await axios.post (
-      '/api/users',
-      {name, email, password},
+      `${api}/auth/local/register`,
+      {username, email, password},
       config
     );
 
@@ -136,12 +137,12 @@ export const register = (name, email, password) => async dispatch => {
       payload: data,
     });
 
-    dispatch ({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    });
+    // dispatch ({
+    //   type: USER_LOGIN_SUCCESS,
+    //   payload: data,
+    // });
 
-    localStorage.setItem ('userInfo', JSON.stringify (data));
+    // localStorage.setItem ('userInfo', JSON.stringify (data));
   } catch (error) {
     dispatch ({
       type: USER_REGISTER_FAIL,

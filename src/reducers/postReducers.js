@@ -9,12 +9,12 @@ import {
   POST_CREATE_REQUEST,
   POST_CREATE_FAIL,
   POST_CREATE_RESET,
-  POST_EDIT_REQUEST,
-  POST_EDIT_SUCCESS,
-  POST_EDIT_FAIL,
-  POST_DELETE_REQUEST,
-  POST_DELETE_SUCCESS,
-  POST_DELETE_FAIL,
+  // POST_EDIT_REQUEST,
+  // POST_EDIT_SUCCESS,
+  // POST_EDIT_FAIL,
+  // POST_DELETE_REQUEST,
+  // POST_DELETE_SUCCESS,
+  // POST_DELETE_FAIL,
 } from '../constants/postConstants';
 
 export const postListReducer = (state = {posts: []}, action) => {

@@ -71,7 +71,7 @@ const Header = props => {
   //   state => state.userLogin
   // );
 
- const {loading, success, message, error} = useSelector (
+ const { success, error} = useSelector (
     state => state.logout
   );
 
