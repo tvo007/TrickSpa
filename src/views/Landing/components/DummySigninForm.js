@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper, Typography, TextField, Button } from '@material-ui/core';
+import { Paper, Grid, Typography, TextField, Button } from '@material-ui/core';
 import useStyles from '../FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../actions/userActions';
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   password: yup.string().required('Please enter your password.')
 });
 
-const SigninForm = () => {
+const DummySigninForm = () => {
   // const {values, errors, handleChange, handleSubmit} = useForm ({
   //   username: '',
   //   password: '',
@@ -55,34 +55,54 @@ const SigninForm = () => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
-      <Typography align="center" variant="h2">
-        Sign In
-      </Typography>
-      <form className={classes.form} onSubmit={handleSubmit(submitHandler)}>
-        <TextField
-          error={errors.email ? true : false}
-          fullWidth
-          helperText={errors.email ? errors.email.message : null}
-          id="email"
-          inputRef={register}
-          name="email"
-          placeholder="Enter your email to login"
-        />
-        <TextField
-          error={errors.password ? true : false}
-          helperText={errors.password ? errors.password.message : null}
-          id="password"
-          inputRef={register}
-          name="password"
-          placeholder="Enter your password"
-        />
-        <Button color="primary" variant="contained">
-          <input className={classes.submit} type="submit" value="Sign In" />
-        </Button>
-      </form>
+    <Paper elevation={5}>
+      <Grid container>
+        <Grid
+          alignItems="center"
+          className={classes.leftSide}
+          container
+          item
+          justify="center"
+          xs={6}>
+          <Grid item>
+            <Typography align="center" variant="h2">
+              Connectrix
+            </Typography>
+            <Typography align="center" variant="body1">
+              Connecting trickers around the world.
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid className={classes.rightSide} item xs={6}>
+          <Typography align="center" variant="h2">
+            Sign In
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit(submitHandler)}>
+            <TextField
+              error={errors.email ? true : false}
+              fullWidth
+              helperText={errors.email ? errors.email.message : null}
+              id="email"
+              inputRef={register}
+              name="email"
+              placeholder="Enter your email to login"
+            />
+            <TextField
+              error={errors.password ? true : false}
+              helperText={errors.password ? errors.password.message : null}
+              id="password"
+              inputRef={register}
+              name="password"
+              placeholder="Enter your password"
+            />
+            <Button color="primary" variant="contained">
+              <input className={classes.submit} type="submit" value="Sign In" />
+            </Button>
+          </form>
+        </Grid>
+      </Grid>
     </Paper>
   );
 };
 
-export default SigninForm;
+export default DummySigninForm;
