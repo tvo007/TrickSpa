@@ -19,6 +19,7 @@ import FlightLandIcon from '@material-ui/icons/FlightLand';
 import LockIcon from '@material-ui/icons/Lock';
 import SidebarNav from './components/SidebarNav';
 import SidebarProfile from './components/SidebarProfile'
+import BlockIcon from '@material-ui/icons/Block';
 
 // const drawerWidth = 240;
 
@@ -100,15 +101,22 @@ const Sidebar = ({
       href: '/Dashboard',
       icon: <DashboardIcon />,
     },
+   
+
+    {
+      title: 'Forums',
+      href: '/Forums',
+      icon: <MessageIcon />,
+    },
     {
       title: 'Landing',
       href: '/Landing',
       icon: <FlightLandIcon />,
     },
     {
-      title: 'Forums',
-      href: '/Forums',
-      icon: <MessageIcon />,
+      title: 'Auth',
+      href: '/auth',
+      icon: <LockIcon />,
     },
     // {
     //   title: 'Dummy',
@@ -118,7 +126,7 @@ const Sidebar = ({
     {
       title: 'Private Testing',
       href: '/private-forums-test',
-      icon: <LockIcon />,
+      icon: <BlockIcon />,
     },
   ];
 

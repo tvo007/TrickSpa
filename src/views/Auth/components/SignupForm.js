@@ -7,7 +7,7 @@ import {
   Link,
   Grid,
 } from '@material-ui/core';
-import useStyles from '../FormStyles';
+import useStyles from '../../Landing/FormStyles';
 import {useForm} from 'react-hook-form';
 
 import {signup} from '../../../actions/userActions';

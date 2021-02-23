@@ -1,7 +1,7 @@
 import React from 'react';
 import useForm from '../../../common/useForm';
 import {Paper, Typography, TextField, Button, Link} from '@material-ui/core';
-import useStyles from '../FormStyles';
+import useStyles from '../../Landing/FormStyles';
 
 const SignupFormOld = ({onClick}) => {
   const {values, errors, handleChange, handleSubmit} = useForm ({
