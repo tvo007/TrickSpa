@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { Switch, Redirect } from 'react-router-dom';
 import { RouteWithLayout } from './components';
 import { PrivateRouteWithLayout } from './components';
 import { Main, TestLandingLayout } from './layouts';
+
 import {
   Dashboard,
+  Auth,
   Landing,
   Forums,
   ForumSection,
@@ -25,12 +28,13 @@ const Routes = props => {
         layout={Main}
         path="/dashboard"
       />
-      {/* <RouteWithLayout
-        component={Landing}
+     
+      <RouteWithLayout
+        component={Auth}
         exact
         layout={Main}
-        path="/landing"
-      /> */}
+        path="/auth"
+      /> 
       {/* === TEST LANDING === */}
       <RouteWithLayout
         component={Landing}
@@ -38,6 +42,8 @@ const Routes = props => {
         layout={TestLandingLayout}
         path="/landing"
       />
+     
+
       <PrivateRouteWithLayout
         component={Forums}
         exact

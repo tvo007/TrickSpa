@@ -6,8 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import {clearSnackbar} from '../../actions/alertActions';
 
 const Alert = props => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch ();
   const {successSnackbarMessage, successSnackbarOpen} = useSelector (
     state => state.alert
   );
@@ -23,7 +22,7 @@ const Alert = props => {
         horizontal: 'center',
       }}
       open={successSnackbarOpen}
-      autoHideDuration={5000}
+      autoHideDuration={3000}
       onClose={handleClose}
       message={successSnackbarMessage}
       action={

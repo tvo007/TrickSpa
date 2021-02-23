@@ -5,7 +5,7 @@ import {
   SECTION_GET_REQUEST,
   SECTION_GET_SUCCESS,
   SECTION_GET_FAIL,
-  SECTION_GET_RESET,
+  // SECTION_GET_RESET,
   SECTION_GET_LOCAL_STORAGE
 } from '../constants/sectionConstants';
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
 import useStyles from '../FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
-import { register as registerUser } from '../../../actions/userActions';
+import { signup } from '../../../actions/userActions';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -40,7 +40,7 @@ const DummySignupForm = () => {
 
   const onSubmit = data => {
     alert(JSON.stringify(data));
-    dispatch(registerUser(data));
+    dispatch(signup(data));
   };
 
   const classes = useStyles();

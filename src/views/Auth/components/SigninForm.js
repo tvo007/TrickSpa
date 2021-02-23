@@ -1,7 +1,6 @@
-
 import React, {useEffect} from 'react';
 import {Paper, Typography, TextField, Button, Link} from '@material-ui/core';
-import useStyles from '../FormStyles';
+import useStyles from '../../Landing/FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../actions/userActions';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { showSnackbar } from '../../../actions/alertActions';
 import * as yup from 'yup';
-import {CLEAR_USER} from 'constants/userConstants';
 
 const schema = yup.object().shape({
   email: yup.string().required('Please enter your email.'),
