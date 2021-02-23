@@ -5,7 +5,7 @@ import PageHeading from '../../components/PageHeading';
 import SignupForm from './components/SignupForm';
 import SigninForm from './components/SigninForm';
 
-const LandingView = props => {
+const AuthView = props => {
   const [showSignUp, setShowSignup] = useState (false);
 
   const showSignUpHandler = e => {
@@ -21,7 +21,7 @@ const LandingView = props => {
   return (
     <div>
 
-      <PageHeading title="Landing" />
+      <PageHeading title="Auth" />
       <Grid container justify="center">
         <Grid item md={6} sm={9} xs={12}>
           {showSignUp
@@ -34,6 +34,6 @@ const LandingView = props => {
   );
 };
 
-LandingView.propTypes = {};
+AuthView.propTypes = {};
 
-export default LandingView;
+export default AuthView;

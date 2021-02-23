@@ -5,7 +5,7 @@ import {PrivateRouteWithLayout} from './components';
 import {Main} from './layouts';
 import {
   Dashboard,
-  Landing,
+  Auth,
   Forums,
   ForumSection,
   Post,
@@ -27,7 +27,7 @@ const Routes = props => {
         path="/dashboard"
       />
       <RouteWithLayout
-        component={Landing}
+        component={Auth}
         exact
         layout={Main}
         path="/landing"
