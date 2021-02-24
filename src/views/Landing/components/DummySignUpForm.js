@@ -32,7 +32,7 @@ const DummySignupForm = () => {
 
   useEffect(() => {
     if (success) {
-      dispatch(showSnackbar('Login successful'));
+      dispatch(showSnackbar('Registration successful'));
       history.push('/forums');
     } else if (authError) {
       dispatch(showSnackbar('Something went wrong.'));
@@ -41,7 +41,6 @@ const DummySignupForm = () => {
   }, [history, success, authError]);
 
   const onSubmit = data => {
-    alert(JSON.stringify(data));
     dispatch(signup(data));
   };
 
