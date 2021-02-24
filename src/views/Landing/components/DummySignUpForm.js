@@ -33,7 +33,7 @@ const DummySignupForm = () => {
     () => {
       if (success) {
         dispatch (showSnackbar ('Login successful'));
-        history.push ('/forums');
+        history.push ('/auth');
       } else if (authError) {
         dispatch (showSnackbar ('Something went wrong.'));
       }
