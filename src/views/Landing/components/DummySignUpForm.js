@@ -8,6 +8,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {showSnackbar} from '../../../actions/alertActions';
 import * as yup from 'yup';
+import { POST_EDIT_SUCCESS } from 'constants/postConstants';
 
 const schema = yup.object ().shape ({
   username: yup.string ().required ('Please enter a username'),
@@ -23,11 +24,10 @@ const DummySignupForm = () => {
   const history = useHistory ();
   const dispatch = useDispatch ();
 
-  // const userLogin = useSelector(state => state.userLogin);
-  // const { loading, error, userInfo } = userLogin;
 
-  const userRegister = useSelector (state => state.userRegister);
-  const {error: authError, success} = userRegister;
+  const userRegister = useSelector(state => state.userRegister);
+  const { error: authError, success } = userRegister; //userInfo loads when successfully registers, authError is backend errors
+
 
   useEffect (
     () => {
@@ -41,9 +41,10 @@ const DummySignupForm = () => {
     [history, success, authError, dispatch]
   );
 
+
   const onSubmit = data => {
-    // alert(JSON.stringify(data));
-    dispatch (signup (data));
+    dispatch(signup(data));
+
   };
 
   const classes = useStyles ();
