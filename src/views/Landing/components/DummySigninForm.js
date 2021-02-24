@@ -55,7 +55,7 @@ const DummySigninForm = () => {
   const classes = useStyles();
 
   return (
-    <Paper elevation={5}>
+    <Paper className={classes.root} elevation={5}>
       <Grid container>
         <Grid
           alignItems="center"
