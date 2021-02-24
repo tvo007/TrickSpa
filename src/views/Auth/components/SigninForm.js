@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Paper, Typography, TextField, Button, Link} from '@material-ui/core';
 import useStyles from '../../Landing/FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../actions/userActions';
+import { login, logout } from '../../../actions/userActions';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -74,19 +74,19 @@ const SigninForm = ({onClick}) => {
         />
         <TextField
           error={errors.password ? true : false}
-          helperText={errors.password ? errors.password.message : null}
           id="password"
           inputRef={register}
           name="password"
           placeholder="Enter your password"
           helperText={errors.password ? errors.password.message : null}
-          error={errors.password ? true : false}
+         
           type="password"
         />
         <Button color="primary" variant="contained">
           <input className={classes.submit} type="submit" value="Sign In" />
         </Button>
         <Typography><Link href="#" onClick={onClick}>Sign Up</Link></Typography>
+        {/* <Typography><Link href="#" onClick={dispatch(logout())}>Logout</Link></Typography> */}
       </form>
 
     </Paper>
