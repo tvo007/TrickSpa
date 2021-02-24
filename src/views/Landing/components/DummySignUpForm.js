@@ -8,6 +8,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {showSnackbar} from '../../../actions/alertActions';
 import * as yup from 'yup';
+import { POST_EDIT_SUCCESS } from 'constants/postConstants';
 
 const schema = yup.object ().shape ({
   username: yup.string ().required ('Please enter a username'),
@@ -23,27 +24,23 @@ const DummySignupForm = () => {
   const history = useHistory ();
   const dispatch = useDispatch ();
 
-  // const userLogin = useSelector(state => state.userLogin);
-  // const { loading, error, userInfo } = userLogin;
 
-  const userRegister = useSelector (state => state.userRegister);
-  const {error: authError, success} = userRegister;
+  const userRegister = useSelector(state => state.userRegister);
+  const { error: authError, success } = userRegister; //userInfo loads when successfully registers, authError is backend errors
 
-  useEffect (
-    () => {
-      if (success) {
-        dispatch (showSnackbar ('Login successful'));
-        history.push ('/forums');
-      } else if (authError) {
-        dispatch (showSnackbar ('Something went wrong.'));
-      }
-    },
-    [history, success, authError, dispatch]
-  );
+  useEffect(() => {
+    if (success) {
+      dispatch(showSnackbar('Registration successful'));
+      history.push('/forums');
+    } else if (authError) {
+      dispatch(showSnackbar('Something went wrong.'));
+      // console.log(authError[0].messages)
+    }
+  }, [history, success, authError]);
 
   const onSubmit = data => {
-    // alert(JSON.stringify(data));
-    dispatch (signup (data));
+    dispatch(signup(data));
+
   };
 
   const classes = useStyles ();
