@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { Paper, Grid, Typography, TextField, Button } from '@material-ui/core';
+import {
+  Paper,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Link
+} from '@material-ui/core';
 import useStyles from '../FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../actions/userActions';
@@ -10,11 +17,14 @@ import { showSnackbar } from '../../../actions/alertActions';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  email: yup.string().required('Please enter your email.'),
+  email: yup
+    .string()
+    .email()
+    .required('Please enter your email.'),
   password: yup.string().required('Please enter your password.')
 });
 
-const DummySigninForm = () => {
+const DummySigninForm = ({ onClick }) => {
   // const {values, errors, handleChange, handleSubmit} = useForm ({
   //   username: '',
   //   password: '',
@@ -98,6 +108,11 @@ const DummySigninForm = () => {
             <Button color="primary" variant="contained">
               <input className={classes.submit} type="submit" value="Sign In" />
             </Button>
+            <Typography>
+              <Link href="#" onClick={onClick}>
+                Sign Up
+              </Link>
+            </Typography>
           </form>
         </Grid>
       </Grid>

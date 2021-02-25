@@ -1,5 +1,13 @@
-import React, { useEffect } from 'react';
-import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import {
+  Grid,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Link
+} from '@material-ui/core';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import useStyles from '../FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../../actions/userActions';
@@ -19,10 +27,12 @@ const schema = yup.object().shape({
   password: yup.string().required('Please enter your password.')
 });
 
-const DummySignupForm = () => {
+const DummySignupForm = ({ onClick, setShowSignup }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   });
+
+  const [errorArray, setErrorArray] = useState();
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,9 +43,11 @@ const DummySignupForm = () => {
   useEffect(() => {
     if (success) {
       dispatch(showSnackbar('Login successful'));
-      history.push('/auth');
+      setShowSignup(false);
     } else if (authError) {
       dispatch(showSnackbar('Something went wrong.'));
+      setErrorArray(authError[0].messages);
+      // console.log(authError[0].messages)
     }
   }, [history, success, authError, dispatch]);
 
@@ -105,7 +117,21 @@ const DummySignupForm = () => {
                 value="Create Account"
               />
             </Button>
+            <Typography>
+              <Link href="#" onClick={onClick}>
+                Sign In
+              </Link>
+            </Typography>
           </form>
+          <Grid>
+            {errorArray
+              ? errorArray.map((item, index) => (
+                  <Typography key={index}>
+                    <ErrorOutlineIcon fontSize="small" /> {item.message}
+                  </Typography>
+                ))
+              : null}
+          </Grid>
         </Grid>
       </Grid>
     </Paper>
