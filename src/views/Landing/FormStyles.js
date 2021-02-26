@@ -1,6 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    height: '30rem',
+    '& > div': {
+      height: '100%'
+    }
+  },
   leftSide: {
     backgroundColor: theme.palette.primary.main,
     '& *': {
@@ -12,7 +18,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   rightSide: {
-    padding: '2rem'
+    padding: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   form: {
     display: 'flex',
@@ -24,6 +33,10 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       width: '100%',
       margin: '1rem auto'
+    },
+    '& > button': {
+      width: '50%',
+      padding: '.5rem'
     }
   },
   submit: {
