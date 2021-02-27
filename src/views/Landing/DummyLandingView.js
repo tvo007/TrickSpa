@@ -5,7 +5,7 @@ import PageHeading from '../../components/PageHeading';
 import DummySignupForm from './components/DummySignUpForm';
 import DummySigninForm from './components/DummySigninForm';
 
-const DummyLandingView = props => {
+const DummyLandingView = () => {
   const [showSignUp, setShowSignup] = useState(false);
 
   const showSignUpHandler = e => {
@@ -19,7 +19,7 @@ const DummyLandingView = props => {
   };
 
   return (
-    <Grid container item justify="center" lg={6} md={9}>
+    <Grid container item justify="center" lg={8} md={9}>
       {/* <PageHeading title="Landing" /> */}
       <Grid item xs={12}>
         {showSignUp ? (

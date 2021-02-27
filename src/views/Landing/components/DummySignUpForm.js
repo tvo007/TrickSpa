@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Grid,
   Paper,
@@ -66,7 +67,8 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
           container
           item
           justify="center"
-          xs={6}>
+          sm={6}
+          xs={0}>
           <Grid item>
             <Typography align="center" variant="h2">
               Connectrix
@@ -77,7 +79,7 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
           </Grid>
         </Grid>
 
-        <Grid className={classes.rightSide} item xs={6}>
+        <Grid className={classes.rightSide} item sm={6} xs={12}>
           <Typography align="center" variant="h2">
             Create an Account
           </Typography>
@@ -136,6 +138,11 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
       </Grid>
     </Paper>
   );
+};
+
+DummySignupForm.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  setShowSignup: PropTypes.func.isRequired
 };
 
 export default DummySignupForm;

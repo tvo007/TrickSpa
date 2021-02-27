@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   form: {
     display: 'flex',
