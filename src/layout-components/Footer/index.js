@@ -1,29 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {makeStyles} from '@material-ui/styles';
-import {Typography} from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles (theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing (2),
-  },
+    padding: theme.spacing(2)
+  }
 }));
 
 const Footer = props => {
-  const {className, ...rest} = props;
+  const { className, ...rest } = props;
 
-  const classes = useStyles ();
+  const classes = useStyles();
 
   return (
-    <div {...rest} className={clsx (classes.root, className)}>
+    <footer {...rest} className={clsx(classes.root, className)}>
       <Typography variant="h1">Footer</Typography>
-    </div>
+    </footer>
   );
 };
 
 Footer.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default Footer;
