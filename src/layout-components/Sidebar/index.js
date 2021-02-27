@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import clsx from 'clsx';
 // import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
-import { Drawer, Typography, Grid} from '@material-ui/core';
+import {Drawer, Typography, Grid} from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 
 import MessageIcon from '@material-ui/icons/Message';
@@ -11,8 +11,9 @@ import FlashOnIcon from '@material-ui/icons/FlashOn'; //temp icon
 import FlightLandIcon from '@material-ui/icons/FlightLand';
 import LockIcon from '@material-ui/icons/Lock';
 import SidebarNav from './components/SidebarNav';
-import SidebarProfile from './components/SidebarProfile'
+import SidebarProfile from './components/SidebarProfile';
 import BlockIcon from '@material-ui/icons/Block';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 // const drawerWidth = 240;
 
@@ -53,24 +54,22 @@ const useStyles = makeStyles (theme => ({
     margin: theme.spacing (4, 0),
   },
   nav: {
-    paddingTop: '30px'
+    paddingTop: '30px',
   },
-  profile: {
-    
-  },
+  profile: {},
   iconButton: {
     color: 'white',
     padding: theme.spacing (3),
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   sideTitle: {
-    color:'white',
+    color: 'white',
     fontFamily: 'Permanent Marker',
     transition: theme.transitions.create ('width', {
       easing: theme.transitions.easing.slow,
       duration: theme.transitions.duration.enteringScreen,
     }),
-  }
+  },
 }));
 
 const Sidebar = ({
@@ -86,7 +85,7 @@ const Sidebar = ({
   const classes = useStyles (drawerWidth);
   // const theme = useTheme ();
 
-  const iconStyling = openMini ? '30px' : null
+  const iconStyling = openMini ? '30px' : null;
 
   const pages = [
     {
@@ -94,7 +93,11 @@ const Sidebar = ({
       href: '/Dashboard',
       icon: <DashboardIcon />,
     },
-   
+    {
+      title: 'Profile',
+      href: '/Profile',
+      icon: <AccountBoxIcon />,
+    },
 
     {
       title: 'Forums',
@@ -151,42 +154,30 @@ const Sidebar = ({
             justify="space-around"
             wrap="nowrap"
           >
-            <Grid
-              item
-              style={{paddingRight: iconStyling}}
-            >
+            <Grid item style={{paddingRight: iconStyling}}>
               <FlashOnIcon />
             </Grid>
-            <Grid
-              item
-              zeroMinWidth
-            >
-              {openMini ? <Typography
-                className={classes.sideTitle}
-                noWrap
-                variant="h4"
-                          >
-            CONNECTRIX
-              </Typography> : null}
+            <Grid item zeroMinWidth>
+              {openMini
+                ? <Typography className={classes.sideTitle} noWrap variant="h4">
+                    CONNECTRIX
+                  </Typography>
+                : null}
             </Grid>
-          
+
           </Grid>
-          
+
           {/* <Typography color="textSecondary" className={classes.profile}>
             Profile Pic
           </Typography> */}
-          <SidebarProfile
-            className={classes.profile}
-            openMini={openMini}
-          />
-          
+          <SidebarProfile className={classes.profile} openMini={openMini} />
+
           <SidebarNav
             className={classes.nav}
             openMini={openMini}
             pages={pages}
           />
         </div>
-
 
       </Drawer>
     </Fragment>

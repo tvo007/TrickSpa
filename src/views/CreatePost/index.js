@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import CreatePostView from './CreatePostView';
 import {getSection} from '../../actions/sectionActions';
 
-const CreatePost = ({sectionId}) => {
+const CreatePost = (props) => {
   const {forumSlug} = useParams ();
   const history = useHistory ();
   const dispatch = useDispatch ();
@@ -17,7 +17,7 @@ const CreatePost = ({sectionId}) => {
     success: successCreate,
   } = postCreateReducer;
 
-  const {section, loading: isSectionLoading, error} = useSelector (
+  const {section, loading: isSectionLoading} = useSelector (
     state => state.sectionDetails
   );
 

@@ -12,6 +12,7 @@ import {
   Forums,
   ForumSection,
   Post,
+  Profile,
   // Dummy,
   CreatePost
 } from './views';
@@ -28,6 +29,12 @@ const Routes = props => {
         layout={Main}
         path="/dashboard"
       />
+      <RouteWithLayout
+        component={Profile}
+        exact
+        layout={Main}
+        path="/profile"
+      />
      
       <RouteWithLayout
         component={Auth}
@@ -42,6 +49,7 @@ const Routes = props => {
         layout={TestLandingLayout}
         path="/landing"
       />
+      
      
 
       <PrivateRouteWithLayout
