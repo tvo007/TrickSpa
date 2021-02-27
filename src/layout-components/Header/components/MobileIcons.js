@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {IconButton, Grid, Typography, Button, Hidden} from '@material-ui/core';
 import InputIcon from '@material-ui/icons/Input';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -62,6 +62,6 @@ const MobileIcons = ({
   );
 };
 
-MobileIcons.propTypes = {};
+// MobileIcons.propTypes = {};
 
 export default MobileIcons;

@@ -1,14 +1,14 @@
 //to be deleted
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   Grid,
   Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Divider,
+  // Card,
+  // CardHeader,
+  // CardContent,
+  // Divider,
   TextField,
   Button,
 } from '@material-ui/core';
@@ -57,6 +57,6 @@ const Reply = ({submitHandler, handleSubmit, register, errors, reset}) => {
   );
 };
 
-Reply.propTypes = {};
+// Reply.propTypes = {};
 
 export default Reply;

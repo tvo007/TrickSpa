@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {Typography, Grid} from '@material-ui/core';
 import PageHeading from '../../components/PageHeading';
 
@@ -15,6 +15,6 @@ const DashboardView = props => {
   );
 };
 
-DashboardView.propTypes = {};
+// DashboardView.propTypes = {};
 
 export default DashboardView;

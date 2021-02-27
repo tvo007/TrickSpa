@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {Snackbar, IconButton} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -41,6 +41,6 @@ const Alert = props => {
   );
 };
 
-Alert.propTypes = {};
+// Alert.propTypes = {};
 
 export default Alert;

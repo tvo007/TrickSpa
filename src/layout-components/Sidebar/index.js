@@ -1,19 +1,12 @@
 import React, {Fragment} from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
 import { Drawer, Typography, Grid} from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-// import PeopleIcon from '@material-ui/icons/People';
-// import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+
 import MessageIcon from '@material-ui/icons/Message';
-// import ImageIcon from '@material-ui/icons/Image';
-// import AccountBoxIcon from '@material-ui/icons/AccountBox';
-// import SettingsIcon from '@material-ui/icons/Settings';
-// import LockOpenIcon from '@material-ui/icons/LockOpen';
-import IconButton from '@material-ui/core/IconButton';
-// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
 import FlashOnIcon from '@material-ui/icons/FlashOn'; //temp icon
 import FlightLandIcon from '@material-ui/icons/FlightLand';
 import LockIcon from '@material-ui/icons/Lock';
@@ -88,7 +81,7 @@ const Sidebar = ({
   drawerWidth,
   openMini,
   isDesktop,
-  handleMiniClose,
+  // handleMiniClose,
 }) => {
   const classes = useStyles (drawerWidth);
   // const theme = useTheme ();
@@ -200,6 +193,6 @@ const Sidebar = ({
   );
 };
 
-Sidebar.propTypes = {};
+// Sidebar.propTypes = {};
 
 export default Sidebar;

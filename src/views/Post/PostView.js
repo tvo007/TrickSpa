@@ -1,5 +1,5 @@
-import React, {useState, useEffect, Fragment} from 'react';
-import PropTypes from 'prop-types';
+import React, {Fragment} from 'react';
+// import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
 import OriginalPost from './components/OriginalPost';
 import OriginalPostSkeleton from './components/OriginalPostSkeleton';
@@ -11,11 +11,9 @@ import Nav from '../../components/Nav';
 import {showSnackbar} from '../../actions/alertActions';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import {commentSchema} from '../../common/validationSchema';
 //
-import DescriptionIcon from '@material-ui/icons/Description';
-import CreateIcon from '@material-ui/icons/Create';
+
 import {
   Grid,
   Typography,
@@ -25,12 +23,12 @@ import {
   // Divider,
   // Button,
 } from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
-const useStyles = makeStyles (theme => ({
-  buttonText: {
-    color: theme.palette.primary.contrastText,
-  },
-}));
+// import {makeStyles} from '@material-ui/core/styles';
+// const useStyles = makeStyles (theme => ({
+//   buttonText: {
+//     color: theme.palette.primary.contrastText,
+//   },
+// }));
 
 const PostView = ({
   forumSlug,
@@ -38,11 +36,11 @@ const PostView = ({
   isPostLoading,
   postError,
   commentsByPost,
-  commentsError,
-  isCommentsLoading,
-  commentCreateLoading,
-  commentCreateError,
-  commentCreateSuccess,
+  // commentsError,
+  // isCommentsLoading,
+  // commentCreateLoading,
+  // commentCreateError,
+  // commentCreateSuccess,
   dispatch,
   createComment,
 }) => {
@@ -72,7 +70,7 @@ const PostView = ({
     />
   ));
 
-  const classes = useStyles ();
+  // const classes = useStyles ();
 
   return (
     <Grid container spacing={4}>
@@ -139,6 +137,6 @@ const PostView = ({
   );
 };
 
-PostView.propTypes = {};
+// PostView.propTypes = {};
 
 export default PostView;

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Paper, Typography, TextField, Button, Link} from '@material-ui/core';
 import useStyles from '../../Landing/FormStyles';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../../../actions/userActions';
+import { login} from '../../../actions/userActions';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

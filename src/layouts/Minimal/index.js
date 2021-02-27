@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 const Minimal = (props) => {
     return (
@@ -9,9 +9,9 @@ const Minimal = (props) => {
     )
 }
 
-Minimal.propTypes = {
+// Minimal.propTypes = {
 
-}
+// }
 
 export default Minimal
 

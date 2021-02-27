@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import CreatePostView from './CreatePostView';
 import {getSection} from '../../actions/sectionActions';
 
@@ -49,11 +49,10 @@ const CreatePost = ({sectionId}) => {
       errorCreate={errorCreate}
       success={successCreate}
       history={history}
-      forumSlug={forumSlug}
     />
   );
 };
 
-CreatePost.propTypes = {};
+// CreatePost.propTypes = {};
 
 export default CreatePost;

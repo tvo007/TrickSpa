@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
@@ -7,9 +7,7 @@ import {
   Card,
   CardHeader,
   CardContent,
-  Divider,
   Link,
-  Button,
 } from '@material-ui/core';
 
 const SectionItem = ({name, description, onClick, isSectionLoading}) => {
@@ -39,7 +37,7 @@ const SectionItem = ({name, description, onClick, isSectionLoading}) => {
   );
 };
 
-SectionItem.propTypes = {};
+// SectionItem.propTypes = {};
 
 export default SectionItem;
 

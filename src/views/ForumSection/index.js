@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import {getSection} from '../../actions/sectionActions';
 import {getPostsBySection} from '../../actions/postActions';
 import {useDispatch, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ForumSectionView from './ForumSectionView';
 import {POST_CREATE_RESET} from '../../constants/postConstants';
 
@@ -87,6 +87,6 @@ const ForumSection = props => {
   );
 };
 
-ForumSection.propTypes = {};
+// ForumSection.propTypes = {};
 
 export default ForumSection;

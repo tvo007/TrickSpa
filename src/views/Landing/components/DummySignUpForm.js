@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
   Grid,
@@ -6,57 +6,56 @@ import {
   Typography,
   TextField,
   Button,
-  Link
+  Link,
 } from '@material-ui/core';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import useStyles from '../FormStyles';
-import { useDispatch, useSelector } from 'react-redux';
-import { signup } from '../../../actions/userActions';
-import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { showSnackbar } from '../../../actions/alertActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {signup} from '../../../actions/userActions';
+import {useHistory} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {showSnackbar} from '../../../actions/alertActions';
 import * as yup from 'yup';
-import { POST_EDIT_SUCCESS } from 'constants/postConstants';
 
-const schema = yup.object().shape({
-  username: yup.string().required('Please enter a username'),
-  email: yup
-    .string()
-    .email()
-    .required('Please enter your email.'),
-  password: yup.string().required('Please enter your password.')
+const schema = yup.object ().shape ({
+  username: yup.string ().required ('Please enter a username'),
+  email: yup.string ().email ().required ('Please enter your email.'),
+  password: yup.string ().required ('Please enter your password.'),
 });
 
-const DummySignupForm = ({ onClick, setShowSignup }) => {
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema)
+const DummySignupForm = ({onClick, setShowSignup}) => {
+  const {register, handleSubmit, errors} = useForm ({
+    resolver: yupResolver (schema),
   });
 
-  const [errorArray, setErrorArray] = useState();
+  const [errorArray, setErrorArray] = useState ();
 
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const history = useHistory ();
+  const dispatch = useDispatch ();
 
-  const userRegister = useSelector(state => state.userRegister);
-  const { error: authError, success } = userRegister; //userInfo loads when successfully registers, authError is backend errors
+  const userRegister = useSelector (state => state.userRegister);
+  const {error: authError, success} = userRegister; //userInfo loads when successfully registers, authError is backend errors
 
-  useEffect(() => {
-    if (success) {
-      dispatch(showSnackbar('Login successful'));
-      setShowSignup(false);
-    } else if (authError) {
-      dispatch(showSnackbar('Something went wrong.'));
-      setErrorArray(authError[0].messages);
-      // console.log(authError[0].messages)
-    }
-  }, [history, success, authError, dispatch]);
+  useEffect (
+    () => {
+      if (success) {
+        dispatch (showSnackbar ('Login successful'));
+        setShowSignup (false);
+      } else if (authError) {
+        dispatch (showSnackbar ('Something went wrong.'));
+        setErrorArray (authError[0].messages);
+        // console.log(authError[0].messages)
+      }
+    },
+    [history, success, authError, dispatch]
+  );
 
   const onSubmit = data => {
-    dispatch(signup(data));
+    dispatch (signup (data));
   };
 
-  const classes = useStyles();
+  const classes = useStyles ();
 
   return (
     <Paper className={classes.root} elevation={5}>
@@ -68,7 +67,8 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
           item
           justify="center"
           sm={6}
-          xs={0}>
+          xs={0}
+        >
           <Grid item>
             <Typography align="center" variant="h2">
               Connectrix
@@ -86,9 +86,10 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
           <form
             action="#"
             className={classes.form}
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit (onSubmit)}
+          >
             <TextField
-              error={Boolean(errors.email)}
+              error={Boolean (errors.email)}
               helperText={errors.email ? errors.email.message : null}
               inputRef={register}
               label="Email"
@@ -96,7 +97,7 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
               placeholder="Email"
             />
             <TextField
-              error={Boolean(errors.username)}
+              error={Boolean (errors.username)}
               helperText={errors.username ? errors.username.message : null}
               inputRef={register}
               label="Username"
@@ -104,7 +105,7 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
               placeholder="Username"
             />
             <TextField
-              error={Boolean(errors.password)}
+              error={Boolean (errors.password)}
               helperText={errors.password ? errors.password.message : null}
               inputRef={register}
               label="Password"
@@ -127,7 +128,7 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
           </form>
           <Grid>
             {errorArray
-              ? errorArray.map((item, index) => (
+              ? errorArray.map ((item, index) => (
                   <Typography key={index}>
                     <ErrorOutlineIcon fontSize="small" /> {item.message}
                   </Typography>
@@ -142,7 +143,7 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
 
 DummySignupForm.propTypes = {
   onClick: PropTypes.func.isRequired,
-  setShowSignup: PropTypes.func.isRequired
+  setShowSignup: PropTypes.func.isRequired,
 };
 
 export default DummySignupForm;

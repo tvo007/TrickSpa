@@ -1,15 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
-  Typography,
+
   Card,
   CardHeader,
   CardContent,
-  Divider,
-  Link,
-  Button,
+
 } from '@material-ui/core';
 
 const SectionItemSkeleton = ({duration}) => {
@@ -28,6 +26,6 @@ const SectionItemSkeleton = ({duration}) => {
   );
 };
 
-SectionItemSkeleton.propTypes = {};
+// SectionItemSkeleton.propTypes = {};
 
 export default SectionItemSkeleton;

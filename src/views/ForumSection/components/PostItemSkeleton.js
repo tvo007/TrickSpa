@@ -1,15 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import {
   Grid,
-  Typography,
+
   Card,
   CardHeader,
   CardContent,
-  Divider,
-  Link,
-  Button,
 } from '@material-ui/core';
 
 const PostItemSkeleton = props => {
@@ -31,6 +28,6 @@ const PostItemSkeleton = props => {
   );
 };
 
-PostItemSkeleton.propTypes = {};
+// PostItemSkeleton.propTypes = {};
 
 export default PostItemSkeleton;

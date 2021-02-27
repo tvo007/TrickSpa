@@ -1,7 +1,6 @@
-import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
-import {IconButton, Grid, Typography, Button, Hidden} from '@material-ui/core';
-import InputIcon from '@material-ui/icons/Input';
+import React from 'react';
+// import PropTypes from 'prop-types';
+import {IconButton, Grid, Hidden} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 
@@ -29,6 +28,6 @@ const MobileIcons = ({openMini, handleMiniClose, handleMiniOpen}) => {
   );
 };
 
-MobileIcons.propTypes = {};
+// MobileIcons.propTypes = {};
 
 export default MobileIcons;

@@ -1,17 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
-import {
-  Grid,
-  Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Divider,
-  Avatar,
-} from '@material-ui/core';
-import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
-import {makeStyles, useTheme} from '@material-ui/styles';
+import {Card, CardHeader, CardContent} from '@material-ui/core';
+import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles (theme => ({
   profile: {
@@ -50,6 +41,6 @@ const OriginalPostSkeleton = props => {
   );
 };
 
-OriginalPostSkeleton.propTypes = {};
+// OriginalPostSkeleton.propTypes = {};
 
 export default OriginalPostSkeleton;

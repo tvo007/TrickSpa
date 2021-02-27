@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {createPost} from '../../actions/postActions';
 import {showSnackbar} from '../../actions/alertActions';
@@ -168,7 +168,7 @@ const CreatePostView = ({
   );
 };
 
-CreatePostView.propTypes = {};
+// CreatePostView.propTypes = {};
 
 export default CreatePostView;
 

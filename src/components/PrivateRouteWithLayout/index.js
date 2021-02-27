@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+// import PropTypes from 'prop-types';
+import { useSelector} from 'react-redux';
 
 const PrivateRouteWithLayout = props => {
   const {layout: Layout, component: Component, ...rest} = props;
@@ -23,6 +23,6 @@ const PrivateRouteWithLayout = props => {
   );
 };
 
-PrivateRouteWithLayout.propTypes = {};
+// PrivateRouteWithLayout.propTypes = {};
 
 export default PrivateRouteWithLayout;

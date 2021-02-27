@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import DashboardView from './DashboardView'
 
 const Dashboard =  (props) => {
@@ -9,6 +9,6 @@ const Dashboard =  (props) => {
   );
 }
 
-Dashboard.propTypes = {};
+// Dashboard.propTypes = {};
 
 export default Dashboard;

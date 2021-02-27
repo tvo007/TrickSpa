@@ -1,18 +1,17 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import PageHeading from '../../components/PageHeading';
-import Nav from '../../components/Nav';
 import SectionItem from './components/SectionItem';
 import SectionItemSkeleton from './components/SectionItemSkeleton';
 //experiemental
-import {useSelector} from 'react-redux';
+
 import {
   Grid,
-  Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Divider,
+  // Typography,
+  // Card,
+  // CardHeader,
+  // CardContent,
+  // Divider,
 } from '@material-ui/core';
 
 const ForumsView = ({sections, isSectionLoading, error, history}) => {
@@ -47,7 +46,7 @@ const ForumsView = ({sections, isSectionLoading, error, history}) => {
 };
 
 
-ForumsView.propTypes = {};
+// ForumsView.propTypes = {};
 
 export default ForumsView;
 

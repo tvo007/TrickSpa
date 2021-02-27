@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
-import PageHeading from '../../components/PageHeading';
 import DummySignupForm from './components/DummySignUpForm';
 import DummySigninForm from './components/DummySigninForm';
 

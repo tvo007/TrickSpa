@@ -1,5 +1,5 @@
-import React, {useState, useEffect, Fragment} from 'react';
-import PropTypes from 'prop-types';
+import React, {useState, Fragment} from 'react';
+// import PropTypes from 'prop-types';
 import PostItem from './components/PostItem';
 import PostItemSkeleton from './components/PostItemSkeleton';
 import PageHeading from '../../components/PageHeading';
@@ -7,9 +7,8 @@ import Nav from '../../components/Nav';
 import ShowCreatePostButton from './components/ShowCreatePostButton';
 import Pagination from '../../components/Pagination';
 import usePagination from '../../common/usePagination';
-import {Grid, Typography, ButtonGroup, Button, TextField} from '@material-ui/core';
-import {createPost} from '../../actions/postActions';
-import {useDispatch} from 'react-redux';
+import {Grid, Typography, ButtonGroup, Button} from '@material-ui/core';
+// import {createPost} from '../../actions/postActions';
 import Skeleton from 'react-loading-skeleton';
 
 const ForumSectionView = ({
@@ -18,16 +17,16 @@ const ForumSectionView = ({
   error,
   history,
   forumSlug,
-  posts,
-  isPostsLoading,
-  postsError,
-  newPosts,
-  successCreate,
-  errorCreate,
-  createLoading,
+  // posts,
+  // isPostsLoading,
+  // postsError,
+  // newPosts,
+  // successCreate,
+  // errorCreate,
+  // createLoading,
 }) => {
-  const [title, setTitle] = useState ('');
-  const [body, setBody] = useState ('');
+  // const [title, setTitle] = useState ('');
+  // const [body, setBody] = useState ('');
   // const [title, setTitle] = useState('')
 
   // Pagination variables
@@ -47,7 +46,7 @@ const ForumSectionView = ({
   }
   const [ sortLatest, setSortLatest ] = useState(true);
 
-  const dispatch = useDispatch ();
+
   // const handleShowCreatePost = () => {
   //   setIsPosting (true);
   // };
@@ -56,15 +55,15 @@ const ForumSectionView = ({
   //   setIsPosting (false);
   // };
 
-  const submitHandler = e => {
-    e.preventDefault ();
-    dispatch (
-      createPost ({title, body, section: {id: section.id}, user: {id: 1}})
-    );
-    setTitle ('');
-    setBody ('');
-    // setIsPosting (false);
-  };
+  // const submitHandler = e => {
+  //   e.preventDefault ();
+  //   dispatch (
+  //     createPost ({title, body, section: {id: section.id}, user: {id: 1}})
+  //   );
+  //   setTitle ('');
+  //   setBody ('');
+  //   // setIsPosting (false);
+  // };
 
   return (
     <Grid
@@ -201,7 +200,7 @@ const ForumSectionView = ({
   );
 };
 
-ForumSectionView.propTypes = {};
+// ForumSectionView.propTypes = {};
 
 export default ForumSectionView;
 

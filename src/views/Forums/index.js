@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
+import React, {useEffect} from 'react';
+// import PropTypes from 'prop-types';
 import ForumsView from './ForumsView';
 import {useHistory} from 'react-router-dom';
 // import {getPosts} from '../../actions/postActions';
 import {getSections} from '../../actions/sectionActions';
 // import {getComments} from '../../actions/comment';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const Forums = props => {
   // const localState = JSON.parse (localStorage.getItem ('state')); //testing purposes
@@ -60,6 +60,6 @@ const Forums = props => {
   );
 };
 
-Forums.propTypes = {};
+// Forums.propTypes = {};
 
 export default Forums;

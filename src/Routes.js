@@ -12,11 +12,11 @@ import {
   Forums,
   ForumSection,
   Post,
-  Dummy,
+  // Dummy,
   CreatePost
 } from './views';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const Routes = props => {
   return (
@@ -50,7 +50,7 @@ const Routes = props => {
         layout={Main}
         path="/private-forums-test"
       />
-      /**PRIVATE ROUTE IN PROGRESS */
+      {/**PRIVATE ROUTE IN PROGRESS */}
       <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
       <RouteWithLayout
         component={ForumSection}

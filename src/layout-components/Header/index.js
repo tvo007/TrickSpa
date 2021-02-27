@@ -5,16 +5,8 @@ import {makeStyles} from '@material-ui/styles';
 import {
   AppBar,
   Toolbar,
-  Hidden,
-  IconButton,
   Grid,
-  Typography,
-  Button,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-// import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import {logout} from '../../actions/userActions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';

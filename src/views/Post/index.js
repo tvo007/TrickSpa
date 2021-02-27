@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import PostView from './PostView';
 import {getPost} from '../../actions/postActions';
 import {getCommentsByPost, createComment} from '../../actions/commentActions';
@@ -63,6 +63,6 @@ const Post = props => {
   );
 };
 
-Post.propTypes = {};
+// Post.propTypes = {};
 
 export default Post;

@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {IconButton, Grid, Typography, Button} from '@material-ui/core';
 import InputIcon from '@material-ui/icons/Input';
 
@@ -36,6 +36,6 @@ const DesktopIcons = ({userInfo, isDesktop, classes, logoutHandler, history}) =>
   );
 };
 
-DesktopIcons.propTypes = {};
+// DesktopIcons.propTypes = {};
 
 export default DesktopIcons;

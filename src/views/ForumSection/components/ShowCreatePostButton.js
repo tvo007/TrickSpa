@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {Grid, Button, Typography} from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import {makeStyles} from '@material-ui/core/styles';
@@ -28,6 +28,6 @@ const ShowCreatePostButton = ({text, onClick}) => {
   );
 };
 
-ShowCreatePostButton.propTypes = {};
+// ShowCreatePostButton.propTypes = {};
 
 export default ShowCreatePostButton;
