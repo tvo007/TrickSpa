@@ -137,5 +137,4 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
     </Paper>
   );
 };
-
 export default DummySignupForm;
