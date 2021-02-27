@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Grid,
   Paper,
@@ -137,4 +138,10 @@ const DummySignupForm = ({ onClick, setShowSignup }) => {
     </Paper>
   );
 };
+
+DummySignupForm.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  setShowSignup: PropTypes.func.isRequired
+};
+
 export default DummySignupForm;

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Paper,
   Grid,
@@ -118,6 +119,10 @@ const DummySigninForm = ({ onClick }) => {
       </Grid>
     </Paper>
   );
+};
+
+DummySigninForm.propTypes = {
+  onClick: PropTypes.func.isRequired
 };
 
 export default DummySigninForm;

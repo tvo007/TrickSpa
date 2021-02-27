@@ -5,7 +5,7 @@ import PageHeading from '../../components/PageHeading';
 import DummySignupForm from './components/DummySignUpForm';
 import DummySigninForm from './components/DummySigninForm';
 
-const DummyLandingView = props => {
+const DummyLandingView = () => {
   const [showSignUp, setShowSignup] = useState(false);
 
   const showSignUpHandler = e => {
