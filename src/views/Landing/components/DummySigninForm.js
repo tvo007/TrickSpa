@@ -74,7 +74,8 @@ const DummySigninForm = ({ onClick }) => {
           container
           item
           justify="center"
-          xs={6}>
+          sm={6}
+          xs={0}>
           <Grid item>
             <Typography align="center" variant="h2">
               Connectrix
@@ -84,7 +85,7 @@ const DummySigninForm = ({ onClick }) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid className={classes.rightSide} item xs={6}>
+        <Grid className={classes.rightSide} item sm={6} xs={12}>
           <Typography align="center" variant="h2">
             Sign In
           </Typography>

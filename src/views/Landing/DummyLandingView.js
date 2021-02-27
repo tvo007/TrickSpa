@@ -19,7 +19,7 @@ const DummyLandingView = () => {
   };
 
   return (
-    <Grid container item justify="center" lg={6} md={9}>
+    <Grid container item justify="center" lg={8} md={9}>
       {/* <PageHeading title="Landing" /> */}
       <Grid item xs={12}>
         {showSignUp ? (
