@@ -2,14 +2,26 @@ import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
-import {AppBar, Toolbar, Hidden, IconButton, Grid} from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  Hidden,
+  IconButton,
+  Grid,
+  Typography,
+  Button,
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 // import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import {logout} from '../../actions/userActions';
 import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import {showSnackbar} from '../../actions/alertActions';
+import DesktopIcons from './components/DesktopIcons';
+import MobileIcons from './components/MobileIcons';
+import Drawer from './components/Drawer';
 
 const useStyles = makeStyles (theme => ({
   root: {
@@ -45,6 +57,12 @@ const useStyles = makeStyles (theme => ({
 
     //
   },
+  signInButton: {
+    marginRight: 30,
+    marginTop: theme.spacing (1),
+
+    //
+  },
   menuButton: {
     marginRight: 30,
   },
@@ -66,18 +84,15 @@ const Header = props => {
   } = props;
 
   const dispatch = useDispatch ();
+  const history = useHistory ();
 
   // const {loading, success, message, error} = useSelector (
   //   state => state.userLogin
   // );
 
- const { success, error} = useSelector (
-    state => state.logout
-  );
+  const {success, error} = useSelector (state => state.logout);
 
-  const { userInfo} = useSelector (
-    state => state.userLogin
-  );
+  const {userInfo} = useSelector (state => state.userLogin);
 
   const classes = useStyles (drawerWidth, openMini, isDesktop);
 
@@ -85,7 +100,7 @@ const Header = props => {
 
   const logoutHandler = () => {
     // e.preventDefault ();
-    dispatch (logout());
+    dispatch (logout ());
   };
 
   useEffect (
@@ -114,56 +129,27 @@ const Header = props => {
           <div className={classes.flexGrow} />
           <Grid />
           <Grid container direction="row" justify="space-between">
-            <Grid item>
-              <Hidden smDown>
-                {!openMini
-                  ? <IconButton
-                      aria-label="open drawer"
-                      onClick={handleMiniOpen}
-                      color="default"
-                    >
-                      <MenuIcon />
-                    </IconButton>
-                  : <IconButton
-                      aria-label="open drawer"
-                      onClick={handleMiniClose}
-                      color="default"
-                    >
-                      <MenuOpenIcon />
-                    </IconButton>}
-              </Hidden>
-            </Grid>
+            <Drawer
+              openMini={openMini}
+              handleMiniClose={handleMiniClose}
+              handleMiniOpen={handleMiniOpen}
+            />
+            <DesktopIcons
+              userInfo={userInfo}
+              isDesktop={isDesktop}
+              classes={classes}
+              logoutHandler={logoutHandler}
+              history={history}
+            />
 
-            {!isDesktop
-              ? <Grid item container direction="row" justify="flex-end">
-                  <Grid item>
-                    <Hidden lgUp>
-                      <IconButton onClick={onSidebarOpen} color="default">
-                        <MenuIcon />
-                      </IconButton>
-                    </Hidden>
-                  </Grid>
-
-                  <Grid item>
-                    <IconButton
-                      className={classes.signOutButton}
-                      color="default"
-                     
-                    >
-                      
-                      <InputIcon />
-                    </IconButton>
-                  </Grid>
-                </Grid>
-              : userInfo ? <Grid item>
-                  <IconButton
-                    className={classes.signOutButton}
-                    color="default"
-                    onClick={logoutHandler}
-                  >
-                    <InputIcon />
-                  </IconButton>
-                </Grid>: null}
+            <MobileIcons
+              userInfo={userInfo}
+              isDesktop={isDesktop}
+              classes={classes}
+              logoutHandler={logoutHandler}
+              history={history}
+              onSidebarOpen={onSidebarOpen}
+            />
 
           </Grid>
         </Toolbar>
