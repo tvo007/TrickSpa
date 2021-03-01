@@ -47,7 +47,7 @@ const DummySigninForm = ({ onClick }) => {
     } else if (error) {
       dispatch(showSnackbar('Something went wrong.'));
     }
-  }, [history, userInfo, error]);
+  }, [history, userInfo, error, dispatch]);
 
   const submitHandler = data => {
     // e.preventDefault ();
@@ -75,7 +75,7 @@ const DummySigninForm = ({ onClick }) => {
           item
           justify="center"
           sm={6}
-          xs={0}>
+          xs={false}>
           <Grid item>
             <Typography align="center" variant="h2">
               Connectrix
