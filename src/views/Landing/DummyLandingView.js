@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 // import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import DummySignupForm from './components/DummySignUpForm';
@@ -6,6 +6,13 @@ import DummySigninForm from './components/DummySigninForm';
 
 const DummyLandingView = () => {
   const [showSignUp, setShowSignup] = useState(false);
+
+  const memoizedSignupState = useCallback(
+    () => {
+      setShowSignup(false);
+    },
+    [],
+  );
 
   const showSignUpHandler = e => {
     e.preventDefault();
@@ -24,7 +31,7 @@ const DummyLandingView = () => {
         {showSignUp ? (
           <DummySignupForm
             onClick={showSignInHandler}
-            setShowSignup={setShowSignup}
+            setShowSignup={memoizedSignupState}
           />
         ) : (
           <DummySigninForm onClick={showSignUpHandler} />

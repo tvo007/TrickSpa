@@ -14,7 +14,7 @@ import SidebarNav from './components/SidebarNav';
 import SidebarProfile from './components/SidebarProfile';
 import BlockIcon from '@material-ui/icons/Block';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-
+import SettingsIcon from '@material-ui/icons/Settings';
 // const drawerWidth = 240;
 
 const useStyles = makeStyles (theme => ({
@@ -95,7 +95,7 @@ const Sidebar = ({
     },
     {
       title: 'Profile',
-      href: '/Profile',
+      href: '/Profile/me',
       icon: <AccountBoxIcon />,
     },
 
@@ -124,6 +124,12 @@ const Sidebar = ({
       href: '/private-forums-test',
       icon: <BlockIcon />,
     },
+    {
+      title: 'Settings',
+      href: '/settings',
+      icon: <SettingsIcon />,
+    },
+
   ];
 
   return (

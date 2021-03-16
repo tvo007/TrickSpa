@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   Avatar,
   Grid,
@@ -48,7 +48,8 @@ const useStyles = makeStyles(theme => ({
 // HEADING: Avatar + Username + short bio
 // BODY: User's posts or their favorite posts by others, maybe links to their samplers
 
-const DummyProfileView = props => {
+const MyProfileView = ({profile}) => {
+
   const classes = useStyles();
   return (
     <Grid className={classes.root} container item spacing={2} xs={12}>
@@ -154,6 +155,6 @@ const DummyProfileView = props => {
   );
 };
 
-DummyProfileView.propTypes = {};
+// MyProfileView.propTypes = {};
 
-export default DummyProfileView;
+export default MyProfileView;

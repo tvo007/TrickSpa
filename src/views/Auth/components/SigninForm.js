@@ -6,7 +6,7 @@ import { login} from '../../../actions/userActions';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { showSnackbar } from '../../../actions/alertActions';
+
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -24,21 +24,19 @@ const SigninForm = ({onClick}) => {
   });
 
   const userLogin = useSelector (state => state.userLogin);
-  const {error, userInfo} = userLogin;
+  const {success} = userLogin;
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect (
     () => {
-      if (userInfo) {
-        dispatch (showSnackbar ('Login successful'));
+      if (success) {
+     
         history.push ('/forums');
-      } else if (error) {
-        dispatch (showSnackbar ('Something went wrong.'));
-      }
+      } 
     },
-    [history, userInfo, error, dispatch]
+    [history, success, dispatch]
   );
 
   const submitHandler = data => {

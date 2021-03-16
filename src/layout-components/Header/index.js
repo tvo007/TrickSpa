@@ -84,7 +84,7 @@ const Header = props => {
 
   const {success, error} = useSelector (state => state.logout);
 
-  const {userInfo} = useSelector (state => state.userLogin);
+  const {success: loginSuccess} = useSelector (state => state.userLogin);
 
   const classes = useStyles (drawerWidth, openMini, isDesktop);
 
@@ -127,7 +127,7 @@ const Header = props => {
               handleMiniOpen={handleMiniOpen}
             />
             <DesktopIcons
-              userInfo={userInfo}
+              loginSuccess={loginSuccess}
               isDesktop={isDesktop}
               classes={classes}
               logoutHandler={logoutHandler}
@@ -135,7 +135,7 @@ const Header = props => {
             />
 
             <MobileIcons
-              userInfo={userInfo}
+              loginSuccess={loginSuccess}
               isDesktop={isDesktop}
               classes={classes}
               logoutHandler={logoutHandler}

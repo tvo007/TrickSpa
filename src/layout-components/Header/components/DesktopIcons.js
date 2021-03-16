@@ -3,11 +3,11 @@ import React, {Fragment} from 'react';
 import {IconButton, Grid, Typography, Button} from '@material-ui/core';
 import InputIcon from '@material-ui/icons/Input';
 
-const DesktopIcons = ({userInfo, isDesktop, classes, logoutHandler, history}) => {
+const DesktopIcons = ({userInfo, isDesktop, classes, logoutHandler, history, loginSuccess}) => {
   return (
     <Fragment>
 
-      {userInfo && isDesktop
+      {loginSuccess && isDesktop
         ? <Grid item>
             <IconButton
               className={classes.signOutButton}
@@ -17,7 +17,7 @@ const DesktopIcons = ({userInfo, isDesktop, classes, logoutHandler, history}) =>
               <InputIcon />
             </IconButton>
           </Grid>
-        : !userInfo && isDesktop
+        : !loginSuccess && isDesktop
             ? <Grid item>
                 <Button
                   className={classes.signInButton}

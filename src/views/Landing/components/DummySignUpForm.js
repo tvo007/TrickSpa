@@ -40,15 +40,15 @@ const DummySignupForm = ({onClick, setShowSignup}) => {
   useEffect (
     () => {
       if (success) {
-        dispatch (showSnackbar ('Login successful'));
-        setShowSignup (false);
+        dispatch (showSnackbar ('Sign up successful'));
+        setShowSignup ();
       } else if (authError) {
         dispatch (showSnackbar ('Something went wrong.'));
         setErrorArray (authError[0].messages);
         // console.log(authError[0].messages)
       }
     },
-    [history, success, authError, dispatch]
+    [history, success, authError, dispatch, setShowSignup]
   );
 
   const onSubmit = data => {
@@ -67,7 +67,7 @@ const DummySignupForm = ({onClick, setShowSignup}) => {
           item
           justify="center"
           sm={6}
-          xs={0}
+          xs={false}
         >
           <Grid item>
             <Typography align="center" variant="h2">

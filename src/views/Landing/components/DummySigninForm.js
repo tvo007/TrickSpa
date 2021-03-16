@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
   Paper,
@@ -6,48 +6,56 @@ import {
   Typography,
   TextField,
   Button,
-  Link
+  Link,
 } from '@material-ui/core';
 import useStyles from '../FormStyles';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../actions/userActions';
-import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { showSnackbar } from '../../../actions/alertActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../../actions/userActions';
+import {useHistory} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .email()
-    .required('Please enter your email.'),
-  password: yup.string().required('Please enter your password.')
+const schema = yup.object ().shape ({
+  email: yup.string ().email ().required ('Please enter your email.'),
+  password: yup.string ().required ('Please enter your password.'),
 });
 
-const DummySigninForm = ({ onClick }) => {
+const DummySigninForm = ({onClick}) => {
   // const {values, errors, handleChange, handleSubmit} = useForm ({
   //   username: '',
   //   password: '',
   // });
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema)
+  const {register, handleSubmit, errors} = useForm ({
+    resolver: yupResolver (schema),
   });
 
-  const userLogin = useSelector(state => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const userLogin = useSelector (state => state.userLogin);
+  const {success} = userLogin;
 
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const history = useHistory ();
+  const dispatch = useDispatch ();
 
-  useEffect(() => {
-    if (userInfo) {
-      dispatch(showSnackbar('Login successful'));
-      history.push('/forums');
-    } else if (error) {
-      dispatch(showSnackbar('Something went wrong.'));
-    }
-  }, [history, userInfo, error, dispatch]);
+  useEffect (
+    () => {
+      if (success) {
+        history.push ('/forums');
+      }
+    },
+    [success, history]
+  );
+
+  // useEffect (
+  //   () => {
+  //     if () {
+  //       dispatch (showSnackbar ('Login successful'));
+
+  //     } else if (error) {
+  //       dispatch (showSnackbar ('Something went wrong.'));
+  //     }
+  //   },
+  //   [history, , error, dispatch]
+  // );
 
   const submitHandler = data => {
     // e.preventDefault ();
@@ -58,12 +66,12 @@ const DummySigninForm = ({ onClick }) => {
     //     createPost ({...data, section: {id: section.id}, user: {id: 1}})
     //   );
     //   dispatch (showSnackbar ('Success'));
-    dispatch(login(data));
+    dispatch (login (data));
   };
 
   // console.log ({...data, section: {id: section.id}, user: {id: 1}});
 
-  const classes = useStyles();
+  const classes = useStyles ();
 
   return (
     <Paper className={classes.root} elevation={5}>
@@ -75,7 +83,8 @@ const DummySigninForm = ({ onClick }) => {
           item
           justify="center"
           sm={6}
-          xs={false}>
+          xs={false}
+        >
           <Grid item>
             <Typography align="center" variant="h2">
               Connectrix
@@ -89,7 +98,10 @@ const DummySigninForm = ({ onClick }) => {
           <Typography align="center" variant="h2">
             Sign In
           </Typography>
-          <form className={classes.form} onSubmit={handleSubmit(submitHandler)}>
+          <form
+            className={classes.form}
+            onSubmit={handleSubmit (submitHandler)}
+          >
             <TextField
               error={errors.email ? true : false}
               fullWidth
@@ -123,7 +135,7 @@ const DummySigninForm = ({ onClick }) => {
 };
 
 DummySigninForm.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default DummySigninForm;
