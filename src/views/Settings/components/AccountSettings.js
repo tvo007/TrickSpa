@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {
   Card,
   CardHeader,
@@ -19,7 +18,7 @@ const schema = yup.object().shape({
   email: yup.string().email()
 });
 
-const AccountSettings = props => {
+const AccountSettings = () => {
   const classes = useStyles();
 
   const { register, handleSubmit, errors } = useForm({

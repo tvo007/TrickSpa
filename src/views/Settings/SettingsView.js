@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
-import {
-  Grid,
-  Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Button,
-  ButtonGroup,
-  TextField
-} from '@material-ui/core';
+import { Grid, Button, ButtonGroup } from '@material-ui/core';
 import PageHeading from '../../components/PageHeading';
 import ProfileSettings from './components/ProfileSettings';
 import AccountSettings from './components/AccountSettings';

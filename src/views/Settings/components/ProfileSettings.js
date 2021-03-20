@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {
   Card,
   CardHeader,
@@ -24,7 +23,7 @@ const schema = yup.object().shape({
   instagram: yup.string()
 });
 
-const ProfileSettings = props => {
+const ProfileSettings = () => {
   const classes = useStyles();
 
   const { register, handleSubmit, errors } = useForm({
