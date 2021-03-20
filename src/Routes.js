@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {Switch, Redirect} from 'react-router-dom';
-import {RouteWithLayout} from './components';
-import {PrivateRouteWithLayout} from './components';
-import {Main, TestLandingLayout} from './layouts';
+import { Switch, Redirect } from 'react-router-dom';
+import { RouteWithLayout } from './components';
+import { PrivateRouteWithLayout } from './components';
+import { Main, TestLandingLayout } from './layouts';
 
 import {
   Dashboard,
@@ -31,7 +31,7 @@ const Routes = props => {
         layout={Main}
         path="/dashboard"
       />
-        <RouteWithLayout
+      <RouteWithLayout
         component={Settings}
         exact
         layout={Main}
@@ -49,7 +49,6 @@ const Routes = props => {
         layout={Main}
         path="/profile/:profileSlug"
       />
-       
 
       <RouteWithLayout component={Auth} exact layout={Main} path="/auth" />
       {/* === TEST LANDING === */}
