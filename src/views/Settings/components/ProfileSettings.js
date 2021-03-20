@@ -16,7 +16,6 @@ import useStyles from '../FormStyles';
 
 const schema = yup.object().shape({
   name: yup.string(),
-  email: yup.string().email(),
   username: yup.string(),
   location: yup.string(),
   bio: yup.string(),
@@ -48,15 +47,6 @@ const ProfileSettings = props => {
             label="Name"
             name="name"
             placeholder="Enter your name"
-          />
-          <TextField
-            error={errors.email ? true : false}
-            helperText={errors.email ? errors.email.message : null}
-            id="email"
-            inputRef={register}
-            label="Email"
-            name="email"
-            placeholder="Enter your email"
           />
           <TextField
             error={errors.username ? true : false}

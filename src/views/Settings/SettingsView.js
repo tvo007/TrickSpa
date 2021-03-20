@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import PageHeading from '../../components/PageHeading';
 import ProfileSettings from './components/ProfileSettings';
+import AccountSettings from './components/AccountSettings';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -55,7 +56,7 @@ const SettingsView = props => {
         </ButtonGroup>
       </Grid>
       <Grid item xs={8}>
-        <ProfileSettings />
+        <AccountSettings />
       </Grid>
     </Grid>
   );
