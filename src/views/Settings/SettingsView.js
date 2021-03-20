@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import {
   Grid,
@@ -33,6 +33,10 @@ const SettingsView = props => {
 
   const username = 'Jon Snow';
 
+  const [profileSettingsActive, setProfileSettingsActive] = useState(true);
+
+  const handleClick = () => setProfileSettingsActive(!profileSettingsActive);
+
   return (
     <Grid container spacing={4} xs={12}>
       <Grid item xs={12}>
@@ -47,16 +51,21 @@ const SettingsView = props => {
           <Button
             className={classes.button}
             disableElevation
-            variant="contained">
+            onClick={handleClick}
+            variant={profileSettingsActive ? 'contained' : 'outlined'}>
             Profile
           </Button>
-          <Button className={classes.button} disableElevation>
+          <Button
+            className={classes.button}
+            disableElevation
+            onClick={handleClick}
+            variant={!profileSettingsActive ? 'contained' : 'outlined'}>
             Account
           </Button>
         </ButtonGroup>
       </Grid>
       <Grid item xs={8}>
-        <AccountSettings />
+        {profileSettingsActive ? <ProfileSettings /> : <AccountSettings />}
       </Grid>
     </Grid>
   );
