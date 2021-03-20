@@ -7,39 +7,62 @@ import {
   Button,
   TextField
 } from '@material-ui/core';
+
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 import useStyles from '../FormStyles';
+
+const schema = yup.object().shape({
+  name: yup.string(),
+  email: yup.string().email(),
+  username: yup.string(),
+  location: yup.string(),
+  bio: yup.string(),
+  youtube: yup.string(),
+  facebook: yup.string(),
+  instagram: yup.string()
+});
 
 const ProfileSettings = props => {
   const classes = useStyles();
+
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema)
+  });
+
+  const submitHandler = data => alert(JSON.stringify(data));
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(submitHandler)}>
       <Card className={classes.card}>
         <CardHeader title="User" />
         <CardContent className={classes.formContent}>
           <TextField
-            // error={errors.name ? true : false}
+            error={errors.name ? true : false}
             fullWidth
-            // helperText={errors.name ? errors.name.message : null}
+            helperText={errors.name ? errors.name.message : null}
             id="name"
-            // inputRef={register}
+            inputRef={register}
             label="Name"
             name="name"
             placeholder="Enter your name"
           />
           <TextField
-            // error={errors.email ? true : false}
-            // helperText={errors.email ? errors.email.message : null}
+            error={errors.email ? true : false}
+            helperText={errors.email ? errors.email.message : null}
             id="email"
-            // inputRef={register}
+            inputRef={register}
             label="Email"
             name="email"
             placeholder="Enter your email"
           />
           <TextField
-            // error={errors.username ? true : false}
-            // helperText={errors.username ? errors.username.message : null}
+            error={errors.username ? true : false}
+            helperText={errors.username ? errors.username.message : null}
             id="username"
-            // inputRef={register}
+            inputRef={register}
             label="Username"
             name="username"
             placeholder="Enter your username"
@@ -50,20 +73,20 @@ const ProfileSettings = props => {
         <CardHeader title="Basic" />
         <CardContent className={classes.formContent}>
           <TextField
-            // error={errors.location ? true : false}
+            error={errors.location ? true : false}
             fullWidth
-            // helperText={errors.location ? errors.location.message : null}
+            helperText={errors.location ? errors.location.message : null}
             id="location"
+            inputRef={register}
             label="Location"
-            // inputRef={register}
             name="location"
             placeholder="Enter your location"
           />
           <TextField
-            // error={errors.bio ? true : false}
-            // helperText={errors.bio ? errors.bio.message : null}
+            error={errors.bio ? true : false}
+            helperText={errors.bio ? errors.bio.message : null}
             id="bio"
-            // inputRef={register}
+            inputRef={register}
             label="Bio"
             name="bio"
             placeholder="Enter your bio"
@@ -74,29 +97,29 @@ const ProfileSettings = props => {
         <CardHeader title="Links" />
         <CardContent className={classes.formContent}>
           <TextField
-            // error={errors.youtube ? true : false}
+            error={errors.youtube ? true : false}
             fullWidth
-            // helperText={errors.youtube ? errors.youtube.message : null}
+            helperText={errors.youtube ? errors.youtube.message : null}
             id="youtube"
-            // inputRef={register}
+            inputRef={register}
             label="Youtube URL"
             name="youtube"
             placeholder="Enter your YouTube URL"
           />
           <TextField
-            // error={errors.facebook ? true : false}
-            // helperText={errors.facebook ? errors.facebook.message : null}
+            error={errors.facebook ? true : false}
+            helperText={errors.facebook ? errors.facebook.message : null}
             id="facebook"
-            // inputRef={register}
+            inputRef={register}
             label="Facebook URL"
             name="facebook"
             placeholder="Enter your Facebook URL"
           />
           <TextField
-            // error={errors.instagram ? true : false}
-            // helperText={errors.instagram ? errors.instagram.message : null}
+            error={errors.instagram ? true : false}
+            helperText={errors.instagram ? errors.instagram.message : null}
             id="instagram"
-            // inputRef={register}
+            inputRef={register}
             label="Instagram URL"
             name="instagram"
             placeholder="Enter your Instagram URL"
