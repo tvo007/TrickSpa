@@ -54,6 +54,8 @@ export const getMyProfile = (uuid) => async (dispatch, getState) => {
       `${api}/profiles?users_permissions_user.uuid=${uuid}`, config
     );
 
+    
+
     //works: `${api}/profiles?users_permissions_user.uuid=GP-vAwMnGsOJlQkl3CAXY`
     //does not work: ${api}/profiles/uuid/GP-vAwMnGsOJlQkl3CAXY
 

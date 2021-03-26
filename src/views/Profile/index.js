@@ -12,7 +12,7 @@ const Profile = props => {
   const {profileSlug} = useParams ();
   const dispatch = useDispatch ();
 
-  const {userProfile, loading, error} = useSelector (
+  const {userProfile, loading: profileLoading, error: profileError} = useSelector (
     state => state.userProfile
   );
 
@@ -23,9 +23,11 @@ const Profile = props => {
     [dispatch, profileSlug]
   );
 
+  
 
 
-  return <ProfileView userProfile={userProfile}/>;
+
+  return <ProfileView userProfile={userProfile[0]} profileLoading={profileLoading} profileError={profileError}/>;
 };
 
 // Profile.propTypes = {};

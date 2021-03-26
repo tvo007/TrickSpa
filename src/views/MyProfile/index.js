@@ -7,28 +7,42 @@ import {useHistory} from 'react-router-dom';
 import {getMyProfile} from '../../actions/profileActions';
 // import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
-
+import { Typography } from '@material-ui/core';
 
 //personal profile route, do the long way round and see how to refactor
 
 const MyProfile = props => {
   const dispatch = useDispatch ();
-  const history = useHistory()
+  const history = useHistory ();
 
-  // const {myProfile, loading, error} = useSelector (state => state.myProfile);
+  //loaded from getMyProfile useEffect
 
-  const {userInfo, success} = useSelector(state => state.userLogin)
+  const {userInfo, success} = useSelector (state => state.userLogin);
+  const {
+    myProfile,
+    loading: profileLoading,
+    error: profileError,
+  } = useSelector (state => state.myProfile);
 
-  useEffect(() => {
-    if (!success) {
-      history.push('/landing')
-    } else if (userInfo) {
-      dispatch(getMyProfile(userInfo.user.uuid))
-    }
-  }, [history, userInfo, dispatch, success])
+  useEffect (
+    () => {
+      if (!success) {
+        history.push ('/landing');
+      } else if (userInfo) {
+        dispatch (getMyProfile (userInfo.user.uuid));
+        try {
+          history.push (`/profile/${myProfile[0].slug}`);
+        } catch (error) {
+          history.push ('/landing');
+        }
+      }
+    },
+    [history, userInfo, dispatch, success, myProfile]
+  );
 
-
-  return <MyProfileView  />;
+  return (
+    <Typography>Redirecting</Typography>
+  );
 };
 
 // Profile.propTypes = {};
