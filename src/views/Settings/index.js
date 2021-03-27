@@ -5,25 +5,23 @@ import {useHistory} from 'react-router-dom';
 
 import {useDispatch, useSelector} from 'react-redux';
 
-import {isEmpty} from 'underscore'
-
 const Settings = props => {
 
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const {userInfo, success} = useSelector (state => state.userLogin);
+  const {userInfo, loaded: isLoggedIn} = useSelector (state => state.userLogin);
 
   useEffect (
     () => {
-      if (isEmpty(userInfo)) {
+      if (!isLoggedIn) {
         history.push ('/landing');
       } 
     },
-    [history, userInfo, dispatch ]
+    [history, userInfo, isLoggedIn, dispatch ]
   );
 
-  return <SettingsView />;
+  return <SettingsView isLoggedIn={isLoggedIn} userInfo={userInfo}/>;
 };
 
 // Settings.propTypes = {

@@ -7,19 +7,17 @@ import {useParams} from 'react-router-dom';
 import {getProfile, getProfileAuth} from '../../actions/profileActions';
 // import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
-import {isEmpty} from 'underscore';
-
 const Profile = props => {
   const {profileSlug} = useParams ();
   const dispatch = useDispatch ();
 
-  const {userInfo, success} = useSelector (state => state.userLogin);
+  const {userInfo, loaded: isLoggedIn} = useSelector (state => state.userLogin);
 
   const {
     userProfile,
     loading: profileLoading,
     error: profileError,
-    loaded,
+    loaded: profileLoaded,
     isOwner,
   } = useSelector (state => state.userProfile);
 
@@ -44,7 +42,7 @@ const Profile = props => {
 
   useEffect (
     () => {
-      if (loaded && success) {
+      if (profileLoaded && isLoggedIn) {
         try {
           // dispatch (
           dispatch (
@@ -61,7 +59,7 @@ const Profile = props => {
         // console.log (userProfile[0].users_permissions_user.username);
       }
     },
-    [dispatch, userProfile, loaded, success, userInfo]
+    [dispatch, userProfile, profileLoaded, isLoggedIn, userInfo]
   );
 
   // useEffect (
@@ -109,9 +107,9 @@ const Profile = props => {
       userProfile={userProfile[0]}
       profileLoading={profileLoading}
       profileError={profileError}
-      isLoggedIn={success}
+      isLoggedIn={isLoggedIn}
       isOwner={isOwner}
-      profileLoaded={loaded}
+      profileLoaded={profileLoaded}
     />
   );
 };

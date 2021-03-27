@@ -16,7 +16,7 @@ const MyProfile = props => {
 
   //loaded from getMyProfile useEffect
 
-  const {userInfo, success} = useSelector (state => state.userLogin);
+  const {userInfo, loaded} = useSelector (state => state.userLogin);
   const {
     userProfile,
     // loading: profileLoading,
@@ -25,11 +25,11 @@ const MyProfile = props => {
 
   useEffect (
     () => {
-      if (!success) {
+      if (!loaded) {
         history.push ('/landing');
       } else if (userInfo) {
         dispatch (getMyProfile (userInfo.user.uuid));
-        if (userProfile) {
+        if (loaded) {
           try {
             history.push (`/profile/${userProfile[0].slug}`);
           } catch (error) {
@@ -38,7 +38,7 @@ const MyProfile = props => {
         }
       }
     },
-    [history, userInfo, dispatch, success, userProfile]
+    [history, userInfo, dispatch, loaded, userProfile]
   );
 
   return <Typography>Redirecting</Typography>;

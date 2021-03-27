@@ -24,19 +24,19 @@ const SigninForm = ({onClick}) => {
   });
 
   const userLogin = useSelector (state => state.userLogin);
-  const {success} = userLogin;
+  const {loaded: loginSuccess} = userLogin;
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect (
     () => {
-      if (success) {
+      if (loginSuccess) {
      
         history.push ('/forums');
       } 
     },
-    [history, success, dispatch]
+    [history, loginSuccess, dispatch]
   );
 
   const submitHandler = data => {

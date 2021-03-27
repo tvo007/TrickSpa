@@ -11,6 +11,7 @@ import {
   CardActions,
   Button,
 } from '@material-ui/core';
+import {useHistory} from 'react-router-dom'
 import PageHeading from '../../components/PageHeading';
 import {makeStyles} from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -75,6 +76,7 @@ const ProfileView = ({
   /**
    * 
    */
+  const history = useHistory()
 
   const classes = useStyles ();
   return (
@@ -95,6 +97,7 @@ const ProfileView = ({
                             color="primary"
                             variant="contained"
                             size="small"
+                            onClick={e => history.push('/settings')}
                           >
                             Edit Profile
                           </Button>

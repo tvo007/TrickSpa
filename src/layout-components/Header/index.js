@@ -84,7 +84,7 @@ const Header = props => {
 
   const {success, error} = useSelector (state => state.logout);
 
-  const {success: loginSuccess} = useSelector (state => state.userLogin);
+  const {loaded: loginSuccess} = useSelector (state => state.userLogin);
 
   const classes = useStyles (drawerWidth, openMini, isDesktop);
 

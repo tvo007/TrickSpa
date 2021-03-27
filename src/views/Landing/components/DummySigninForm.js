@@ -31,18 +31,18 @@ const DummySigninForm = ({onClick}) => {
   });
 
   const userLogin = useSelector (state => state.userLogin);
-  const {success} = userLogin;
+  const {loaded} = userLogin;
 
   const history = useHistory ();
   const dispatch = useDispatch ();
 
   useEffect (
     () => {
-      if (success) {
+      if (loaded) {
         history.push ('/forums');
       }
     },
-    [success, history]
+    [loaded, history]
   );
 
   // useEffect (
