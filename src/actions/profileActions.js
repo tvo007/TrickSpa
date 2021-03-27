@@ -3,9 +3,10 @@ import {
   PROFILE_GET_REQUEST,
   PROFILE_GET_SUCCESS,
   PROFILE_GET_FAIL,
-  MY_PROFILE_GET_REQUEST,
-  MY_PROFILE_GET_FAIL,
-  MY_PROFILE_GET_SUCCESS,
+  PROFILE_IS_OWNER,
+  // MY_PROFILE_GET_REQUEST,
+  // MY_PROFILE_GET_FAIL,
+  // MY_PROFILE_GET_SUCCESS,
 } from '../constants/profileConstants';
 import api from '../utils/api';
 
@@ -17,6 +18,8 @@ export const getProfile = profileSlug => async (dispatch, getState) => {
     });
 
     const {data} = await axios.get (`${api}/profiles/slug/${profileSlug}`);
+
+    //GETS STATE USERINFO HERE
 
     dispatch ({
       type: PROFILE_GET_SUCCESS,
@@ -33,11 +36,11 @@ export const getProfile = profileSlug => async (dispatch, getState) => {
   }
 };
 
-export const getMyProfile = (uuid) => async (dispatch, getState) => {
+export const getMyProfile = uuid => async (dispatch, getState) => {
   try {
     //if not the same reset state and then.....
     dispatch ({
-      type: MY_PROFILE_GET_REQUEST,
+      type: PROFILE_GET_REQUEST,
     });
 
     // const {userLogin: {userInfo}} = getState ();
@@ -45,31 +48,52 @@ export const getMyProfile = (uuid) => async (dispatch, getState) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        withCredentials: true
+        withCredentials: true,
         // 'Access-Control-Allow-Credentials': true,
-      }
+      },
     };
 
     const {data} = await axios.get (
-      `${api}/profiles?users_permissions_user.uuid=${uuid}`, config
+      `${api}/profiles?users_permissions_user.uuid=${uuid}`,
+      config
     );
-
-    
 
     //works: `${api}/profiles?users_permissions_user.uuid=GP-vAwMnGsOJlQkl3CAXY`
     //does not work: ${api}/profiles/uuid/GP-vAwMnGsOJlQkl3CAXY
 
     dispatch ({
-      type: MY_PROFILE_GET_SUCCESS,
-      payload: data,
+      type: PROFILE_GET_SUCCESS,
+      payload: data[0],
     });
   } catch (error) {
     const message = error.response && error.response.data.message
       ? error.response.data.message
       : error.message;
     dispatch ({
-      type: MY_PROFILE_GET_FAIL,
+      type: PROFILE_GET_FAIL,
       payload: message,
     });
   }
+};
+
+export const getProfileAuth = (loginUsername, profileUsername) => async (dispatch, getState) => {
+  // const {userLogin: {userInfo}} = getState ();
+    try {
+      if (loginUsername === profileUsername)
+        //if not the same reset state and then.....
+        dispatch ({
+          type: PROFILE_IS_OWNER,
+        });
+
+      //GETS STATE USERINFO HERE
+    } catch (error) {
+      const message = error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+      dispatch ({
+        type: PROFILE_GET_FAIL,
+        payload: message,
+      });
+    }
+  
 };

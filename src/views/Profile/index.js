@@ -4,17 +4,36 @@ import ProfileView from './ProfileView';
 import {useParams} from 'react-router-dom';
 
 // import {getPosts} from '../../actions/postActions';
-import {getProfile} from '../../actions/profileActions';
+import {getProfile, getProfileAuth} from '../../actions/profileActions';
 // import {getComments} from '../../actions/comment';
 import {useDispatch, useSelector} from 'react-redux';
+import {isEmpty} from 'underscore';
 
 const Profile = props => {
   const {profileSlug} = useParams ();
   const dispatch = useDispatch ();
 
-  const {userProfile, loading: profileLoading, error: profileError} = useSelector (
-    state => state.userProfile
-  );
+  const {userInfo, success} = useSelector (state => state.userLogin);
+
+  const {
+    userProfile,
+    loading: profileLoading,
+    error: profileError,
+    loaded,
+    isOwner,
+  } = useSelector (state => state.userProfile);
+
+  // const {username: loginUsername} = userInfo;
+  // const {users_permissions_user: {username: profileUsername}} = userProfile[0];
+
+  // useEffect (
+  //   () => {
+  //     if (profileLoading) {
+  //       setIsLoading (true);
+  //     } else if (userProfile) setIsLoading (false);
+  //   },
+  //   [profileLoading, userProfile]
+  // );
 
   useEffect (
     () => {
@@ -23,11 +42,78 @@ const Profile = props => {
     [dispatch, profileSlug]
   );
 
-  
+  useEffect (
+    () => {
+      if (loaded && success) {
+        try {
+          // dispatch (
+          dispatch (
+            getProfileAuth (
+              userInfo.user.username,
+              userProfile[0].users_permissions_user.username
+            )
+          );
 
+          // console.log (userProfile[0].users_permissions_user.username);
+        } catch (error) {
+          console.log (error);
+        }
+        // console.log (userProfile[0].users_permissions_user.username);
+      }
+    },
+    [dispatch, userProfile, loaded, success, userInfo]
+  );
 
+  // useEffect (
+  //   () => {
+  //     if (profileLoading) {
+  //       setIsLoading(true)
+  //     }
+  //     // if (userProfile[0].users_permissions_user.username)
+  //     // dispatch (getProfileAuth());
+  //   },
+  //   [dispatch, userProfile]
+  // );
 
-  return <ProfileView userProfile={userProfile[0]} profileLoading={profileLoading} profileError={profileError}/>;
+  // useEffect(
+  //   () => {
+  //   if (!isEmpty(userProfile)) {
+  //     console.log(userProfile[0].users_permissions_user.username)
+  //   }
+
+  // }, [userProfile])
+
+  // useEffect (
+  //   () => {
+  //     if (!isEmpty(userProfile) && !isEmpty(userProfile)) {
+  //       try {
+  //         if (userInfo.username === userProfile[0].users_permissions_user.username) {
+  //           setIsOwner (true);
+  //           console.log(userProfile[0].users_permissions_user.username)
+
+  //         }
+
+  //       } catch (error) {
+
+  //         alert ('Something went wrong');
+  //       }
+  //     }
+  //   },
+  //   [userInfo, userProfile, setIsOwner]
+  // );
+
+  //check to see if is own profile
+
+  return (
+    <ProfileView
+      userProfile={userProfile[0]}
+      profileLoading={profileLoading}
+      profileError={profileError}
+      isLoggedIn={success}
+      isOwner={isOwner}
+      profileLoaded={loaded}
+    />
+  );
 };
 
 // Profile.propTypes = {};

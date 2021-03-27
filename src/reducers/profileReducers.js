@@ -2,6 +2,8 @@ import {
     PROFILE_GET_REQUEST,
     PROFILE_GET_SUCCESS,
     PROFILE_GET_FAIL,
+    PROFILE_IS_OWNER,
+    CLEAR_PROFILE,
     MY_PROFILE_GET_REQUEST,
     MY_PROFILE_GET_SUCCESS,
     MY_PROFILE_GET_FAIL
@@ -12,9 +14,13 @@ export const userProfileReducer = (state = {userProfile: []}, action) => {
       case PROFILE_GET_REQUEST:
         return {...state, loading: true};
       case PROFILE_GET_SUCCESS:
-        return {loading: false, userProfile: [action.payload]};
+        return {...state, loading: false, loaded: true, userProfile: [action.payload], isOwner: false};
+      case PROFILE_IS_OWNER: 
+        return {...state, isOwner: true}
       case PROFILE_GET_FAIL:
         return {loading: false, error: action.payload};
+      case CLEAR_PROFILE: 
+      return {}
       default:
         return state;
     }

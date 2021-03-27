@@ -58,13 +58,6 @@ const Routes = props => {
         layout={TestLandingLayout}
         path="/landing"
       />
-
-      <PrivateRouteWithLayout
-        component={Forums}
-        exact
-        layout={Main}
-        path="/private-forums-test"
-      />
       {/**PRIVATE ROUTE IN PROGRESS */}
       <RouteWithLayout component={Forums} exact layout={Main} path="/Forums" />
       <RouteWithLayout

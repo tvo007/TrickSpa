@@ -15,7 +15,7 @@ const PrivateRouteWithLayout = props => {
       {...rest}
       render={matchProps =>
         !userInfo
-          ? <Redirect to="/Auth" />
+          ? <Redirect to="/Landing" />
           : <Layout>
               <Component {...matchProps} />
             </Layout>}

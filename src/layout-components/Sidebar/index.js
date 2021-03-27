@@ -104,30 +104,25 @@ const Sidebar = ({
       href: '/Forums',
       icon: <MessageIcon />,
     },
-    {
-      title: 'Landing',
-      href: '/Landing',
-      icon: <FlightLandIcon />,
-    },
-    {
-      title: 'Auth',
-      href: '/auth',
-      icon: <LockIcon />,
-    },
     // {
     //   title: 'Dummy',
     //   href: '/Dummy',
     //   icon: <MessageIcon />,
-    // },
-    {
-      title: 'Private Testing',
-      href: '/private-forums-test',
-      icon: <BlockIcon />,
-    },
+    // }
     {
       title: 'Settings',
       href: '/settings',
       icon: <SettingsIcon />,
+    },
+    {
+      title: 'bro-bro test',
+      href: '/profile/bro-bro',
+      icon: <SettingsIcon />,
+    },
+    {
+      title: 'tivotrix test',
+      href: '/profile/tivotrix-og',
+      icon: <AccountBoxIcon />,
     },
 
   ];
