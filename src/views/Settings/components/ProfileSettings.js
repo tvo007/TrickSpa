@@ -31,7 +31,7 @@ const schema = yup.object ().shape ({
   gatherings: yup.string (),
 });
 
-const ProfileSettings = ({user}) => {
+const ProfileSettings = ({user, userProfile}) => {
   const classes = useStyles ();
 
   const {register, handleSubmit, errors} = useForm ({
@@ -39,6 +39,18 @@ const ProfileSettings = ({user}) => {
     defaultValues: {
       name: 'Tim Vo',
       username: user.username || '',
+      avatar: user.avatar || '',
+      alias: '',
+      location: userProfile.location || '',
+      bio: userProfile.bio || '',
+      youtube: '',
+      facebook: '',
+      instagram: userProfile.instaUrl || '',
+      twitter: userProfile.instaUrl || '',
+      tiktok: '',
+      sampler: '',
+      orgs: '', //to be an array
+      gatherings: '', //to be an array
     },
   });
 
