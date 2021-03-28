@@ -4,6 +4,9 @@ import {
   PROFILE_GET_SUCCESS,
   PROFILE_GET_FAIL,
   PROFILE_IS_OWNER,
+  PROFILE_UPDATE_REQUEST,
+  PROFILE_UPDATE_SUCCESS,
+  PROFILE_UPDATE_FAIL,
   // MY_PROFILE_GET_REQUEST,
   // MY_PROFILE_GET_FAIL,
   // MY_PROFILE_GET_SUCCESS,
@@ -80,23 +83,67 @@ export const getMyProfile = uuid => async (dispatch, getState) => {
   }
 };
 
-export const getProfileAuth = (loginUsername, profileUsername) => async (dispatch, getState) => {
+export const getProfileAuth = (loginUsername, profileUsername) => async (
+  dispatch,
+  getState
+) => {
   // const {userLogin: {userInfo}} = getState ();
-    try {
-      if (loginUsername === profileUsername)
-        dispatch ({
-          type: PROFILE_IS_OWNER,
-        });
-
-      //GETS STATE USERINFO HERE
-    } catch (error) {
-      const message = error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+  try {
+    if (loginUsername === profileUsername)
       dispatch ({
-        type: PROFILE_GET_FAIL,
-        payload: message,
+        type: PROFILE_IS_OWNER,
+      });
+
+    //GETS STATE USERINFO HERE
+  } catch (error) {
+    const message = error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+    dispatch ({
+      type: PROFILE_GET_FAIL,
+      payload: message,
+    });
+  }
+};
+
+//setting up, do not use
+
+export const updateProfile = (id, formData) => async (dispatch, getState) => {
+  try {
+    const {userProfile: {userProfile}} = getState ();
+
+    if (userProfile.isOwner) {
+      dispatch ({
+        type: PROFILE_UPDATE_REQUEST,
+      });
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          withCredentials: true,
+          // 'Access-Control-Allow-Credentials': true,
+        },
+      };
+
+      const {data} = await axios.put (
+        `${api}/profiles/${id}`,
+        formData,
+        config
+      );
+
+      dispatch ({
+        type: PROFILE_UPDATE_SUCCESS,
+        payload: data,
       });
     }
-  
+  } catch (error) {
+    const message = error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+
+    dispatch ({
+      type: PROFILE_UPDATE_FAIL,
+      payload: message,
+    });
+  }
 };

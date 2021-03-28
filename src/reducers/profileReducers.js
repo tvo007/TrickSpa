@@ -3,10 +3,11 @@ import {
     PROFILE_GET_SUCCESS,
     PROFILE_GET_FAIL,
     PROFILE_IS_OWNER,
+    PROFILE_UPDATE_REQUEST,
+    PROFILE_UPDATE_SUCCESS,
+    PROFILE_UPDATE_FAIL,
+    PROFILE_UPDATE_RESET,
     CLEAR_PROFILE,
-    MY_PROFILE_GET_REQUEST,
-    MY_PROFILE_GET_SUCCESS,
-    MY_PROFILE_GET_FAIL
 } from '../constants/profileConstants'
 
 export const userProfileReducer = (state = {userProfile: []}, action) => {
@@ -26,15 +27,17 @@ export const userProfileReducer = (state = {userProfile: []}, action) => {
     }
   };
 
-  export const myProfileReducer = (state = {myProfile: []}, action) => {
+  export const updateProfileReducer = (state = {userProfile: []}, action) => {
     switch (action.type) {
-      case MY_PROFILE_GET_REQUEST:
-        return {...state, loading: true};
-      case MY_PROFILE_GET_SUCCESS:
-        return { loading: false, myProfile: action.payload};
-      case MY_PROFILE_GET_FAIL:
-        return {loading: false, error: action.payload};
+      case PROFILE_UPDATE_REQUEST:
+        return { loading: true }
+      case PROFILE_UPDATE_SUCCESS:
+        return { loading: false, success: true, userInfo: [action.payload] }
+      case PROFILE_UPDATE_FAIL:
+        return { loading: false, error: action.payload }
+      case PROFILE_UPDATE_RESET:
+        return {}
       default:
-        return state;
+        return state
     }
-  };
+  }
