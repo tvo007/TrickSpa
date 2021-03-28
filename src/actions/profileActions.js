@@ -65,6 +65,10 @@ export const getMyProfile = uuid => async (dispatch, getState) => {
       type: PROFILE_GET_SUCCESS,
       payload: data[0],
     });
+
+    dispatch ({
+      type: PROFILE_IS_OWNER,
+    });
   } catch (error) {
     const message = error.response && error.response.data.message
       ? error.response.data.message
@@ -80,7 +84,6 @@ export const getProfileAuth = (loginUsername, profileUsername) => async (dispatc
   // const {userLogin: {userInfo}} = getState ();
     try {
       if (loginUsername === profileUsername)
-        //if not the same reset state and then.....
         dispatch ({
           type: PROFILE_IS_OWNER,
         });

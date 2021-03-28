@@ -139,6 +139,9 @@ const ProfileView = ({
                       <Typography variant="body1">
                         Twitter
                       </Typography>
+                      <Typography variant="body1">
+                        TikTok
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>

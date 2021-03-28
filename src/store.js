@@ -23,7 +23,6 @@ import {
 } from './reducers/alertReducers'
 import {
   userProfileReducer,
-  myProfileReducer,
 } from './reducers/profileReducers'
 //import setAuthToken from './utils/setAuthToken';
 
@@ -40,7 +39,6 @@ const reducer = combineReducers ({
   userRegister: userRegisterReducer,
   alert: alertReducer,
   userProfile: userProfileReducer,
-  myProfile: myProfileReducer
 });
 
 const sectionsFromLocalStorage = localStorage.getItem ('sections')

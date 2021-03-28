@@ -19,7 +19,7 @@ const useStyles = makeStyles (theme => ({
   basic: {},
 }));
 
-const SettingsView = ({isLoggedIn, userInfo}) => {
+const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
   const classes = useStyles ();
 
   const {user} = userInfo;
@@ -29,12 +29,12 @@ const SettingsView = ({isLoggedIn, userInfo}) => {
   const handleClick = () => setProfileSettingsActive (!profileSettingsActive);
 
   return (
-    <Grid container spacing={4} xs={12}>
-      {isLoggedIn
+    <Grid container spacing={4} >
+      {isLoggedIn && profileLoaded
         ? <Fragment>
             <Grid item xs={12}>
               <PageHeading
-                title={`Settings for ${isLoggedIn ? user.username : null}`}
+                title={`Settings for ${user.username}`}
               />
             </Grid>
             <Grid item xs={4}>
@@ -64,7 +64,7 @@ const SettingsView = ({isLoggedIn, userInfo}) => {
             </Grid>
             <Grid item xs={8}>
               {profileSettingsActive
-                ? <ProfileSettings />
+                ? <ProfileSettings user={user}/>
                 : <AccountSettings />}
             </Grid>{' '}
           </Fragment>
