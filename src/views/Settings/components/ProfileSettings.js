@@ -35,15 +35,15 @@ const schema = yup.object ().shape ({
   gatherings: yup.string (),
 });
 
-const ProfileSettings = ({user, userProfile}) => {
+const ProfileSettings = ({userInfo, userProfile}) => {
   const classes = useStyles ();
 
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
     defaultValues: {
       name: 'Tim Vo',
-      username: user.username || '',
-      avatar: user.avatar || '',
+      username: userInfo.user.username || '',
+      avatar: userInfo.user.avatar || '',
       alias: '',
       location: userProfile.location || '',
       bio: userProfile.bio || '',
