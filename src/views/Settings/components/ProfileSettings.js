@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Card,
   CardHeader,
@@ -7,10 +7,14 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import {showSnackbar} from '../../../actions/alertActions';
+import {updateProfile} from '../../../actions/profileActions'
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom'
+
 
 import useStyles from '../FormStyles';
 
@@ -54,7 +58,37 @@ const ProfileSettings = ({user, userProfile}) => {
     },
   });
 
-  const submitHandler = data => alert (JSON.stringify (data));
+   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const updateProfileReducer = useSelector (state => state.updateProfile);
+  const {
+    loading: updateProfileLoading,
+    error: updateProfileError,
+    success: successUpdate,
+  } = updateProfileReducer;
+
+  // useEffect (
+  //   () => {
+  //    if (successUpdate) {
+  //     history.push('/settings')
+  //     dispatch (showSnackbar ('Profile update succesful.')); 
+  //    } else if (updateProfileError) {
+  //     dispatch (showSnackbar ('Something went wrong.')); //to be refactored
+  //    }
+  //   },
+  //   [dispatch, history, successUpdate, updateProfileError]
+  // );
+
+
+  //useEffect for update profile
+
+  const submitHandler = data => {
+  // dispatch({...data, users_permissions_user: {id: user.id}, })
+  
+
+  }
+  
 
   return (
     <form onSubmit={handleSubmit (submitHandler)}>
