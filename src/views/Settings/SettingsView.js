@@ -62,7 +62,7 @@ const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
             </Grid>
             <Grid item xs={8}>
               {profileSettingsActive
-                ? <ProfileSettings userInfo={userInfo} userProfile={userProfile}/>
+                ? <ProfileSettings userInfo={userInfo} userProfile={userProfile} profileLoaded={profileLoaded} isLoggedIn={isLoggedIn}/>
                 : <AccountSettings />}
             </Grid>{' '}
           </Fragment>
