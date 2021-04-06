@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Card,
   CardHeader,
@@ -7,16 +7,17 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
+import OrgsList from './profile_components/Orgs/OrgsList'
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {showSnackbar} from '../../../actions/alertActions';
-import {updateProfile} from '../../../actions/profileActions'
+import {updateProfile} from '../../../actions/profileActions';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom'
-
+import {useHistory} from 'react-router-dom';
 
 import useStyles from '../FormStyles';
+import profile from 'reducers/profile';
 
 const schema = yup.object ().shape ({
   name: yup.string (),
@@ -35,15 +36,43 @@ const schema = yup.object ().shape ({
   gatherings: yup.string (),
 });
 
-const ProfileSettings = ({user, userProfile}) => {
+const ProfileSettings = ({
+  userInfo,
+  userProfile,
+  profileLoaded,
+  isLoggedIn,
+}) => {
   const classes = useStyles ();
+
+  const dispatch = useDispatch ();
+  const history = useHistory ();
+
+  const updateProfileReducer = useSelector (state => state.updateProfile);
+  const {
+    loading: updateProfileLoading,
+    error: updateProfileError,
+    success: successUpdate,
+  } = updateProfileReducer;
+
+  const [mappedOrgs, setMappedOrgs] = useState ([]);
+
+  useEffect (
+    () => {
+      if (profileLoaded) {
+        setMappedOrgs (userProfile.orgs.map (org => org) || null);
+      } else {
+        setMappedOrgs ('');
+      }
+    },
+    [profileLoaded, userProfile.orgs]
+  );
 
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
     defaultValues: {
-      name: 'Tim Vo',
-      username: user.username || '',
-      avatar: user.avatar || '',
+      name: `${userProfile.first_name} ${userProfile.last_name}` || '',
+      username: userInfo.user.username || '',
+      avatar: userInfo.user.avatar || '',
       alias: '',
       location: userProfile.location || '',
       bio: userProfile.bio || '',
@@ -58,37 +87,27 @@ const ProfileSettings = ({user, userProfile}) => {
     },
   });
 
-   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const updateProfileReducer = useSelector (state => state.updateProfile);
-  const {
-    loading: updateProfileLoading,
-    error: updateProfileError,
-    success: successUpdate,
-  } = updateProfileReducer;
-
-  // useEffect (
-  //   () => {
-  //    if (successUpdate) {
-  //     history.push('/settings')
-  //     dispatch (showSnackbar ('Profile update succesful.')); 
-  //    } else if (updateProfileError) {
-  //     dispatch (showSnackbar ('Something went wrong.')); //to be refactored
-  //    }
-  //   },
-  //   [dispatch, history, successUpdate, updateProfileError]
-  // );
-
-
-  //useEffect for update profile
-
   const submitHandler = data => {
-  // dispatch({...data, users_permissions_user: {id: user.id}, })
-  
+    // e.preventDefault ();
+    if (!profileLoaded) {
+      dispatch (showSnackbar ('Please try again'));
+    } else if (profileLoaded) {
+      const testObj = JSON.stringify ({
+        id: userProfile.orgs.length + 1,
+        name: `${data.orgs}`,
+      });
+      
+      //on submit => stringify entry
+      console.log ({
+        ...data,
+        orgs: [...mappedOrgs, JSON.parse (testObj)],
+      });
+      console.log (mappedOrgs);
+      //how to get highest id in this array of objects??
+    }
 
-  }
-  
+    // console.log ({...data, section: {id: section.id}, user: {id: 1}});
+  };
 
   return (
     <form onSubmit={handleSubmit (submitHandler)}>
@@ -230,8 +249,9 @@ const ProfileSettings = ({user, userProfile}) => {
         </CardContent>
       </Card>
       <Card className={classes.card}>
-        <CardHeader title={<Typography variant="h3">Communities</Typography>} />
+        <CardHeader title={<Typography variant="h3">Orgs and Communities</Typography>} />
         <CardContent className={classes.formContent}>
+          <OrgsList mappedOrgs={mappedOrgs} formContentStyles={classes.formContent}/>
           <TextField
             error={errors.orgs ? true : false}
             fullWidth

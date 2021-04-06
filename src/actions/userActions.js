@@ -29,7 +29,7 @@ import {
   CLEAR_USER,
   CLEAR_LOGOUT_STATE,
 } from '../constants/userConstants';
-import {CLEAR_PROFILE} from '../constants/profileConstants'
+import {CLEAR_PROFILE} from '../constants/profileConstants';
 import {SET_ALERT} from '../constants/alertConstants';
 
 import api from '../utils/api';
@@ -102,14 +102,13 @@ export const logout = () => async dispatch => {
     dispatch ({
       type: CLEAR_USER,
     });
-    document.location.href = '/forums'
-    dispatch({
-      type: CLEAR_PROFILE
-    })
+    // document.location.href = '/forums'
+    dispatch ({
+      type: CLEAR_PROFILE,
+    });
     dispatch ({
       type: CLEAR_LOGOUT_STATE,
     });
-    
   } catch (error) {
     dispatch ({
       type: USER_LOGOUT_FAIL,

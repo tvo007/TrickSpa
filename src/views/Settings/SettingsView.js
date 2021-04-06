@@ -22,8 +22,6 @@ const useStyles = makeStyles (theme => ({
 const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
   const classes = useStyles ();
 
-  const {user} = userInfo;
-
   const [profileSettingsActive, setProfileSettingsActive] = useState (true);
 
   const handleClick = () => setProfileSettingsActive (!profileSettingsActive);
@@ -34,7 +32,7 @@ const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
         ? <Fragment>
             <Grid item xs={12}>
               <PageHeading
-                title={`Settings for ${user.username}`}
+                title={`Settings for ${userInfo.user.username}`}
               />
             </Grid>
             <Grid item xs={4}>
@@ -64,7 +62,7 @@ const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
             </Grid>
             <Grid item xs={8}>
               {profileSettingsActive
-                ? <ProfileSettings user={user} userProfile={userProfile}/>
+                ? <ProfileSettings userInfo={userInfo} userProfile={userProfile} profileLoaded={profileLoaded} isLoggedIn={isLoggedIn}/>
                 : <AccountSettings />}
             </Grid>{' '}
           </Fragment>
