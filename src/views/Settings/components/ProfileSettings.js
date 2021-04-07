@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import OrgsList from './profile_components/Orgs/OrgsList'
+import OrgsList from './profile_components/Orgs/OrgsList';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -32,7 +32,6 @@ const schema = yup.object ().shape ({
   twitter: yup.string (),
   tiktok: yup.string (),
   sampler: yup.string (),
-  orgs: yup.string (),
   gatherings: yup.string (),
 });
 
@@ -82,7 +81,6 @@ const ProfileSettings = ({
       twitter: userProfile.instaUrl || '',
       tiktok: '',
       sampler: '',
-      orgs: '', //to be an array
       gatherings: '', //to be an array
     },
   });
@@ -92,15 +90,10 @@ const ProfileSettings = ({
     if (!profileLoaded) {
       dispatch (showSnackbar ('Please try again'));
     } else if (profileLoaded) {
-      const testObj = JSON.stringify ({
-        id: userProfile.orgs.length + 1,
-        name: `${data.orgs}`,
-      });
-      
       //on submit => stringify entry
       console.log ({
         ...data,
-        orgs: [...mappedOrgs, JSON.parse (testObj)],
+        orgs: mappedOrgs,
       });
       console.log (mappedOrgs);
       //how to get highest id in this array of objects??
@@ -249,10 +242,16 @@ const ProfileSettings = ({
         </CardContent>
       </Card>
       <Card className={classes.card}>
-        <CardHeader title={<Typography variant="h3">Orgs and Communities</Typography>} />
+        <CardHeader
+          title={<Typography variant="h3">Orgs and Communities</Typography>}
+        />
         <CardContent className={classes.formContent}>
-          <OrgsList mappedOrgs={mappedOrgs} formContentStyles={classes.formContent}/>
-          <TextField
+          <OrgsList
+            mappedOrgs={mappedOrgs}
+            setMappedOrgs={setMappedOrgs}
+            formContentStyles={classes.formContent}
+          />
+          {/* <TextField
             error={errors.orgs ? true : false}
             fullWidth
             helperText={errors.orgs ? errors.orgs.message : null}
@@ -261,7 +260,7 @@ const ProfileSettings = ({
             label="Orgs"
             name="orgs"
             placeholder="Let trickers know your org/team affiliations"
-          />
+          /> */}
         </CardContent>
       </Card>
       <Card className={classes.card}>
