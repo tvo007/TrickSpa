@@ -43,7 +43,7 @@ export const login = ({email, password}) => async dispatch => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        withCredentials: true,
+        // withCredentials: true,
         // 'Access-Control-Allow-Credentials': true,
       },
     };

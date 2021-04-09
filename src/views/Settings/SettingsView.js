@@ -19,7 +19,13 @@ const useStyles = makeStyles (theme => ({
   basic: {},
 }));
 
-const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
+const SettingsView = ({
+  isLoggedIn,
+  userInfo,
+  profileLoaded,
+  userProfile,
+  profileLoading,
+}) => {
   const classes = useStyles ();
 
   const [profileSettingsActive, setProfileSettingsActive] = useState (true);
@@ -27,13 +33,11 @@ const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
   const handleClick = () => setProfileSettingsActive (!profileSettingsActive);
 
   return (
-    <Grid container spacing={4} >
+    <Grid container spacing={4}>
       {isLoggedIn && profileLoaded
         ? <Fragment>
             <Grid item xs={12}>
-              <PageHeading
-                title={`Settings for ${userInfo.user.username}`}
-              />
+              <PageHeading title={`Settings for ${userInfo.user.username}`} />
             </Grid>
             <Grid item xs={4}>
               <ButtonGroup
@@ -62,7 +66,13 @@ const SettingsView = ({isLoggedIn, userInfo, profileLoaded, userProfile}) => {
             </Grid>
             <Grid item xs={8}>
               {profileSettingsActive
-                ? <ProfileSettings userInfo={userInfo} userProfile={userProfile} profileLoaded={profileLoaded} isLoggedIn={isLoggedIn}/>
+                ? <ProfileSettings
+                    userInfo={userInfo}
+                    userProfile={userProfile}
+                    profileLoaded={profileLoaded}
+                    profileLoading={profileLoading}
+                    isLoggedIn={isLoggedIn}
+                  />
                 : <AccountSettings />}
             </Grid>{' '}
           </Fragment>
