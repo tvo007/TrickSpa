@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -6,10 +6,6 @@ import * as yup from 'yup';
 import {
   Grid,
   Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Divider,
   List,
   ListItem,
   ListItemText,
@@ -22,11 +18,15 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
+import useStyles from '../../../FormStyles'
+
+
 const schema = yup.object ().shape ({
   org: yup.string (),
 });
 
-const OrgsList = ({mappedOrgs, formContentStyles, setMappedOrgs}) => {
+const OrgsList = ({mappedOrgs, setMappedOrgs}) => {
+  
   const deleteHandler = orgId => {
     setMappedOrgs (mappedOrgs.filter (org => org.id !== orgId));
   };
@@ -35,14 +35,16 @@ const OrgsList = ({mappedOrgs, formContentStyles, setMappedOrgs}) => {
     console.log (mappedOrgs);
   };
 
-  const {register, handleSubmit, errors, reset} = useForm ({
+  const {register, handleSubmit, errors, setValue} = useForm ({
     resolver: yupResolver (schema),
     defaultValues: {
       org: '',
     },
   });
 
-  const displayOrgs = mappedOrgs.map (org => {
+
+
+  const displayOrgs = mappedOrgs ? mappedOrgs.map (org => {
     return (
       <ListItem key={org.id}>
         <ListItemText primary={<Typography>{org.name}</Typography>} />
@@ -56,19 +58,22 @@ const OrgsList = ({mappedOrgs, formContentStyles, setMappedOrgs}) => {
         </ListItemSecondaryAction>
       </ListItem>
     );
-  });
+  }): null;
 
-  const submitHandler = data => {
+  const submitHandler = (data, e) => {
+    e.preventDefault ();
     const maxId = Math.max.apply (null, mappedOrgs.map (org => org.id));
     const newOrgs = [...mappedOrgs, {id: maxId + 1, name: data.org}];
     setMappedOrgs (newOrgs);
-    // console.log(mappedOrgs)
-    reset ({org: ''});
+    setValue("org", "")
+    ///////old^^^
   };
+
+  const classes = useStyles()
 
   return (
     <div>
-      <Grid className={formContentStyles}>
+      <Grid className={classes.formContent}>
         <List>
           {displayOrgs}
         </List>
@@ -84,10 +89,11 @@ const OrgsList = ({mappedOrgs, formContentStyles, setMappedOrgs}) => {
         name="org"
         placeholder="Let trickers know your org/team affiliations"
       />
+
+
       <IconButton onClick={handleSubmit (submitHandler)}>
         <AddBoxIcon />
       </IconButton>
-
     </div>
   );
 };

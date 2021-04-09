@@ -110,32 +110,32 @@ export const getProfileAuth = (loginUsername, profileUsername) => async (
 
 export const updateProfile = (id, formData) => async (dispatch, getState) => {
   try {
-    const {userProfile: {userProfile}} = getState ();
+    // const {userProfile: {userProfile}} = getState ();
 
-    if (userProfile.isOwner) {
-      dispatch ({
-        type: PROFILE_UPDATE_REQUEST,
-      });
+    // if (userProfile.isOwner) {
+    dispatch ({
+      type: PROFILE_UPDATE_REQUEST,
+    });
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          withCredentials: true,
-          // 'Access-Control-Allow-Credentials': true,
-        },
-      };
+    const config = {
+      // credentials: "same-origin",
+      headers: {
+        // Accept: 'application/json',
+        'Content-Type': 'application/json',
+        withCredentials: true,
 
-      const {data} = await axios.put (
-        `${api}/profiles/${id}`,
-        formData,
-        config
-      );
+        // 'Access-Control-Allow-Credentials': true,
+        // 'Access-Control-Allow-Origin': `${api}`
+      },
+    };
 
-      dispatch ({
-        type: PROFILE_UPDATE_SUCCESS,
-        payload: data,
-      });
-    }
+    const {data} = await axios.put (`${api}/profiles/${id}`, formData, config);
+
+    dispatch ({
+      type: PROFILE_UPDATE_SUCCESS,
+      payload: data,
+    });
+    // }
   } catch (error) {
     const message = error.response && error.response.data.message
       ? error.response.data.message

@@ -21,7 +21,7 @@ export const userProfileReducer = (state = {userProfile: []}, action) => {
       case PROFILE_GET_FAIL:
         return {loading: false, error: action.payload};
       case CLEAR_PROFILE: 
-      return {}
+      return {userProfile: []}
       default:
         return state;
     }
@@ -36,7 +36,7 @@ export const userProfileReducer = (state = {userProfile: []}, action) => {
       case PROFILE_UPDATE_FAIL:
         return { loading: false, error: action.payload }
       case PROFILE_UPDATE_RESET:
-        return {}
+        return {userProfile: []}
       default:
         return state
     }

@@ -4,11 +4,12 @@ import SettingsView from './SettingsView';
 import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getMyProfile} from '../../actions/profileActions';
+import {clearSnackbar} from '../../actions/alertActions'
 
 const Settings = props => {
+
   const history = useHistory ();
   const dispatch = useDispatch ();
-
   const {userInfo, loaded: isLoggedIn} = useSelector (state => state.userLogin);
 
   const {
@@ -17,6 +18,9 @@ const Settings = props => {
     loaded: profileLoaded,
     error: profileError,
   } = useSelector (state => state.userProfile);
+
+
+  
 
   useEffect (
     () => {
@@ -33,6 +37,8 @@ const Settings = props => {
     [history, userInfo, isLoggedIn, dispatch]
   );
 
+ 
+
   //for the above useEffect, getMyProfile => getProfileAuth???
 
   return (
@@ -41,6 +47,7 @@ const Settings = props => {
       userInfo={userInfo}
       profileLoaded={profileLoaded}
       userProfile={userProfile[0]}
+      profileLoading={profileLoading}
     />
   );
 };
