@@ -9,7 +9,6 @@ import { Grid } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: 56,
-    paddingLeft: openMini => (openMini ? 300 : 100),
     height: '10%',
     [theme.breakpoints.up('sm')]: {
       paddingTop: 64
@@ -20,10 +19,12 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: 240
   },
   content: {
-    width: '90%',
     height: '100%',
     padding: theme.spacing(6),
-    paddingTop: theme.spacing(4)
+    paddingTop: theme.spacing(4),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1)
+    }
     // transition: theme.transitions.create ('width', 'height', {
     //   easing: theme.transitions.easing.sharp,
     //   duration: theme.transitions.duration.leavingScreen,
@@ -51,7 +52,7 @@ const Main = props => {
     setOpenMini(false);
   };
 
-  const classes = useStyles(openMini, drawerWidth);
+  const classes = useStyles(drawerWidth);
   const theme = useTheme();
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
@@ -96,7 +97,7 @@ const Main = props => {
       />
 
       <Grid container justify="center">
-        <Grid item sm={9} xs={12}>
+        <Grid item md={9} sm={12}>
           <main className={classes.content}>{children}</main>
           <Footer />
         </Grid>
