@@ -9,7 +9,6 @@ import { Grid } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: 56,
-    paddingLeft: openMini => (openMini ? 300 : 100),
     height: '10%',
     [theme.breakpoints.up('sm')]: {
       paddingTop: 64
