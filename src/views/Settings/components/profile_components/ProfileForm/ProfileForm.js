@@ -12,7 +12,7 @@ import {
 import useStyles from '../../../FormStyles';
 
 
-const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList}) => {
+const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList, EventsList}) => {
 
   const classes = useStyles ();
 
@@ -161,36 +161,12 @@ const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList}) 
         />
         <CardContent className={classes.formContent}>
             {OrgsList}
-          {/* <OrgsList
-            mappedOrgs={mappedOrgs || null}
-            setMappedOrgs={setMappedOrgs}
-            formContentStyles={classes.formContent}
-          /> */}
-          {/* <TextField
-            error={errors.orgs ? true : false}
-            fullWidth
-            helperText={errors.orgs ? errors.orgs.message : null}
-            id="orgs"
-            inputRef={register}
-            label="Orgs"
-            name="orgs"
-            placeholder="Let trickers know your org/team affiliations"
-          /> */}
         </CardContent>
       </Card>
       <Card className={classes.card}>
         <CardHeader title={<Typography variant="h3">Past Events</Typography>} />
         <CardContent className={classes.formContent}>
-          <TextField
-            error={errors.gatherings ? true : false}
-            fullWidth
-            helperText={errors.gatherings ? errors.gatherings.message : null}
-            id="gatherings"
-            inputRef={register}
-            label="Gatherings"
-            name="gatherings"
-            placeholder="Gatherings you've been to"
-          />
+          {EventsList}
         </CardContent>
       </Card>
       <Card className={classes.submitCard}>
@@ -203,11 +179,6 @@ const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList}) 
           <Typography className={classes.submitInput}>
             Save profile information
           </Typography>
-          {/* <input
-            className={classes.submitInput}
-            type="submit"
-            value="Save profile information"
-          /> */}
         </Button>
       </Card>
     </form>
