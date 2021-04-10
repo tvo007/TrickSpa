@@ -52,7 +52,7 @@ const Main = props => {
     setOpenMini(false);
   };
 
-  const classes = useStyles(openMini, drawerWidth);
+  const classes = useStyles(drawerWidth);
   const theme = useTheme();
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
