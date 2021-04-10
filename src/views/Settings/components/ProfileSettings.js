@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import OrgsList from './profile_components/Orgs/OrgsList';
+import EventsList from './profile_components/Events/EventsList';
 import ProfileForm from './profile_components/ProfileForm/ProfileForm';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -9,8 +10,6 @@ import {updateProfile} from '../../../actions/profileActions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {PROFILE_UPDATE_RESET} from '../../../constants/profileConstants';
-import {getMyProfile} from '../../../actions/profileActions';
-
 
 const schema = yup.object ().shape ({
   name: yup.string (),
@@ -25,7 +24,6 @@ const schema = yup.object ().shape ({
   twitter: yup.string (),
   tiktok: yup.string (),
   sampler: yup.string (),
-  gatherings: yup.string (),
 });
 
 const ProfileSettings = ({
@@ -36,9 +34,10 @@ const ProfileSettings = ({
   isLoggedIn,
 }) => {
   const dispatch = useDispatch ();
-  const history = useHistory ();
 
   const [mappedOrgs, setMappedOrgs] = useState ([]);
+
+  const [mappedEvents, setMappedEvents] = useState ([]);
 
   const updateProfileReducer = useSelector (state => state.updateProfile);
   const {
@@ -47,34 +46,7 @@ const ProfileSettings = ({
     success: successUpdate,
   } = updateProfileReducer;
 
-  useEffect (
-    () => {
-      if (successUpdate) {
-        dispatch (showSnackbar ('Update Successful!'));
-        dispatch ({type: PROFILE_UPDATE_RESET});
-        reset()
-      } else if (updateProfileError) {
-        dispatch (showSnackbar ('Update profile error'));
-      }
-    },
-    [dispatch, successUpdate, updateProfileError,]
-  );
-
-  useEffect (
-    () => {
-      if (profileLoaded) {
-        try {
-          const orgsCopy = userProfile.orgs.map (org => org);
-          setMappedOrgs (orgsCopy);
-        } catch (error) {
-          showSnackbar (error);
-        }
-      }
-    },
-    [profileLoaded, userProfile.orgs]
-  );
-
-  const {register, handleSubmit, errors, reset, defaultValues} = useForm ({
+  const {register, handleSubmit, errors, reset} = useForm ({
     resolver: yupResolver (schema),
     defaultValues: {
       name: `${userProfile.first_name} ${userProfile.last_name}` || '',
@@ -89,29 +61,71 @@ const ProfileSettings = ({
       twitter: userProfile.instaUrl || '',
       tiktok: '',
       sampler: '',
-      gatherings: '', //to be an array
     },
   });
+
+  useEffect (
+    () => {
+      if (successUpdate) {
+        dispatch (showSnackbar ('Update Successful!'));
+        dispatch ({type: PROFILE_UPDATE_RESET});
+        reset ();
+      } else if (updateProfileError) {
+        dispatch (showSnackbar ('Update profile error'));
+      }
+    },
+    [dispatch, successUpdate, updateProfileError, reset]
+  );
+
+  useEffect (
+    () => {
+      if (profileLoaded) {
+        try {
+          const orgsCopy = userProfile.orgs.map (org => org);
+          // const eventsCopy = userProfile.event_history.map (event => event);
+          setMappedOrgs (orgsCopy);
+          // setMappedEvents (eventsCopy);
+        } catch (error) {
+          showSnackbar (error);
+        }
+      }
+    },
+    [profileLoaded, userProfile.orgs]
+  );
+
+  useEffect (
+    () => {
+      if (profileLoaded) {
+        try {
+          // const orgsCopy = userProfile.orgs.map (org => org);
+          const eventsCopy = userProfile.event_history.map (event => event);
+          // setMappedOrgs (orgsCopy);
+          setMappedEvents (eventsCopy);
+        } catch (error) {
+          showSnackbar (error);
+        }
+      }
+    },
+    [profileLoaded, userProfile.event_history]
+  );
 
   const submitHandler = data => {
     // e.preventDefault ();
     if (!profileLoaded) {
       dispatch (showSnackbar ('Please try again'));
     } else if (profileLoaded) {
-      //on submit => stringify entry
-      // console.log ({
-      //   ...data,
-      //   orgs: mappedOrgs,
-      // });
-      // console.log (mappedOrgs);
-      // //how to get highest id in this array of objects??
       try {
-      dispatch (updateProfile (userProfile.id, {...data, orgs: mappedOrgs}));
+        dispatch (
+          updateProfile (userProfile.id, {
+            ...data,
+            orgs: mappedOrgs,
+            event_history: mappedEvents,
+          })
+        );
       } catch (error) {
-        showSnackbar('Something went wrong updating your profile.')
+        showSnackbar ('Something went wrong updating your profile.');
       }
     }
-    
   };
 
   return (
@@ -122,6 +136,12 @@ const ProfileSettings = ({
       errors={errors}
       OrgsList={
         <OrgsList mappedOrgs={mappedOrgs} setMappedOrgs={setMappedOrgs} />
+      }
+      EventsList={
+        <EventsList
+          mappedEvents={mappedEvents}
+          setMappedEvents={setMappedEvents}
+        />
       }
     />
   );

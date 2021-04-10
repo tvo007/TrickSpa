@@ -42,8 +42,6 @@ const OrgsList = ({mappedOrgs, setMappedOrgs}) => {
     },
   });
 
-
-
   const displayOrgs = mappedOrgs ? mappedOrgs.map (org => {
     return (
       <ListItem key={org.id}>
@@ -62,7 +60,7 @@ const OrgsList = ({mappedOrgs, setMappedOrgs}) => {
 
   const submitHandler = (data, e) => {
     e.preventDefault ();
-    const maxId = Math.max.apply (null, mappedOrgs.map (org => org.id));
+    const maxId = mappedOrgs.length < 1 ? 0 : Math.max.apply (null, mappedOrgs.map (org => org.id));
     const newOrgs = [...mappedOrgs, {id: maxId + 1, name: data.org}];
     setMappedOrgs (newOrgs);
     setValue("org", "")
