@@ -21,7 +21,9 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: '-3rem'
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '1rem'
+    }
   },
   mainCard: {
     textAlign: 'center'

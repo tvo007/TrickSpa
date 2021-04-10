@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(6),
     paddingTop: theme.spacing(4),
     [theme.breakpoints.down('sm')]: {
-      padding: 0
+      padding: theme.spacing(1)
     }
     // transition: theme.transitions.create ('width', 'height', {
     //   easing: theme.transitions.easing.sharp,
