@@ -15,14 +15,18 @@ const useStyles = makeStyles(theme => ({
     }
   },
   shiftContent: {
-    // paddingLeft: openMini => openMini ? 300 : 100,
-    paddingLeft: 240
+    paddingLeft: openMini => (openMini ? 250 : 90)
+    // paddingLeft: 240
   },
   content: {
+    display: 'grid',
+    '& > *': {
+      justifySelf: 'center'
+    },
     height: '100%',
     padding: theme.spacing(6),
     paddingTop: theme.spacing(4),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(1)
     }
     // transition: theme.transitions.create ('width', 'height', {
@@ -52,7 +56,7 @@ const Main = props => {
     setOpenMini(false);
   };
 
-  const classes = useStyles(drawerWidth);
+  const classes = useStyles(openMini, drawerWidth);
   const theme = useTheme();
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
@@ -97,7 +101,7 @@ const Main = props => {
       />
 
       <Grid container justify="center">
-        <Grid item md={9} sm={12}>
+        <Grid item lg={9} sm={12} xl={6}>
           <main className={classes.content}>{children}</main>
           <Footer />
         </Grid>
