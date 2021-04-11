@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     display: 'grid',
     '& > *': {
-      placeSelf: 'center'
+      justifySelf: 'center'
     },
     height: '100%',
     padding: theme.spacing(6),
