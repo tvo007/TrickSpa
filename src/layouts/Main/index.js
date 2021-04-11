@@ -101,7 +101,7 @@ const Main = props => {
       />
 
       <Grid container justify="center">
-        <Grid item lg={9} sm={12} xl={6}>
+        <Grid item lg={9} sm={12} xl={8}>
           <main className={classes.content}>{children}</main>
           <Footer />
         </Grid>
