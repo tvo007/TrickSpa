@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   shiftContent: {
-    // paddingLeft: openMini => openMini ? 300 : 100,
-    paddingLeft: 240
+    paddingLeft: openMini => (openMini ? 300 : 90)
+    // paddingLeft: 240
   },
   content: {
     height: '100%',
@@ -52,7 +52,7 @@ const Main = props => {
     setOpenMini(false);
   };
 
-  const classes = useStyles(drawerWidth);
+  const classes = useStyles(openMini, drawerWidth);
   const theme = useTheme();
 
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
