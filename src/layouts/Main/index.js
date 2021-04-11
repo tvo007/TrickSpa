@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     padding: theme.spacing(6),
     paddingTop: theme.spacing(4),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(1)
     }
     // transition: theme.transitions.create ('width', 'height', {
@@ -97,7 +97,7 @@ const Main = props => {
       />
 
       <Grid container justify="center">
-        <Grid item md={9} sm={12}>
+        <Grid item lg={9} sm={12}>
           <main className={classes.content}>{children}</main>
           <Footer />
         </Grid>
