@@ -26,11 +26,11 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
  */
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    [theme.breakpoints.down('sm')]: {
-      paddingLeft: '1rem'
-    }
-  },
+  // root: {
+  //   [theme.breakpoints.down('sm')]: {
+  //     paddingLeft: '1rem'
+  //   }
+  // },
   mainCard: {
     textAlign: 'center'
   },
@@ -88,7 +88,7 @@ const ProfileView = ({
 
   const classes = useStyles();
   return (
-    <Grid className={classes.root} container item spacing={2} xs={12}>
+    <Grid className={classes.root} container item md={9} spacing={2} xs={12}>
       {userProfile === null || profileLoading ? (
         <Typography>Loading!</Typography>
       ) : profileLoaded ? (

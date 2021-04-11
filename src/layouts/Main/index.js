@@ -19,6 +19,10 @@ const useStyles = makeStyles(theme => ({
     // paddingLeft: 240
   },
   content: {
+    display: 'grid',
+    '& > *': {
+      placeSelf: 'center'
+    },
     height: '100%',
     padding: theme.spacing(6),
     paddingTop: theme.spacing(4),
@@ -97,7 +101,7 @@ const Main = props => {
       />
 
       <Grid container justify="center">
-        <Grid item lg={9} sm={12}>
+        <Grid item lg={9} sm={12} xl={6}>
           <main className={classes.content}>{children}</main>
           <Footer />
         </Grid>
