@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   shiftContent: {
-    paddingLeft: openMini => (openMini ? 300 : 90)
+    paddingLeft: openMini => (openMini ? 250 : 90)
     // paddingLeft: 240
   },
   content: {
