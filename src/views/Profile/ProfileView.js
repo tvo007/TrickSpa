@@ -9,8 +9,14 @@ import {
   CardContent,
   Divider,
   CardActions,
-  Button
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon
 } from '@material-ui/core';
+import GroupIcon from '@material-ui/icons/Group';
+import LocalAirportIcon from '@material-ui/icons/LocalAirport';
 import { useHistory } from 'react-router-dom';
 import PageHeading from '../../components/PageHeading';
 import { makeStyles } from '@material-ui/core/styles';
@@ -139,11 +145,23 @@ const ProfileView = ({
               <CardHeader title={<Typography variant="h4">Orgs</Typography>} />
               <Divider />
               <CardContent className={classes.list}>
-                <Typography>Mapped Tricking Orgs</Typography>
+                <List aria-label="organizations">
+                  {Array(5)
+                    .fill()
+                    .map(() => (
+                      <ListItem>
+                        <ListItemIcon>
+                          <GroupIcon color="Primary" />
+                        </ListItemIcon>
+                        <ListItemText>Some tricking organization</ListItemText>
+                      </ListItem>
+                    ))}
+                </List>
+                {/* <Typography>Mapped Tricking Orgs</Typography>
                 <Typography>Some Tricking Org</Typography>
                 <Typography>Some organization</Typography>
                 <Typography>Some organization</Typography>
-                <Typography>Some organization</Typography>
+                <Typography>Some organization</Typography> */}
               </CardContent>
             </Card>
             <Card>
@@ -152,11 +170,23 @@ const ProfileView = ({
               />
               <Divider />
               <CardContent className={classes.list}>
-                <Typography>Mapped Past Gatherings</Typography>
+                <List aria-label="Past gatherings">
+                  {Array(5)
+                    .fill()
+                    .map(() => (
+                      <ListItem>
+                        <ListItemIcon>
+                          <LocalAirportIcon color="primary" />
+                        </ListItemIcon>
+                        <ListItemText>A past gathering</ListItemText>
+                      </ListItem>
+                    ))}
+                </List>
+                {/* <Typography>Mapped Past Gatherings</Typography>
                 <Typography>Some other thing</Typography>
                 <Typography>Some other thing</Typography>
                 <Typography>Some other thing</Typography>
-                <Typography>Some other thing</Typography>
+                <Typography>Some other thing</Typography> */}
               </CardContent>
             </Card>
           </Grid>
