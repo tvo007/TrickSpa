@@ -88,7 +88,7 @@ const ProfileView = ({
 
   const classes = useStyles();
   return (
-    <Grid className={classes.root} container item spacing={2} xl={9} xs={12}>
+    <Grid className={classes.root} container item spacing={2}>
       {userProfile === null || profileLoading ? (
         <Typography>Loading!</Typography>
       ) : profileLoaded ? (
