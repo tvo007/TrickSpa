@@ -161,7 +161,7 @@ const Sidebar = ({
             <Grid item zeroMinWidth>
               {openMini
                 ? <Typography className={classes.sideTitle} noWrap variant="h4">
-                    CONNECTRIX
+                    TRICKSPA
                   </Typography>
                 : null}
             </Grid>

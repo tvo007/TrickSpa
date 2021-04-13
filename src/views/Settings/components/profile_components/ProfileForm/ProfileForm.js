@@ -1,23 +1,28 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-    Card,
-    CardHeader,
-    CardContent,
-    Button,
-    TextField,
-    Typography,
-  } from '@material-ui/core';
+  Card,
+  CardHeader,
+  CardContent,
+  Button,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 
 import useStyles from '../../../FormStyles';
 
-
-const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList, EventsList}) => {
-
+const ProfileForm = ({
+  register,
+  handleSubmit,
+  submitHandler,
+  errors,
+  OrgsList,
+  EventsList,
+}) => {
   const classes = useStyles ();
 
-    return (
-        <form onSubmit={handleSubmit (submitHandler)}>
+  return (
+    <form onSubmit={handleSubmit (submitHandler)}>
       <Card className={classes.card}>
         <CardHeader title={<Typography variant="h3">User</Typography>} />
         <CardContent className={classes.formContent}>
@@ -30,24 +35,6 @@ const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList, E
             label="Name"
             name="name"
             placeholder="Enter your name"
-          />
-          <TextField
-            error={errors.username ? true : false}
-            helperText={errors.username ? errors.username.message : null}
-            id="username"
-            inputRef={register}
-            label="Username"
-            name="username"
-            placeholder="Enter your username"
-          />
-          <TextField
-            error={errors.avatar ? true : false}
-            helperText={errors.avatar ? errors.avatar.message : null}
-            id="avatar"
-            inputRef={register}
-            label="Avatar"
-            name="avatar"
-            placeholder="Enter a url to your avatar img"
           />
         </CardContent>
       </Card>
@@ -160,7 +147,7 @@ const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList, E
           title={<Typography variant="h3">Orgs and Communities</Typography>}
         />
         <CardContent className={classes.formContent}>
-            {OrgsList}
+          {OrgsList}
         </CardContent>
       </Card>
       <Card className={classes.card}>
@@ -182,12 +169,9 @@ const ProfileForm = ({register, handleSubmit, submitHandler, errors, OrgsList, E
         </Button>
       </Card>
     </form>
-    )
-}
+  );
+};
 
-ProfileForm.propTypes = {
+ProfileForm.propTypes = {};
 
-}
-
-export default ProfileForm
-
+export default ProfileForm;
