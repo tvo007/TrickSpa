@@ -13,8 +13,6 @@ import {PROFILE_UPDATE_RESET} from '../../../constants/profileConstants';
 
 const schema = yup.object ().shape ({
   name: yup.string (),
-  username: yup.string (),
-  avatar: yup.string (),
   alias: yup.string (),
   location: yup.string (),
   bio: yup.string (),
@@ -50,7 +48,6 @@ const ProfileSettings = ({
     resolver: yupResolver (schema),
     defaultValues: {
       name: `${userProfile.first_name} ${userProfile.last_name}` || '',
-      username: userInfo.user.username || '',
       avatar: userInfo.user.avatar || '',
       alias: '',
       location: userProfile.location || '',

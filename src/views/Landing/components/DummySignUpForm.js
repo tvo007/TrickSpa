@@ -71,7 +71,7 @@ const DummySignupForm = ({onClick, setShowSignup}) => {
         >
           <Grid item>
             <Typography align="center" variant="h2">
-              Connectrix
+              TrickSpa
             </Typography>
             <Typography align="center" variant="body1">
               Connecting trickers around the world.
