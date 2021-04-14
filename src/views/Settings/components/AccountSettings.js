@@ -1,13 +1,9 @@
-import React from 'react';
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Button,
-  TextField,
-} from '@material-ui/core';
+import React, {useEffect} from 'react';
 import AccountForm from './account_components/AccountForm/AccountForm';
 import AvatarOptions from './account_components/AvatarOptions/AvatarOptions';
+import {useSelector, useDispatch} from 'react-redux';
+import {getDefaultAvatars} from '../../../actions/defaultAvatarActions';
+import {showSnackbar} from '../../../actions/alertActions';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -21,7 +17,27 @@ const schema = yup.object ().shape ({
 });
 
 const AccountSettings = () => {
-  const classes = useStyles ();
+  const dispatch = useDispatch ();
+
+  const defaultAvatars = useSelector (state => state.defaultAvatars);
+  const {
+    loading: defaultAvatarsLoading,
+    error: defaultAvatarsError,
+    loaded: defaultAvatarsLoaded,
+    avatars,
+  } = defaultAvatars;
+
+  useEffect (
+    () => {
+      if (!defaultAvatarsLoaded)
+      try {
+        dispatch (getDefaultAvatars ());
+      } catch (error) {
+        showSnackbar (error);
+      }
+    },
+    [dispatch]
+  );
 
   const {register, handleSubmit, errors} = useForm ({
     resolver: yupResolver (schema),
@@ -35,7 +51,7 @@ const AccountSettings = () => {
       handleSubmit={handleSubmit}
       register={register}
       errors={errors}
-      AvatarOptions={<AvatarOptions />}
+      AvatarOptions={<AvatarOptions defaultAvatars={avatars} />}
     />
   );
 };

@@ -25,6 +25,9 @@ import {
   userProfileReducer,
   updateProfileReducer,
 } from './reducers/profileReducers'
+import {
+  defaultAvatarsReducer
+} from './reducers/defaultAvatarReducers'
 //import setAuthToken from './utils/setAuthToken';
 
 const reducer = combineReducers ({
@@ -40,7 +43,8 @@ const reducer = combineReducers ({
   userRegister: userRegisterReducer,
   alert: alertReducer,
   userProfile: userProfileReducer,
-  updateProfile: updateProfileReducer
+  updateProfile: updateProfileReducer,
+  defaultAvatars: defaultAvatarsReducer,
 });
 
 const sectionsFromLocalStorage = localStorage.getItem ('sections')

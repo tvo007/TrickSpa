@@ -11,14 +11,18 @@ import {
   Divider,
 } from '@material-ui/core';
 
-const AvatarOptions = (props) => {
-  return <Grid>
+const AvatarOptions = ({defaultAvatars}) => {
+  return (
+    <Grid>
       <Typography>Purpose/Todo</Typography>
       <Typography>displays various options to set up avatar</Typography>
-      <Typography>map out defaultAvatar api and display in a popup drop down menu</Typography>
+      <Typography>
+        map out defaultAvatar api and display in a popup drop down menu
+      </Typography>
       <Typography>add a custom url option</Typography>
       <Typography>default to initials of first and last name if ''</Typography>
-  </Grid>;
+    </Grid>
+  );
 };
 
 AvatarOptions.propTypes = {};
